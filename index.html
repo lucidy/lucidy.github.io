@@ -91,14 +91,8 @@
 <p>######3.方法的调用:<br>        [object doSomeMethod];<br>    –&gt; objc_mesgSend(id object, @selector(doSomeMEthod));</p>
 <p>######4.发送消息 :<br>    objc_msgSend(reciver, selector)<br>    如果消息含有参数则为:<br>    objc_msgSend(reciver, selector, arg1, arg2, agr3 …)</p>
 <p>######5.实现类, 属性, 方法,集成,扩展.<br>    实现这些才能说, 这个语言是面向对象的.</p>
-<p>######6.那么用c封装的面向对象应该是什么样子的呢?<br>    struct  objc_object 这个结构体是NSObject的父类.<br>    {<br>        private;<br>        isa_t isa;<br>    }</p>
-<pre><code>实例变量:
-ivar_name
-ivaf_type
-ivar_offset 
-实例变量所占的字节数. 可以通过偏移量取到下一个偏移量.
-
-<span class="variable">SEL</span> 是一个方法名称, 它可以绑定上任何的实现. 这也是我们 swizzle 的基本原理.
+<p>######6.那么用c封装的面向对象应该是什么样子的呢?<br>    struct  objc_object 这个结构体是NSObject的父类.<br>    {<br>        private;<br>        isa_t isa;<br>    }<br>    实例变量:<br>    ivar_name<br>    ivaf_type<br>    ivar_offset<br>    实例变量所占的字节数. 可以通过偏移量取到下一个偏移量.</p>
+<pre><code><span class="keyword">SEL </span>是一个方法名称, 它可以绑定上任何的实现. 这也是我们 <span class="keyword">swizzle </span>的基本原理.
 
 // 会给代价一个runtime的所有方法的接口文档.
 </code></pre><p>####二:与Runtime系统的交互<br>    和运行时系统的交互<br>    OC程序有三种途径和运行时系统交互:</p>
