@@ -57,7 +57,7 @@ OC和C++在Xcode中的混编
 <meta property="og:image" content="http://images.cnitblog.com/blog/559453/201408/261043406578121.png">
 <meta property="og:image" content="http://www.51cto.com/files/uploadimg/20070618/091507822.gif">
 <meta property="og:image" content="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249">
-<meta property="og:updated_time" content="2015-12-04T07:23:13.000Z">
+<meta property="og:updated_time" content="2015-12-04T07:28:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--队列-泛型OC&C++混编-泛型编程">
 <meta name="twitter:description" content="关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode
@@ -175,13 +175,21 @@ OC和C++在Xcode中的混编
 <blockquote>
 <p><strong>顺序存储</strong>: 顾名思义, 数据放在一块儿连续的内存空间, 工作指针的移动可以很方便的找到其他元素(我说的是其他元素, 而不是下一个元素, 因为这样的存储方式也不一定完全为线性表存储)<br><strong>链式存储</strong>: 所有元素均任意存放在内存中, 元素之间是通过元素内的指针互相寻找对方的.</p>
 </blockquote>
-<p>####三.队列的特性</p>
-<p>队列是一种特殊的线性表，特殊之处在于它只允许在表的 <strong>前端(head)</strong> 进行删除操作，而在表的 <strong>后端(tail)</strong> 进行插入操作，队列是一种操作受限制的线性表。进行插入操作的端称为 <strong>队尾</strong> ，进行删除操作的端称为 <strong>队头</strong> 。</p>
+<h4 id="三-队列的特性">三.队列的特性</h4><p>队列是一种特殊的线性表，特殊之处在于它只允许在表的 <strong>前端(head)</strong> 进行删除操作，而在表的 <strong>后端(tail)</strong> 进行插入操作，队列是一种操作受限制的线性表。进行插入操作的端称为 <strong>队尾</strong> ，进行删除操作的端称为 <strong>队头</strong> 。</p>
 <p>队列的定义, 除了点名了它元素之间的逻辑关系, 也定义了它的部分<strong>算法</strong>.</p>
 <blockquote>
 <p><strong>算法</strong>与数据结构密不可分, 它依附于数据结构而存在, 对于任何算法的编写，必须依赖一个已经存在的数据结构来对它进行操作，数据结构成为算法的操作对象，这也是为什么算法和数据结构两门分类不分家的概念，算法在没有数据结构的情况下，没有任何存在的意义. 而数据结构没有算法就等于是一个尸体而没有灵魂</p>
 </blockquote>
 <p>对于线性表来说, 必须实现下面5中方法才能被称为是队列:</p>
+<blockquote>
+<ul>
+<li>初始化队列：Init_Queue(q) ，初始条件：队q 不存在。操作结果：<strong><em>构造了一个空队</em></strong></li>
+<li>入队操作： In_Queue(q,x),初始条件： 队q 存在。操作结果：<strong><em>对已存在的队列q，插入一个元素x 到队尾，队发生变化</em></strong></li>
+<li>出队操作： Out_Queue(q,x)，初始条件: 队q 存在且非空，操作结果： <strong><em>删除队首元素，并返回其值，队发生变化</em></strong></li>
+<li>读队头元素：Front_Queue(q,x)，初始条件: 队q 存在且非空，操作结果： <strong><em>读队头元素，并返回其值，队不变</em></strong></li>
+<li>读队头元素：Front_Queue(q,x)，初始条件: 队q 存在且非空，操作结果： <strong><em>读队头元素，并返回其值，队不变</em></strong></li>
+</ul>
+</blockquote>
 
     
   </div>
