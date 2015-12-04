@@ -55,7 +55,9 @@ OC和C++在Xcode中的混编
 
 一.数据结构简介数据结构是计算机存储、组织数据的方式。数据结构是指相互之间存在一种或多种特定关系的数据元素的集合。通常情况下，精心选择的数">
 <meta property="og:image" content="http://images.cnitblog.com/blog/559453/201408/261043406578121.png">
-<meta property="og:updated_time" content="2015-12-04T04:00:31.000Z">
+<meta property="og:image" content="http://www.51cto.com/files/uploadimg/20070618/091507822.gif">
+<meta property="og:image" content="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249">
+<meta property="og:updated_time" content="2015-12-04T06:00:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--队列-泛型OC&C++混编-泛型编程">
 <meta name="twitter:description" content="关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode
@@ -146,7 +148,15 @@ OC和C++在Xcode中的混编
 </li>
 </ul>
 <blockquote>
-<p>推理<br>按照这种抽象模型的过程, 我们可以把下面的关系抽离出另一种数据结构 – 树<br><img src="http://images.cnitblog.com/blog/559453/201408/261043406578121.png" alt="file-list"></p>
+<p>推理<br>按照这种抽象模型的过程, 我们可以把下面的关系抽离出另一种数据结构 – 树<br><img src="http://images.cnitblog.com/blog/559453/201408/261043406578121.png" alt="file-list"><br>还可以继续抽象 – 网状结构, 也就是我们所说的图.<br><img src="http://www.51cto.com/files/uploadimg/20070618/091507822.gif" alt="file-list"></p>
+</blockquote>
+<p>抽象出状结构之后, 我们基本已经无法再从对应关系上来细分了, 不信您就想想, 你所成想到的关系, 全部包含在这几种抽象中了</p>
+<p>吗?</p>
+<p>当然不是, 空间还能抽象到11维呢!</p>
+<p>事实上, 上述数据结构的共性–每个元素至少与其他元素建立了联系. 这种规则是人为规定的, 没人要求我们一定这样抽象数据, 所以, 我们可以假设所有的盒子之间两两都没有关系, 所有盒子都是独立的, 就像一堆硬币, 我们把这种数据结构成为–集合:<br><img src="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249" alt="file-list"></p>
+<p>至此, 我们得到了四种结构</p>
+<blockquote>
+<p>线性表<br>树<br>图<br>散列(集合)</p>
 </blockquote>
 
     
