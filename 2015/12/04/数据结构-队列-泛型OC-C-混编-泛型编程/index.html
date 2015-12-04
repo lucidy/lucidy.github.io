@@ -57,7 +57,7 @@ OC和C++在Xcode中的混编
 <meta property="og:image" content="http://images.cnitblog.com/blog/559453/201408/261043406578121.png">
 <meta property="og:image" content="http://www.51cto.com/files/uploadimg/20070618/091507822.gif">
 <meta property="og:image" content="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249">
-<meta property="og:updated_time" content="2015-12-04T06:00:15.000Z">
+<meta property="og:updated_time" content="2015-12-04T06:13:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--队列-泛型OC&C++混编-泛型编程">
 <meta name="twitter:description" content="关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode
@@ -144,20 +144,24 @@ OC和C++在Xcode中的混编
 <ul>
 <li><p>数据: 我们前面提到, 数据结构不分数据类型, 这个数据可以是任何数据, 你可以把它想象成是一个收纳盒, 盒子内可以放任何东西.</p>
 </li>
-<li><p>关系: 按照相面的比喻, 关系就是指这些收纳盒之间的映射关系. 比如我规定一种关系: 把这些盒子排成一列, 对于中间的某个盒子来讲, 它的前面和后面都有一个和它紧挨的盒子. 我们可以说, 这个盒子和它前面和后面的盒子有关系, 和它不相邻的盒子没有关系. 那么我们可以把这样的模型剥离出来, 得到一种数据结构 – 线性结构, 又叫 线性表.</p>
+<li><p>关系: 按照相面的比喻, 关系就是指这些收纳盒之间的映射关系. 比如我规定一种关系: 把这些盒子排成一列, 对于中间的某个盒子来讲, 它的前面和后面都有一个和它紧挨的盒子. 我们可以说, 这个盒子和它前面和后面的盒子有关系, 和它不相邻的盒子没有关系. 那么我们可以把这样的模型剥离出来, 得到一种数据结构 – 线性结构, 又叫<strong>线性表</strong>.</p>
 </li>
 </ul>
 <blockquote>
-<p>推理<br>按照这种抽象模型的过程, 我们可以把下面的关系抽离出另一种数据结构 – 树<br><img src="http://images.cnitblog.com/blog/559453/201408/261043406578121.png" alt="file-list"><br>还可以继续抽象 – 网状结构, 也就是我们所说的图.<br><img src="http://www.51cto.com/files/uploadimg/20070618/091507822.gif" alt="file-list"></p>
+<p>推理<br>按照这种抽象模型的过程, 我们可以把下面的关系抽离出另一种数据结构<strong>树</strong>.<br><img src="http://images.cnitblog.com/blog/559453/201408/261043406578121.png" alt="file-list"><br>还可以继续抽象, 元素之间的关系式任意的, 就得到了网状结构, 也就是我们所说的<strong>图</strong>.<br><img src="http://www.51cto.com/files/uploadimg/20070618/091507822.gif" alt="file-list"></p>
 </blockquote>
 <p>抽象出状结构之后, 我们基本已经无法再从对应关系上来细分了, 不信您就想想, 你所成想到的关系, 全部包含在这几种抽象中了</p>
 <p>吗?</p>
 <p>当然不是, 空间还能抽象到11维呢!</p>
-<p>事实上, 上述数据结构的共性–每个元素至少与其他元素建立了联系. 这种规则是人为规定的, 没人要求我们一定这样抽象数据, 所以, 我们可以假设所有的盒子之间两两都没有关系, 所有盒子都是独立的, 就像一堆硬币, 我们把这种数据结构成为–集合:<br><img src="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249" alt="file-list"></p>
+<p>事实上, 上述数据结构的共性–每个元素至少与其他元素建立了联系. 这种规则是人为规定的, 没人要求我们一定这样抽象数据, 所以, 我们可以假设所有的盒子之间两两都没有关系, 所有盒子都是独立的, 就像一堆硬币, 我们把这种数据结构成为<strong>集合</strong>:</p>
+<p><img src="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249" alt="file-list"></p>
 <p>至此, 我们得到了四种结构</p>
 <blockquote>
-<p>线性表<br>树<br>图<br>散列(集合)</p>
+<p>线性表: 数据结构中的元素存在一对一的相互关系<br>树: 数据结构中的元素存在一对多的相互关系<br>图: 数据结构中的元素存在多对多的相互关系<br>散列(集合): 数据结构中的元素之间除了“同属一个集合” 的相互关系外，别无其他关系</p>
 </blockquote>
+<ul>
+<li>注意: 数据结构只有这四种吗?<br>现实世界中的结构千变万化，没有通用结构可以解决所有问题。甚至一个小问题，某个适应此类问题很优秀的结构却未必就适合它。<br>我们提炼的4种结构, 相对来讲是最具普遍性的, 能适应现实世界的大多数场景.<br>你可以提炼你自己的数据结构.</li>
+</ul>
 
     
   </div>
