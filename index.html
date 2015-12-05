@@ -253,12 +253,18 @@
 <blockquote>
 <p>泛型编程让你编写完全一般化并可重复使用的算法，其效率与针对某特定数据类型而设计的算法相同。<br>关于泛型的理解, 您可以理解为”将数类型做为参数传递进来”</p>
 </blockquote>
-<p>我们看一个例子, 下面的代码使用C++语法:<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template <span class="tag">&lt;typename T&gt;</span></span><br><span class="line">struct <span class="keyword">Node</span><span class="identifier"></span><span class="title">&#123;</span><br><span class="line">    T</span> data;      //数据域</span><br><span class="line">    <span class="keyword">Node</span><span class="identifier"> </span><span class="title">* next</span>; //指针域</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>我们看一个例子, 下面的代码使用C++语法:<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">template <span class="tag">&lt;typename T&gt;</span> struct <span class="keyword">Node</span><span class="identifier"></span><span class="title">&#123;</span><br><span class="line">    T</span> data;      //数据域</span><br><span class="line">    <span class="keyword">Node</span><span class="identifier"> </span><span class="title">* next</span>; //指针域</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>上述代码中, 我们定义了一个结构体, 结构体中有两个成员变量 data 和 next</p>
 <blockquote>
 <p>next:指向自身结构体类型的指针.<br>data:的类型是T, 这个T是什么呢?</p>
 </blockquote>
 <p>template &lt; typename T &gt;:  这条语句表示T的类型定义还没有给出，需要在使用Node类型时, 通过”&lt;&gt;” 符号来指明 typename T 的类型.<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Node</span><span class="identifier"></span><span class="title">&lt;int</span>&gt; <span class="keyword">node</span><span class="identifier"></span><span class="title">;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>注意, 上述代码可以写成<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template <span class="tag">&lt;typename T&gt;</span> </span><br><span class="line">struct <span class="keyword">Node</span><span class="identifier"></span><span class="title">&#123;</span><br><span class="line">    T</span> data;      //数据域</span><br><span class="line">    <span class="keyword">Node</span><span class="identifier"> </span><span class="title">* next</span>; //指针域</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>template <typename t=""> 是来修饰 struct Node 的, 您不能在他们中间插入任何代码, 比如:</typename></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;  <span class="comment">// 这里是错误的</span></span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     
   </div>
