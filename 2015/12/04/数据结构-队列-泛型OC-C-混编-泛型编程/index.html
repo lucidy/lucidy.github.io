@@ -66,7 +66,7 @@ OC和C++在Xcode中的混编
 <meta property="og:image" content="http://images.cnitblog.com/blog/408927/201302/28222835-c03eea4c028c47098d02a1655610d689.png">
 <meta property="og:image" content="http://g.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=6b11ed5049540923be646b2cf331ba6c/b21bb051f8198618d0dafcf74aed2e738bd4e620.jpg">
 <meta property="og:image" content="http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=4eaa9bce728da9775a228e79d138937c/b3b7d0a20cf431adcfd51bc44a36acaf2fdd98c3.jpg">
-<meta property="og:updated_time" content="2015-12-05T11:57:06.000Z">
+<meta property="og:updated_time" content="2015-12-05T11:59:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--队列-泛型OC&C++混编-泛型编程">
 <meta name="twitter:description" content="关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode
@@ -290,7 +290,10 @@ OC和C++在Xcode中的混编
 </li>
 </ul>
 <p>template <typename t=""> 是来修饰 struct Node 的, 您不能在他们中间插入任何代码, 比如:</typename></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;  <span class="comment">// 这里是错误的</span></span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>错误的示例:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;  <span class="comment">// 这里是错误的</span></span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
     
   </div>

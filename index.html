@@ -264,7 +264,10 @@
 </li>
 </ul>
 <p>template <typename t=""> 是来修饰 struct Node 的, 您不能在他们中间插入任何代码, 比如:</typename></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;  <span class="comment">// 这里是错误的</span></span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>错误的示例:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;  <span class="comment">// 这里是错误的</span></span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
     
   </div>
