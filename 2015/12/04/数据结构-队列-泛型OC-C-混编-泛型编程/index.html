@@ -66,7 +66,7 @@ OC和C++在Xcode中的混编
 <meta property="og:image" content="http://images.cnitblog.com/blog/408927/201302/28222835-c03eea4c028c47098d02a1655610d689.png">
 <meta property="og:image" content="http://g.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=6b11ed5049540923be646b2cf331ba6c/b21bb051f8198618d0dafcf74aed2e738bd4e620.jpg">
 <meta property="og:image" content="http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=4eaa9bce728da9775a228e79d138937c/b3b7d0a20cf431adcfd51bc44a36acaf2fdd98c3.jpg">
-<meta property="og:updated_time" content="2015-12-05T11:46:55.000Z">
+<meta property="og:updated_time" content="2015-12-05T11:47:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--队列-泛型OC&C++混编-泛型编程">
 <meta name="twitter:description" content="关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode
@@ -284,7 +284,7 @@ OC和C++在Xcode中的混编
 <blockquote>
 <p>next:指向自身结构体类型的指针.<br>data:的类型是T, 这个T是什么呢?</p>
 </blockquote>
-<p>template <typename t="">:  这条语句表示T的类型定义还没有给出，需要在使用Node类型时, 通过”&lt;&gt;” 符号来指明 typename T 的类型.<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Node</span><span class="identifier"></span><span class="title">&lt;int</span>&gt; <span class="keyword">node</span><span class="identifier"></span><span class="title">;</span></span><br></pre></td></tr></table></figure></typename></p>
+<p>template &lt; typename T &gt;:  这条语句表示T的类型定义还没有给出，需要在使用Node类型时, 通过”&lt;&gt;” 符号来指明 typename T 的类型.<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Node</span><span class="identifier"></span><span class="title">&lt;int</span>&gt; <span class="keyword">node</span><span class="identifier"></span><span class="title">;</span></span><br></pre></td></tr></table></figure></p>
 
     
   </div>
