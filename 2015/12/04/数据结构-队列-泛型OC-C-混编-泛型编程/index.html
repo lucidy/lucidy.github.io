@@ -64,7 +64,9 @@ OC和C++在Xcode中的混编
 <meta property="og:image" content="http://images.cnitblog.com/blog/408927/201302/28221754-9cfd9c79186b4bd1ab8e515547e896fd.png">
 <meta property="og:image" content="http://images.cnitblog.com/blog/408927/201302/28222314-a219792e43804871a46d53a2ff2c1e24.png">
 <meta property="og:image" content="http://images.cnitblog.com/blog/408927/201302/28222835-c03eea4c028c47098d02a1655610d689.png">
-<meta property="og:updated_time" content="2015-12-05T10:51:00.000Z">
+<meta property="og:image" content="http://g.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=6b11ed5049540923be646b2cf331ba6c/b21bb051f8198618d0dafcf74aed2e738bd4e620.jpg">
+<meta property="og:image" content="http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=4eaa9bce728da9775a228e79d138937c/b3b7d0a20cf431adcfd51bc44a36acaf2fdd98c3.jpg">
+<meta property="og:updated_time" content="2015-12-05T11:29:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构--队列-泛型OC&C++混编-泛型编程">
 <meta name="twitter:description" content="关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode
@@ -184,7 +186,8 @@ OC和C++在Xcode中的混编
 <blockquote>
 <p><strong>顺序存储</strong>: 顾名思义, 数据放在一块儿连续的内存空间, 工作指针的移动可以很方便的找到其他元素(我说的是其他元素, 而不是下一个元素, 因为这样的存储方式也不一定完全为线性表存储)<br><strong>链式存储</strong>: 所有元素均任意存放在内存中, 元素之间是通过元素内的指针互相寻找对方的.</p>
 </blockquote>
-<h3 id="三-队列的实现">三.队列的实现</h3><p>队列是一种特殊的线性表，特殊之处在于它只允许在表的 <strong>前端(head)</strong> 进行删除操作，而在表的 <strong>后端(tail)</strong> 进行插入操作，队列是一种操作受限制的线性表。进行插入操作的端称为 <strong>队尾</strong> ，进行删除操作的端称为 <strong>队头</strong> 。</p>
+<h3 id="三-队列">三.队列</h3><p>队列是一种特殊的线性表，特殊之处在于它只允许在表的 <strong>前端(head)</strong> 进行删除操作，而在表的 <strong>后端(tail)</strong> 进行插入操作，队列是一种操作受限制的线性表。进行插入操作的端称为 <strong>队尾</strong> ，进行删除操作的端称为 <strong>队头</strong> 。</p>
+<p>队列特点是<strong>先进先出</strong>,<strong>后进后出</strong>.</p>
 <p><img src="http://images.cnitblog.com/blog/408927/201302/28215943-9e8a1e87b4484dad8b0df1869587a7e5.png" alt="file-list"></p>
 <p>队列的定义, 除了点名了它元素之间的逻辑关系, 也定义了它的部分<strong>算法</strong>.</p>
 <blockquote>
@@ -202,13 +205,13 @@ OC和C++在Xcode中的混编
 </blockquote>
 <p>以上只是要求实现的基本方法, 你可以为队列添加其他的方法,我们规定上面的方法是普世大多数应用场景, 如果你的需求特殊, 完全可以进行扩展.</p>
 <ul>
-<li><h5 id="队列的实现方式">队列的实现方式</h5>队列是一种受限制的线性表, 所以它的实现和线性表的实现一样, 可以分为 <strong>顺序存储</strong> 和 <strong>链式存储</strong> <blockquote>
+<li><h5 id="队列的实现方式">队列的实现方式</h5><p>队列是一种受限制的线性表, 所以它的实现和线性表的实现一样, 可以分为 <strong>顺序存储</strong> 和 <strong>链式存储</strong> </p>
+<blockquote>
 <p><strong>队列的顺序存储</strong>分为两种: 顺序队列和循环队列, 具体我们在下面详解.<br><strong>队列的链式存储</strong>是一种链表实现.</p>
 </blockquote>
 </li>
-</ul>
-<ul>
-<li><h5 id="顺序队列">顺序队列</h5>建立顺序队列结构必须为其静态分配或动态申请 <strong>一片连续的存储空间</strong> ，并设置两个指针(下标)进行管理。一个是队头指针head，它指向队头元素；另一个是队尾指针tail，它指向下一个入队元素的存储位置.</li>
+<li><h5 id="顺序队列">顺序队列</h5><p>建立顺序队列结构必须为其静态分配或动态申请 <strong>一片连续的存储空间</strong> ，并设置两个指针(下标)进行管理。一个是队头指针head，它指向队头元素；另一个是队尾指针tail，它指向下一个入队元素的存储位置.</p>
+</li>
 </ul>
 <p><img src="http://images.cnitblog.com/blog/408927/201302/28221754-9cfd9c79186b4bd1ab8e515547e896fd.png" alt="file-list"></p>
 <blockquote>
@@ -240,7 +243,32 @@ OC和C++在Xcode中的混编
 <li>判断满队我们有两种方案:</li>
 </ul>
 <p>1.通过一个计数器,记录元素个数, 当元素个数与数组最大值相等,则为满列;<br>2.少用一个存储空间，也就是数组的最后一个存数空间不用，当(rear+1)%maxsiz = front时，队列满； </p>
-<p>我们会在最后的示例中演示循环队列的Demo, 这个Demo采用的是第一种方案.</p>
+<p>我们会在后面的示例中演示循环队列的Demo, 这个Demo采用的是第一种方案.</p>
+<ul>
+<li><h5 id="队列的链表">队列的链表</h5></li>
+</ul>
+<p>在队列的形成过程中，可以利用线性链表的原理，来生成一个队列.<br>新元素（等待进入队列的元素）总是被插入到链表的尾部，而读取的时候总是从链表的头部开始读取。每次读取一个元素，释放一个元素。所谓的动态创建，动态释放。因而也不存在溢出等问题。由于链表由结构体间接而成，遍历也方便。</p>
+<p>队列的链表实现原理图:</p>
+<p><img src="http://g.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=6b11ed5049540923be646b2cf331ba6c/b21bb051f8198618d0dafcf74aed2e738bd4e620.jpg" alt="file-list"></p>
+<p>插入数据时:</p>
+<p><img src="http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=4eaa9bce728da9775a228e79d138937c/b3b7d0a20cf431adcfd51bc44a36acaf2fdd98c3.jpg" alt="file-list"></p>
+<p>因为链表的存储方式数据动态申请空间, 插入元素的时候才会申请空间, 所以不存在满队的情况</p>
+<blockquote>
+<ul>
+<li>你可以人为的为链表队列设置一个上限. 一旦达到这个上限, 则满队.</li>
+</ul>
+</blockquote>
+<p>后面的demo回详细的为您解释基本算法的实现.</p>
+<h3 id="四-OC与C++的混编">四.OC与C++的混编</h3><p>苹果的Objective-C编译器允许用户在同一个源文件里自由地混合使用C++和Objective-C，混编后的语言叫Objective-C++。有了它，你就可以在Objective-C应用程序中使用已有的C++类库。</p>
+<h3 id="五-泛型编程">五.泛型编程</h3><p>您肯定遇到过如下情况, 编写好的函数因为类型原因, 往往要重写好多次, 造成代码重复, 如下面的例子:</p>
+<p>// 一个返回两个整型数的和 addInt函数<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addInt</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>// 一个返回两个浮点数的和 addFloat函数<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">addFloat</span><span class="params">(<span class="keyword">float</span> a, <span class="keyword">float</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码, 除了返回值和参数的类型不同, 逻辑完全一样, 对于这种情况, C++率先提出了<strong>泛型编程</strong>的概念.</p>
+<p>泛型即是指具有在多种数据类型上皆可操作的含意，与<strong>模板</strong>有些相似。</p>
+<blockquote>
+<p>泛型编程让你编写完全一般化并可重复使用的算法，其效率与针对某特定数据类型而设计的算法相同。<br>关于泛型的理解, 您可以理解为”将数类型做为参数传递进来”</p>
+</blockquote>
+<p>我们看一个例子, 下面的代码使用C++语法:<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template <span class="tag">&lt;typename T&gt;</span></span><br><span class="line">struct <span class="keyword">Node</span><span class="identifier"></span><span class="title">&#123;</span><br><span class="line">    T</span> data;      //数据域</span><br><span class="line">    <span class="keyword">Node</span><span class="identifier"> </span><span class="title">* next</span>; //指针域</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
     
   </div>
