@@ -494,46 +494,56 @@
   
   <div class="entry">
     
-      <p>####我们先看看这些这些问题, 您能回答吗?</p>
-<ol>
+      <h4 id="我们先看看这些这些问题,_您能回答吗?">我们先看看这些这些问题, 您能回答吗?</h4><ol>
 <li>method Ivar结构体中包含那些成员变量, 这些变量的作用是什么</li>
 <li>如何与运行时系统进行交互</li>
 <li>消息转发和动态方法解析分别指什么</li>
 <li>runtime有啥作用</li>
 </ol>
 <hr>
-<p>####今天我们来看看runtime:</p>
-<p>######1,消息驱动机制</p>
-<p>######2.Runtime实现面向对象</p>
-<p>######3.消息转发</p>
-<p>######4.RUtime项目的应用</p>
-<p>######5.面试题</p>
-<h2 id="######6-附录">######6.附录</h2><p>######1.消息驱动机制<br>    运行的时候的一些机制, 主要是消息机制.<br>    对于C语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.<br>    OC的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.</p>
-<p>######2.<br>    OC语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统半圆的较色扮演oc语言的操作系统oc基于该系统来工作.</p>
-<p>######3.方法的调用:<br>        [object doSomeMethod];<br>    –&gt; objc_mesgSend(id object, @selector(doSomeMEthod));</p>
-<p>######4.发送消息 :<br>    objc_msgSend(reciver, selector)<br>    如果消息含有参数则为:<br>    objc_msgSend(reciver, selector, arg1, arg2, agr3 …)</p>
-<p>######5.实现类, 属性, 方法,集成,扩展.<br>    实现这些才能说, 这个语言是面向对象的.</p>
-<p>######6.那么用c封装的面向对象应该是什么样子的呢?<br>    struct  objc_object 这个结构体是NSObject的父类.<br>    {<br>        private;<br>        isa_t isa;<br>    }<br>    实例变量:<br>    ivar_name<br>    ivaf_type<br>    ivar_offset<br>    实例变量所占的字节数. 可以通过偏移量取到下一个偏移量.</p>
-<pre><code><span class="keyword">SEL </span>是一个方法名称, 它可以绑定上任何的实现. 这也是我们 <span class="keyword">swizzle </span>的基本原理.
+<h4 id="今天我们来看看runtime:">今天我们来看看runtime:</h4><h6 id="1,消息驱动机制">1,消息驱动机制</h6><h6 id="2-Runtime实现面向对象">2.Runtime实现面向对象</h6><h6 id="3-消息转发">3.消息转发</h6><h6 id="4-RUtime项目的应用">4.RUtime项目的应用</h6><h6 id="5-面试题">5.面试题</h6><h6 id="6-附录">6.附录</h6><hr>
+<h6 id="1-消息驱动机制">1.消息驱动机制</h6><pre><code>运行的时候的一些机制, 主要是消息机制.
+对于<span class="variable">C</span>语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.
+<span class="variable">OC</span>的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.
+</code></pre><h6 id="2-">2.</h6><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统半圆的较色扮演oc语言的操作系统oc基于该系统来工作.
+</code></pre><h6 id="3-方法的调用:">3.方法的调用:</h6><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
+--&gt; objc_mesgSend<span class="list">(<span class="keyword">id</span> object, @selector<span class="list">(<span class="keyword">doSomeMEthod</span>)</span>)</span><span class="comment">;</span></span>
+</code></pre><h6 id="4-发送消息_:">4.发送消息 :</h6><pre><code><span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector)</span></span>
+如果消息含有参数则为:
+<span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector, arg1, arg2, agr3 ...)</span></span>
+</code></pre><h6 id="5-实现类,_属性,_方法,集成,扩展-">5.实现类, 属性, 方法,集成,扩展.</h6><pre><code>实现这些才能说, 这个语言是面向对象的.
+</code></pre><h6 id="6-那么用c封装的面向对象应该是什么样子的呢?">6.那么用c封装的面向对象应该是什么样子的呢?</h6><pre><code><span class="keyword">struct</span>  objc_object 这个结构体是NSObject的父类.
+{
+    <span class="keyword">private</span>;
+    <span class="keyword">isa_t</span> isa;
+}
+实例变量:
+ivar_name
+ivaf_type
+ivar_offset 
+实例变量所占的字节数. 可以通过偏移量取到下一个偏移量.
 
-// 会给代价一个runtime的所有方法的接口文档.
-</code></pre><p>####二:与Runtime系统的交互<br>    和运行时系统的交互<br>    OC程序有三种途径和运行时系统交互:</p>
-<p>######1.通过oc源代码</p>
-<p>######2.通过 Foundation 框架中类NSObject的方法.</p>
-<p>######3.通过直接调用运行时系统的函数. 就是上面的接口文档.</p>
-<p>####动态绑定<br>    如何将消息发给应该执行的对象呢?<br>    本章描述了代码的消息表达式如何转换为objc_msgSend函数的调用 如何通过名字来指定一个方法, 以及如何使用objc_msgSend函数.<br>    —-就是方法链表的遍历! 如果遍历不到, 把这个消息传给父类, 一直向上.</p>
-<pre><code>该消息函数做了动态绑定所以需要的一切;
+SEL 是一个方法名称, 它可以绑定上任何的实现. 这也是我们 swizzle 的基本原理.
+
+<span class="comment">// 会给代价一个runtime的所有方法的接口文档.</span>
+</code></pre><h4 id="二:与Runtime系统的交互">二:与Runtime系统的交互</h4><pre><code>和运行时系统的交互
+OC程序有三种途径和运行时系统交互:
+</code></pre><h6 id="1-通过oc源代码">1.通过oc源代码</h6><h6 id="2-通过_Foundation_框架中类NSObject的方法-">2.通过 Foundation 框架中类NSObject的方法.</h6><h6 id="3-通过直接调用运行时系统的函数-_就是上面的接口文档-">3.通过直接调用运行时系统的函数. 就是上面的接口文档.</h6><h4 id="动态绑定">动态绑定</h4><pre><code>如何将消息发给应该执行的对象呢?
+本章描述了代码的消息表达式如何转换为<span class="atom">objc_msgSend</span>函数的调用 如何通过名字来指定一个方法, 以及如何使用<span class="atom">objc_msgSend</span>函数.
+----就是方法链表的遍历! 如果遍历不到, 把这个消息传给父类, 一直向上.
+
+该消息函数做了动态绑定所以需要的一切;
 <span class="number">1.</span>它首先找到对应的方法实现, 因为不同类对同一方法可能会有不同的实现, 
 <span class="number">2.</span>如果在当前类没有找到, 会根据指向父类的指针, 跳到父类中去寻找.
-<span class="number">3.</span>如果nsObject也没有, 那么就会抛异常
+<span class="number">3.</span>如果<span class="atom">nsObject</span>也没有, 那么就会抛异常
 那么这个过程就叫做动态绑定.
 
 那么你能在这个过程中干什么呢?
 
-resolveinstanceMethod: 和 resolveClassMethod: 来动态的实现给选定的对象方法或者类方法.
+<span class="atom">resolveinstanceMethod</span>: 和 <span class="atom">resolveClassMethod</span>: 来动态的实现给选定的对象方法或者类方法.
 </code></pre><p>没有参数就有两个参数 self  和 SEL<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-(BOOL)resolveInstanceMethod:(SEL)sel</span><br><span class="line">&#123;</span><br><span class="line">    void (^resolveMethod)() =^(id objc_self, SEL cmd_p)&#123;</span><br><span class="line">        NSLog(@<span class="string">"所有不能解析(找不到)的类方法回执行这里"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 添加方法</span><br><span class="line">    class_addMethod(objc_getClass(<span class="string">"LanouClass"</span>), sel, </span><br><span class="line">                imp_implementationWithBlock(resolveMethod), <span class="string">"v@:"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">return</span> YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 类方法的动态解析</span><br><span class="line">+(BOOL)resolveClassMethod:(SEL)sel</span><br><span class="line">&#123;</span><br><span class="line">    void (^resolveMethod)() =^(id objc_self, SEL cmd_p)&#123;</span><br><span class="line">        NSLog(@<span class="string">"所有不能解析(找不到)的类方法回执行这里"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 添加方法</span><br><span class="line">    class_addMethod(object_getClass(objc_getClass(<span class="string">"LanouClass"</span>)), sel, </span><br><span class="line">                    imp_implementationWithBlock(resolveMethod), <span class="string">"v@:"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">return</span> YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>调用:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LanouClass  * lc = [[LanouClass alloc] init];</span><br><span class="line"></span><br><span class="line">objc_msgSend([LanouClass class], sel_registerName(<span class="string">"doSome"</span>));</span><br></pre></td></tr></table></figure></p>
-<p>###三:消息转发<br>消息转发很像多继承, 本来由自己实现的方法, 让别人去执行.<br>消息转发是将问题分解到更小的对象中, 但是又以一种对消息发送对象来说完全透明的方式将这些对象联系起来.</p>
+<h3 id="三:消息转发">三:消息转发</h3><p>消息转发很像多继承, 本来由自己实现的方法, 让别人去执行.<br>消息转发是将问题分解到更小的对象中, 但是又以一种对消息发送对象来说完全透明的方式将这些对象联系起来.</p>
 <p>我们在一个类的.m文件中, 重写下面两个方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-(NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</span><br><span class="line">&#123;</span><br><span class="line">    self.lc = [[LanouClass alloc] init];</span><br><span class="line">    </span><br><span class="line">    // 向self.lc中注册aSelector的相关消息, 如果self.lc中没有aSelector的相关信息(没有这个方法), 在self.lc中注册一个这样的方法. 至于self.lc中有没有这个方法, 我们这里没管, 但实际上我们在上面的代码中已经做了动态绑定.</span><br><span class="line">    NSMethodSignature * signature = [self.lc methodSignatureForSelector:aSelector];</span><br><span class="line">    </span><br><span class="line">    // 向 self.lc 注册 aSelector , 名称存在signature中</span><br><span class="line">    </span><br><span class="line">    // 返回这个标识就好了</span><br><span class="line">    <span class="built_in">return</span> signature;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 转发消息</span><br><span class="line">-(void)forwardInvocation:(NSInvocation *)anInvocation</span><br><span class="line">&#123;</span><br><span class="line">    [anInvocation invokeWithTarget:self.lc];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     
