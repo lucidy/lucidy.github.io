@@ -501,11 +501,11 @@
 <li>runtime有啥作用</li>
 </ol>
 <hr>
-<h4 id="今天我们来看看runtime:">今天我们来看看runtime:</h4><h6 id="1,消息驱动机制">1,消息驱动机制</h6><h6 id="2-Runtime实现面向对象">2.Runtime实现面向对象</h6><h6 id="3-消息转发">3.消息转发</h6><h6 id="4-RUtime项目的应用">4.RUtime项目的应用</h6><h6 id="5-面试题">5.面试题</h6><h6 id="6-附录">6.附录</h6><hr>
+<h4 id="今天我们来看看runtime:">今天我们来看看runtime:</h4><h6 id="1,消息驱动机制">1,消息驱动机制</h6><h6 id="2-Runtime实现面向对象">2.Runtime实现面向对象</h6><h6 id="3-消息转发">3.消息转发</h6><h6 id="4-Runtime项目的应用">4.Runtime项目的应用</h6><h6 id="5-面试题">5.面试题</h6><h6 id="6-附录">6.附录</h6><hr>
 <h6 id="1-消息驱动机制">1.消息驱动机制</h6><pre><code>运行的时候的一些机制, 主要是消息机制.
 对于<span class="variable">C</span>语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.
 <span class="variable">OC</span>的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.
-</code></pre><h6 id="2-">2.</h6><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统半圆的较色扮演oc语言的操作系统oc基于该系统来工作.
+</code></pre><h6 id="2-Clang编译器">2.Clang编译器</h6><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统半圆的较色扮演oc语言的操作系统oc基于该系统来工作.
 </code></pre><h6 id="3-方法的调用:">3.方法的调用:</h6><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
 --&gt; objc_mesgSend<span class="list">(<span class="keyword">id</span> object, @selector<span class="list">(<span class="keyword">doSomeMEthod</span>)</span>)</span><span class="comment">;</span></span>
 </code></pre><h6 id="4-发送消息_:">4.发送消息 :</h6><pre><code><span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector)</span></span>
