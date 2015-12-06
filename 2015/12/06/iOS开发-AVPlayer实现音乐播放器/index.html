@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>iOS开发--AVPlayer实现音乐播放器 | 男孩无衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="Lucidy">
+  
+  
+    <meta name="description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
+
+
+简单介绍一下:
+
+
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+  
+  <meta name="description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
+
+
+简单介绍一下:
+
+
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS开发--AVPlayer实现音乐播放器">
+<meta property="og:url" content="http://yoursite.com/2015/12/06/iOS开发-AVPlayer实现音乐播放器/index.html">
+<meta property="og:site_name" content="男孩无衣">
+<meta property="og:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
+
+
+简单介绍一下:
+
+
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+<meta property="og:image" content="http://yoursite.com/Users/lizhiqiang/HexoWorkSpace/source/MusicPlayer/MusicMindNode.png">
+<meta property="og:updated_time" content="2015-12-06T09:17:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS开发--AVPlayer实现音乐播放器">
+<meta name="twitter:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
+
+
+简单介绍一下:
+
+
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+  
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">男孩无衣</a></h1>
+    <p><a href="/">You R Missing Me, But I Want To Fuck U</a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/06/iOS开发-AVPlayer实现音乐播放器/">
+  <time datetime="2015-12-06T09:01:35.000Z">
+    2015-12-06
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">iOS开发--AVPlayer实现音乐播放器</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.</p>
+<p>开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些</p>
+<p><img src="/Users/lizhiqiang/HexoWorkSpace/source/MusicPlayer/MusicMindNode.png" alt="file-list"></p>
+<hr>
+<p>简单介绍一下:</p>
+<blockquote>
+<ul>
+<li>AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也可以播放.</li>
+<li>MediaPlayer.framework框架下有两个常用的系统封装好的播放器:<br>MPMoviePlayController 和 MPMoviePlayViewController, 二者的区别在于, 后者的视频图像需要一张View视图作为载体, 你可以自己创建这个View, 那么也可以自由的控制它. 最明显的例子就是你可以用它做个浮窗播放器.</li>
+<li>AVFoundation.framework 下</li>
+</ul>
+</blockquote>
+
+    
+  </div>
+  <footer> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2015 <a href="/">Lucidy</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lucidy' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>
