@@ -45,7 +45,7 @@ runtime有啥作用
 今天我们来看看runtime:1,消息驱动机制2.Runtime实现面向对象3.消息转发4.Runtime项目的应用5.面试题6.附录
 1.消息驱动机制运行的时候的一些机制, 主要是消息机制.
 对于C">
-<meta property="og:updated_time" content="2015-12-07T08:06:27.000Z">
+<meta property="og:updated_time" content="2015-12-07T08:08:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime浅析">
 <meta name="twitter:description" content="我们先看看这些这些问题, 您能回答吗?
@@ -113,17 +113,17 @@ runtime有啥作用
 </ol>
 <hr>
 <h4 id="今天我们来看看runtime:">今天我们来看看runtime:</h4><h6 id="1,消息驱动机制">1,消息驱动机制</h6><h6 id="2-Runtime实现面向对象">2.Runtime实现面向对象</h6><h6 id="3-消息转发">3.消息转发</h6><h6 id="4-Runtime项目的应用">4.Runtime项目的应用</h6><h6 id="5-面试题">5.面试题</h6><h6 id="6-附录">6.附录</h6><hr>
-<h6 id="1-消息驱动机制">1.消息驱动机制</h6><pre><code>运行的时候的一些机制, 主要是消息机制.
+<h5 id="1-消息驱动机制">1.消息驱动机制</h5><pre><code>运行的时候的一些机制, 主要是消息机制.
 对于<span class="variable">C</span>语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.
 <span class="variable">OC</span>的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.
-</code></pre><h6 id="2-Clang编译器">2.Clang编译器</h6><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统半圆的较色扮演oc语言的操作系统oc基于该系统来工作.
-</code></pre><h6 id="3-方法的调用:">3.方法的调用:</h6><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
+</code></pre><h5 id="2-Clang编译器">2.Clang编译器</h5><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统半圆的较色扮演oc语言的操作系统oc基于该系统来工作.
+</code></pre><h5 id="3-方法的调用:">3.方法的调用:</h5><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
 --&gt; objc_mesgSend<span class="list">(<span class="keyword">id</span> object, @selector<span class="list">(<span class="keyword">doSomeMEthod</span>)</span>)</span><span class="comment">;</span></span>
-</code></pre><h6 id="4-发送消息_:">4.发送消息 :</h6><pre><code><span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector)</span></span>
+</code></pre><h5 id="4-发送消息_:">4.发送消息 :</h5><pre><code><span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector)</span></span>
 如果消息含有参数则为:
 <span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector, arg1, arg2, agr3 ...)</span></span>
-</code></pre><h6 id="5-实现类,_属性,_方法,集成,扩展-">5.实现类, 属性, 方法,集成,扩展.</h6><pre><code>实现这些才能说, 这个语言是面向对象的.
-</code></pre><h6 id="6-那么用c封装的面向对象应该是什么样子的呢?">6.那么用c封装的面向对象应该是什么样子的呢?</h6><pre><code><span class="keyword">struct</span>  objc_object 这个结构体是NSObject的父类.
+</code></pre><h5 id="5-实现类,_属性,_方法,集成,扩展-">5.实现类, 属性, 方法,集成,扩展.</h5><pre><code>实现这些才能说, 这个语言是面向对象的.
+</code></pre><h5 id="6-那么用c封装的面向对象应该是什么样子的呢?">6.那么用c封装的面向对象应该是什么样子的呢?</h5><pre><code><span class="keyword">struct</span>  objc_object 这个结构体是NSObject的父类.
 {
     <span class="keyword">private</span>;
     <span class="keyword">isa_t</span> isa;
@@ -139,7 +139,7 @@ SEL 是一个方法名称, 它可以绑定上任何的实现. 这也是我们 sw
 <span class="comment">// 会给代价一个runtime的所有方法的接口文档.</span>
 </code></pre><h4 id="二:与Runtime系统的交互">二:与Runtime系统的交互</h4><pre><code>和运行时系统的交互
 OC程序有三种途径和运行时系统交互:
-</code></pre><h6 id="1-通过oc源代码">1.通过oc源代码</h6><h6 id="2-通过_Foundation_框架中类NSObject的方法-">2.通过 Foundation 框架中类NSObject的方法.</h6><h6 id="3-通过直接调用运行时系统的函数-_就是上面的接口文档-">3.通过直接调用运行时系统的函数. 就是上面的接口文档.</h6><h4 id="三-动态绑定">三.动态绑定</h4><pre><code>如何将消息发给应该执行的对象呢?
+</code></pre><h5 id="1-通过oc源代码">1.通过oc源代码</h5><h5 id="2-通过_Foundation_框架中类NSObject的方法-">2.通过 Foundation 框架中类NSObject的方法.</h5><h5 id="3-通过直接调用运行时系统的函数-_就是上面的接口文档-">3.通过直接调用运行时系统的函数. 就是上面的接口文档.</h5><h4 id="三-动态绑定">三.动态绑定</h4><pre><code>如何将消息发给应该执行的对象呢?
 本章描述了代码的消息表达式如何转换为<span class="atom">objc_msgSend</span>函数的调用 如何通过名字来指定一个方法, 以及如何使用<span class="atom">objc_msgSend</span>函数.
 ----就是方法链表的遍历! 如果遍历不到, 把这个消息传给父类, 一直向上.
 
