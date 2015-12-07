@@ -173,41 +173,44 @@
 <h2 id="我们要做的就是上面样式的播放器,_如果您觉得太low,_请左右上角-">我们要做的就是上面样式的播放器, 如果您觉得太low, <strong><em>请左右上角</em></strong>.</h2><h4 id="二-_功能模块划分:">二. 功能模块划分:</h4><ul>
 <li><p>View层:两个层</p>
 <blockquote>
-<p>歌曲列表: 第一个界面是一个TableView界面,<br>播放界面: 一个自定义界面, 需要我们布局.</p>
+<p>歌曲列表: 第一个界面是一个TableView界面.(A)<br>播放界面: 一个自定义界面, 需要我们布局.(B) </p>
 </blockquote>
 </li>
 <li><p>Controller层:</p>
 <blockquote>
 <p>上述两个View的控制器: </p>
 <ol>
-<li>歌曲列表TableView的控制器 </li>
-<li>播放界面的控制器</li>
+<li>歌曲列表TableView的控制器.(C)</li>
+<li>播放界面的控制器.(D)</li>
 </ol>
 </blockquote>
 </li>
 <li><p>Model层:两个模型</p>
 <blockquote>
-<p>歌曲信息模型, 存放每首歌曲的名称, 时长, url, 缩略图, 封面, 歌词等信息.<br>歌词模型, 歌词的基本格式, 这里是 <code>[00:01]我大声说我爱的就是我</code> 字符串格式.</p>
+<p>歌曲信息模型, 存放每首歌曲的名称, 时长, url, 缩略图, 封面, 歌词等信息.(E)<br>歌词模型, 歌词的基本格式, 这里是 <code>[00:01]我大声说我爱的就是我</code> 字符串格式.(F)</p>
 </blockquote>
 </li>
 </ul>
 <p>很多时候, 我们将一些功能模块单独独立起来, 做一次<strong>封装</strong>, 封装的好处, 找个机会开篇blog.</p>
 <ul>
 <li>Tools 工具封装:<blockquote>
-<p>一个从<strong><em>网络</em></strong>中获取歌曲信息的方法<br>能将MP3文件播放出声音的类(对AVPlayer的的封装).</p>
+<p>一个从<strong><em>网络</em></strong>中获取歌曲信息的方法.(G)<br>能将MP3文件播放出声音的类(对AVPlayer的的封装).(H)</p>
 </blockquote>
 </li>
 </ul>
 <p>#####我们先按照上面的思路进行, 这个模块划分的原则因人而异, 当前项目比较简单, 无论怎么划分都不会产生太大差异性, 不过如果项目足够大, 一个有经验的开发者和新手之间的差距就体现出来了.</p>
 <p>按照上述模块划分, 我们需要8个类, 每个类完成自己独特的功能, 所谓”工欲善其事, 必先利其器”, 我们打算从工具类Tools开始, 深入浅出, 然后深入, 深入, 再深入.</p>
+<ul>
+<li>括号后面的字母为了作为模块标记, 下面您看到某块代码是, 可以清晰的找到, 做的是哪一个模块.</li>
+</ul>
 <hr>
-<h4 id="三-工具类Tools">三.工具类Tools</h4><h4 id="3-1_数据请求">3.1 数据请求</h4><p>在这个工具类里面, 我们将这个类设置成为一个<strong>单例类</strong></p>
+<h4 id="三-工具类Tools">三.工具类Tools</h4><h4 id="3-1_数据请求(G)">3.1 数据请求(G)</h4><p>在这个工具类里面, 我们将这个类设置成为一个<strong>单例类</strong></p>
 <blockquote>
 <p>将数据请求封装成单例的好处是显而易见, </p>
 <ul>
 <li>首先做到了Model和Controllerc层的完全剥离, 从C层中调用数据请求的方法, 将请求回来的数据存放在Tools类中, 也可以回传给C层做进一步的处理使用.</li>
 <li>其次, 如果歌曲清单没有改变, 那么一次请求的数据应该贯穿应用程序的整个声明周期. 这样, <strong>任何</strong>时候, 我们都能获取到这个歌曲信息.</li>
-<li>最后, 所有的页面(这里只有两个)都可能使用某首歌曲的信息, 将数据存放到单例的另一个好处就是, 数据伴随单例, 扩大了作用域范围, 与上一条连用, 任何页面任何时刻, 都可以随意的访问数据内容.</li>
+<li>最后, 所有的页面(我们的APP只有两个页面)都可能使用某首歌曲的信息, 将数据存放到单例的另一个好处就是, 数据伴随单例, 扩大了作用域范围, 与上一条连用, 任何页面任何时刻, 都可以随意的访问数据内容.</li>
 </ul>
 </blockquote>
 <h5 id="新建一个类,_名称为:_GetDataTools">新建一个类, 名称为: GetDataTools</h5><p>GetDataTools.h<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">void</span> (^PassValue)(<span class="built_in">NSArray</span> * array);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">GetDataTools</span> : <span class="title">NSObject</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 作为单例的属性,这个数组可以在任何位置,任何时间被访问.</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">NSMutableArray</span> * dataArray;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单例方法</span></span><br><span class="line">+(instancetype)shareGetData;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重点!!!!!!!!!</span></span><br><span class="line"><span class="comment">// 根据传入的URL,通过Block返回一个数组.</span></span><br><span class="line"><span class="comment">// 这种"block回传值"的形式,不单单要会用,而且要会写.</span></span><br><span class="line"><span class="comment">// 工作之后,有些单位专门编写SDK(既我们使用的第三方),这些三方现在基本都支持这种形式.</span></span><br><span class="line">-(<span class="keyword">void</span>)getDataWithURL:(<span class="built_in">NSString</span> *)URL PassValue:(PassValue)passValue;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根据传入的Index,返回一个"歌曲信息的模型",这个模型来自上面的属性数组.</span></span><br><span class="line">-(MusicInfoModel *)getModelWithIndex:(<span class="built_in">NSInteger</span>)index;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
