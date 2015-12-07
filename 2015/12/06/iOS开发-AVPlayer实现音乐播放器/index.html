@@ -47,7 +47,7 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/1b788705b60f3a0f.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/b2352bdbf6eaae5c.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/cb81aecfa87aee30.png">
-<meta property="og:updated_time" content="2015-12-07T02:24:15.000Z">
+<meta property="og:updated_time" content="2015-12-07T02:32:30.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发--AVPlayer实现音乐播放器">
 <meta name="twitter:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
@@ -153,11 +153,14 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 <p>很多时候, 我们将一些功能模块单独独立起来, 做一次<strong>封装</strong>, 封装的好处, 找个机会开篇blog.</p>
 <ul>
 <li>Tools 工具封装:<blockquote>
-<p>一个获取数据的方法<br>能将MP3文件播放出声音的类(对AVPlayer的的封装).</p>
+<p>一个从<strong><em>网络</em></strong>中获取歌曲信息的方法<br>能将MP3文件播放出声音的类(对AVPlayer的的封装).</p>
 </blockquote>
 </li>
 </ul>
-
+<p>#####我们先按照上面的思路进行, 这个模块划分的原则因人而异, 当前项目比较简单, 无论怎么划分都不会产生太大差异性, 不过如果项目足够大, 一个有经验的开发者和新手之间的差距就体现出来了.</p>
+<p>按照上述模块划分, 我们需要8个类, 每个类完成自己独特的功能, 所谓”工欲善其事, 必先利其器”, 我们打算从工具类Tools开始, 深入浅出, 然后深入, 深入, 再深入.</p>
+<hr>
+<h4 id="三-工具类Tools">三.工具类Tools</h4>
     
   </div>
   <footer> 
