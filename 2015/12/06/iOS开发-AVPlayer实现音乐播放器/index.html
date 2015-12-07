@@ -11,47 +11,54 @@
   
   
     <meta name="description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+AudioToolbox.framework的音频播放时间不能超过30s,数">
   
   <meta name="description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+AudioToolbox.framework的音频播放时间不能超过30s,数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发--AVPlayer实现音乐播放器">
 <meta property="og:url" content="http://yoursite.com/2015/12/06/iOS开发-AVPlayer实现音乐播放器/index.html">
 <meta property="og:site_name" content="男孩无衣">
 <meta property="og:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
-<meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/10f97e32e0d2726d.png">
+AudioToolbox.framework的音频播放时间不能超过30s,数">
+<meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/64fc4f52ab473d4f.png">
 <meta property="og:image" content="http://images.cnitblog.com/blog/62046/201412/260914422024869.png">
-<meta property="og:updated_time" content="2015-12-07T01:46:39.000Z">
+<meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/1b788705b60f3a0f.png">
+<meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/b2352bdbf6eaae5c.png">
+<meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/cb81aecfa87aee30.png">
+<meta property="og:updated_time" content="2015-12-07T02:08:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发--AVPlayer实现音乐播放器">
 <meta name="twitter:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也">
+AudioToolbox.framework的音频播放时间不能超过30s,数">
   
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
@@ -100,25 +107,31 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或
   <div class="entry">
     
       <p>今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.</p>
+<p>这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.</p>
 <p>开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些</p>
-<p><img src="http://ac-4fcdbq4a.clouddn.com/10f97e32e0d2726d.png" alt="file-list"></p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/64fc4f52ab473d4f.png" alt="file-list"></p>
 <hr>
 <p>简单介绍一下:</p>
 <blockquote>
 <ul>
-<li>AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也可以播放.</li>
+<li>AudioToolbox.framework的音频播放时间不能超过30s,数据必须是PCM或者IMA4格式,音频文件必须打包成.caf、.aif、.wav中的一种（注意这是官方文档的说法，实际测试发现一些.mp3也可以播放. 它的主要用途可以用作app的音效(不是背景音).</li>
 <li>MediaPlayer.framework框架下有两个常用的系统封装好的播放器:<br>MPMoviePlayController 和 MPMoviePlayViewController, 二者的区别在于, 后者的视频图像需要一张View视图作为载体, 你可以自己创建这个View, 那么也可以自由的控制它. 最明显的例子就是你可以用它做个浮窗播放器.</li>
 <li>AVFoundation.framework 目前被AVKit框架替代了, 但是我没有跟进, 我就用它:<br>AVAudioRecorder播放器, 提供录音, 录音的的代码加起来没你jj长.<br>AVPlayer播放器, 一个能播放网络和本地视频/音频的播放器, 和MediaPlayer.framework框架下的两个播放器不同, 系统并未提供它的UI界面, 我们需要自己实现, 往好听了说: 这是一个可以高度自定义的播放器.<br>AVAudioPlayer与 AVPlayer播放器的区别在于, 这货只能播放本地音乐.</li>
 </ul>
 </blockquote>
 <p>另附一张表格, 里面登记了大多数播放器的优缺点, 图片来源网络:<br><img src="http://images.cnitblog.com/blog/62046/201412/260914422024869.png" alt="file-list"></p>
 <p>下面开始我们的音乐播放器之旅.</p>
-<p>第一步, 我们先分析分析, 一个音乐播放器都分哪几部分.</p>
-<p>首先, 我们把<strong><em>音乐播放</em></strong>功能提炼出来, 封装成一个单例类.</p>
-<blockquote>
-<p>因为我们当初</p>
-</blockquote>
-
+<h4 id="一-_产品原型图">一. 产品原型图</h4><p>当我们在实际生产过程中, 作为App前端开发工程师, 我们会拿到产品模型(原型图), 这个模型可能使用<code>墨刀</code>为你精准绘制, 也可能某个页面使用<code>草纸</code>为你勾勒, 不管怎样, 你肯定能拿到下面的东西, 这些图片, <strong>描绘了你要做的app大概长成什么样子</strong>.</p>
+<ul>
+<li><p>歌曲列表<br><img src="http://ac-4fcdbq4a.clouddn.com/1b788705b60f3a0f.png" alt="file-list"></p>
+</li>
+<li><p>播放界面<br><img src="http://ac-4fcdbq4a.clouddn.com/b2352bdbf6eaae5c.png" alt="file-list"></p>
+</li>
+<li><p>播放界面滑动CD还有歌词呢<br><img src="http://ac-4fcdbq4a.clouddn.com/cb81aecfa87aee30.png" alt="file-list"></p>
+</li>
+</ul>
+<p>我们要做的就是上面样式的播放器, 如果您觉得太low, <strong><em>请左右上角</em></strong>.</p>
+<h4 id="二-_功能模块划分:">二. 功能模块划分:</h4>
     
   </div>
   <footer> 
