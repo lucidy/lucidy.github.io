@@ -47,7 +47,8 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/1b788705b60f3a0f.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/b2352bdbf6eaae5c.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/cb81aecfa87aee30.png">
-<meta property="og:updated_time" content="2015-12-07T03:16:57.000Z">
+<meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/a282dc9df522216c.png">
+<meta property="og:updated_time" content="2015-12-07T03:18:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发--AVPlayer实现音乐播放器">
 <meta name="twitter:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
@@ -131,9 +132,7 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 </ul>
 <p>我们要做的就是上面样式的播放器, 如果您觉得太low, <strong>请左右上角</strong>.</p>
 <hr>
-<h4 id="二-_功能模块划分:">二. 功能模块划分:</h4><ul>
-<li><p>括号后面的字母作为标记, 后面实现方法中会有这个字母, 您可以根据标记本节来查看当前代码属于哪一模块.</p>
-</li>
+<h4 id="二-_功能模块划分:">二. 功能模块划分:</h4><h6 id="括号后面的字母作为标记,_后面实现方法中会有这个字母,_您可以根据标记本节来查看当前代码属于哪一模块-">括号后面的字母作为标记, 后面实现方法中会有这个字母, 您可以根据标记本节来查看当前代码属于哪一模块.</h6><ul>
 <li><p>View层:两个层</p>
 <blockquote>
 <p>歌曲列表: 第一个界面是一个TableView界面.(A)<br>播放界面: 一个自定义界面, 需要我们布局.(B) </p>
@@ -163,6 +162,7 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 </ul>
 <p>#####我们先按照上面的思路进行, 这个模块划分的原则因人而异, 当前项目比较简单, 无论怎么划分都不会产生太大差异性, 不过如果项目足够大, 一个有经验的开发者和新手之间的差距就体现出来了.</p>
 <p>按照上述模块划分, 我们需要8个类, 每个类完成自己独特的功能, 所谓”工欲善其事, 必先利其器”, 我们打算从工具类Tools开始, 深入浅出, 然后深入, 深入, 再深入.</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/a282dc9df522216c.png" alt="file-list"></p>
 <ul>
 <li>括号后面的字母为了作为模块标记, 下面您看到某块代码是, 可以清晰的找到, 做的是哪一个模块.</li>
 </ul>
@@ -188,7 +188,7 @@ AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 </blockquote>
 <p>以上是我们的数据请求类(GetDataTools).</p>
 <hr>
-<h4 id="3-2_播放器工具类()">3.2 播放器工具类()</h4>
+<h4 id="3-2_播放器工具类(H)">3.2 播放器工具类(H)</h4>
     
   </div>
   <footer> 
