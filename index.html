@@ -211,9 +211,6 @@
 </ul>
 <h5 id="我们先按照上面的思路进行,_这个模块划分的原则因人而异,_当前项目比较简单,_无论怎么划分都不会产生太大差异性,_不过如果项目足够大,_一个有经验的开发者和新手之间的差距就体现出来了-">我们先按照上面的思路进行, 这个模块划分的原则因人而异, 当前项目比较简单, 无论怎么划分都不会产生太大差异性, 不过如果项目足够大, 一个有经验的开发者和新手之间的差距就体现出来了.</h5><p>按照上述模块划分, 我们需要8个类, 每个类完成自己独特的功能, 所谓”工欲善其事, 必先利其器”, 我们打算从工具类Tools开始, 深入浅出, 然后深入, 深入, 再深入.</p>
 <p><img src="http://ac-4fcdbq4a.clouddn.com/a282dc9df522216c.png" alt="file-list"></p>
-<ul>
-<li>括号后面的字母为了作为模块标记, 下面您看到某块代码是, 可以清晰的找到, 做的是哪一个模块.</li>
-</ul>
 <hr>
 <h4 id="三-工具类Tools">三.工具类Tools</h4><h4 id="3-1_数据请求(G)">3.1 数据请求(G)</h4><p>在这个工具类里面, 我们将这个类设置成为一个<strong>单例类</strong></p>
 <blockquote>
@@ -623,7 +620,7 @@
     
     
   
-    <h1 class="title"><a href="/2015/12/03/runtime/">runtime</a></h1>
+    <h1 class="title"><a href="/2015/12/03/runtime/">Runtime浅析</a></h1>
   
 
   </header>
@@ -664,7 +661,7 @@ SEL 是一个方法名称, 它可以绑定上任何的实现. 这也是我们 sw
 <span class="comment">// 会给代价一个runtime的所有方法的接口文档.</span>
 </code></pre><h4 id="二:与Runtime系统的交互">二:与Runtime系统的交互</h4><pre><code>和运行时系统的交互
 OC程序有三种途径和运行时系统交互:
-</code></pre><h6 id="1-通过oc源代码">1.通过oc源代码</h6><h6 id="2-通过_Foundation_框架中类NSObject的方法-">2.通过 Foundation 框架中类NSObject的方法.</h6><h6 id="3-通过直接调用运行时系统的函数-_就是上面的接口文档-">3.通过直接调用运行时系统的函数. 就是上面的接口文档.</h6><h4 id="动态绑定">动态绑定</h4><pre><code>如何将消息发给应该执行的对象呢?
+</code></pre><h6 id="1-通过oc源代码">1.通过oc源代码</h6><h6 id="2-通过_Foundation_框架中类NSObject的方法-">2.通过 Foundation 框架中类NSObject的方法.</h6><h6 id="3-通过直接调用运行时系统的函数-_就是上面的接口文档-">3.通过直接调用运行时系统的函数. 就是上面的接口文档.</h6><h4 id="三-动态绑定">三.动态绑定</h4><pre><code>如何将消息发给应该执行的对象呢?
 本章描述了代码的消息表达式如何转换为<span class="atom">objc_msgSend</span>函数的调用 如何通过名字来指定一个方法, 以及如何使用<span class="atom">objc_msgSend</span>函数.
 ----就是方法链表的遍历! 如果遍历不到, 把这个消息传给父类, 一直向上.
 
@@ -679,7 +676,7 @@ OC程序有三种途径和运行时系统交互:
 <span class="atom">resolveinstanceMethod</span>: 和 <span class="atom">resolveClassMethod</span>: 来动态的实现给选定的对象方法或者类方法.
 </code></pre><p>没有参数就有两个参数 self  和 SEL<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">-(BOOL)resolveInstanceMethod:(SEL)sel</span><br><span class="line">&#123;</span><br><span class="line">    void (^resolveMethod)() =^(id objc_self, SEL cmd_p)&#123;</span><br><span class="line">        NSLog(@<span class="string">"所有不能解析(找不到)的类方法回执行这里"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 添加方法</span><br><span class="line">    class_addMethod(objc_getClass(<span class="string">"LanouClass"</span>), sel, </span><br><span class="line">                imp_implementationWithBlock(resolveMethod), <span class="string">"v@:"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">return</span> YES;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 类方法的动态解析</span><br><span class="line">+(BOOL)resolveClassMethod:(SEL)sel</span><br><span class="line">&#123;</span><br><span class="line">    void (^resolveMethod)() =^(id objc_self, SEL cmd_p)&#123;</span><br><span class="line">        NSLog(@<span class="string">"所有不能解析(找不到)的类方法回执行这里"</span>);</span><br><span class="line">    &#125;;</span><br><span class="line">    // 添加方法</span><br><span class="line">    class_addMethod(object_getClass(objc_getClass(<span class="string">"LanouClass"</span>)), sel, </span><br><span class="line">                    imp_implementationWithBlock(resolveMethod), <span class="string">"v@:"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">return</span> YES;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>调用:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LanouClass  * lc = [[LanouClass alloc] init];</span><br><span class="line"></span><br><span class="line">objc_msgSend([LanouClass class], sel_registerName(<span class="string">"doSome"</span>));</span><br></pre></td></tr></table></figure></p>
-<h3 id="三:消息转发">三:消息转发</h3><p>消息转发很像多继承, 本来由自己实现的方法, 让别人去执行.<br>消息转发是将问题分解到更小的对象中, 但是又以一种对消息发送对象来说完全透明的方式将这些对象联系起来.</p>
+<h3 id="四:消息转发">四:消息转发</h3><p>消息转发很像多继承, 本来由自己实现的方法, 让别人去执行.<br>消息转发是将问题分解到更小的对象中, 但是又以一种对消息发送对象来说完全透明的方式将这些对象联系起来.</p>
 <p>我们在一个类的.m文件中, 重写下面两个方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-(NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</span><br><span class="line">&#123;</span><br><span class="line">    self.lc = [[LanouClass alloc] init];</span><br><span class="line">    </span><br><span class="line">    // 向self.lc中注册aSelector的相关消息, 如果self.lc中没有aSelector的相关信息(没有这个方法), 在self.lc中注册一个这样的方法. 至于self.lc中有没有这个方法, 我们这里没管, 但实际上我们在上面的代码中已经做了动态绑定.</span><br><span class="line">    NSMethodSignature * signature = [self.lc methodSignatureForSelector:aSelector];</span><br><span class="line">    </span><br><span class="line">    // 向 self.lc 注册 aSelector , 名称存在signature中</span><br><span class="line">    </span><br><span class="line">    // 返回这个标识就好了</span><br><span class="line">    <span class="built_in">return</span> signature;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 转发消息</span><br><span class="line">-(void)forwardInvocation:(NSInvocation *)anInvocation</span><br><span class="line">&#123;</span><br><span class="line">    [anInvocation invokeWithTarget:self.lc];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
     
