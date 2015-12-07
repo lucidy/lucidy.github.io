@@ -11,54 +11,54 @@
   
   
     <meta name="description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
-这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲, UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数">
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
   
   <meta name="description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
-这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲, UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数">
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发--AVPlayer实现音乐播放器">
 <meta property="og:url" content="http://yoursite.com/2015/12/06/iOS开发-AVPlayer实现音乐播放器/index.html">
 <meta property="og:site_name" content="男孩无衣">
 <meta property="og:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
-这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲, UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数">
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/64fc4f52ab473d4f.png">
 <meta property="og:image" content="http://images.cnitblog.com/blog/62046/201412/260914422024869.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/1b788705b60f3a0f.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/b2352bdbf6eaae5c.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/cb81aecfa87aee30.png">
-<meta property="og:updated_time" content="2015-12-07T02:16:17.000Z">
+<meta property="og:updated_time" content="2015-12-07T02:24:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发--AVPlayer实现音乐播放器">
 <meta name="twitter:description" content="今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.
-这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.
+这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲, UI部分美化美化一下即可. 要做到举一反三.
 开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些
 
 
 简单介绍一下:
 
 
-AudioToolbox.framework的音频播放时间不能超过30s,数">
+AudioToolbox.framework的音频播放时间不能超过30s,数据必须">
   
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
@@ -107,7 +107,7 @@ AudioToolbox.framework的音频播放时间不能超过30s,数">
   <div class="entry">
     
       <p>今天敲一个音乐播放器, 音乐源我就不共享了, 涉及到版权保护, 别问我的源是哪儿来的. 不告诉你们.</p>
-<p>这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲   , UI部分美化美化一下即可. 要做到举一反三.</p>
+<p>这篇博客是一篇教学Blog, Demo不能直接用作生产, 但其中的逻辑是经得起推敲, UI部分美化美化一下即可. 要做到举一反三.</p>
 <p>开始敲之前, 我们先看看当前可供使用的多媒体播放框架有哪些</p>
 <p><img src="http://ac-4fcdbq4a.clouddn.com/64fc4f52ab473d4f.png" alt="file-list"></p>
 <hr>
@@ -130,14 +130,9 @@ AudioToolbox.framework的音频播放时间不能超过30s,数">
 </li>
 </ul>
 <h2 id="我们要做的就是上面样式的播放器,_如果您觉得太low,_请左右上角-">我们要做的就是上面样式的播放器, 如果您觉得太low, <strong><em>请左右上角</em></strong>.</h2><h4 id="二-_功能模块划分:">二. 功能模块划分:</h4><ul>
-<li><p>View层:两个图层</p>
+<li><p>View层:两个层</p>
 <blockquote>
 <p>歌曲列表: 第一个界面是一个TableView界面,<br>播放界面: 一个自定义界面, 需要我们布局.</p>
-</blockquote>
-</li>
-<li><p>Model层:两个模型</p>
-<blockquote>
-<p>歌曲信息模型<br>歌词模型</p>
 </blockquote>
 </li>
 <li><p>Controller层:</p>
@@ -149,8 +144,13 @@ AudioToolbox.framework的音频播放时间不能超过30s,数">
 </ol>
 </blockquote>
 </li>
+<li><p>Model层:两个模型</p>
+<blockquote>
+<p>歌曲信息模型, 存放每首歌曲的名称, 时长, url, 缩略图, 封面, 歌词等信息.<br>歌词模型, 歌词的基本格式, 这里是 <code>[00:01]我大声说我爱的就是我</code> 字符串格式.</p>
+</blockquote>
+</li>
 </ul>
-<p>很多时候, 我们将一些功能模块单独独立起来, 做一次<strong>封装</strong>, 封装的好处, 找个机会开篇blog<code>! !!@#$</code></p>
+<p>很多时候, 我们将一些功能模块单独独立起来, 做一次<strong>封装</strong>, 封装的好处, 找个机会开篇blog.</p>
 <ul>
 <li>Tools 工具封装:<blockquote>
 <p>一个获取数据的方法<br>能将MP3文件播放出声音的类(对AVPlayer的的封装).</p>
