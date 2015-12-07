@@ -173,9 +173,12 @@
 <p>我们要做的就是上面样式的播放器, 如果您觉得太low, <strong>请左右上角</strong>.</p>
 <hr>
 <h4 id="二-_功能模块划分:">二. 功能模块划分:</h4><h6 id="括号后面的字母作为标记,_后面实现方法中会有这个字母,_您可以根据标记本节来查看当前代码属于哪一模块-">括号后面的字母作为标记, 后面实现方法中会有这个字母, 您可以根据标记本节来查看当前代码属于哪一模块.</h6><ul>
-<li><p>View层:两个层</p>
+<li><p>View层:两个界面</p>
 <blockquote>
-<p>歌曲列表: 第一个界面是一个TableView界面.(A)<br>播放界面: 一个自定义界面, 需要我们布局.(B) </p>
+<ol>
+<li>歌曲列表: 第一个界面是一个TableView界面.(A)</li>
+<li>播放界面: 一个自定义界面, 需要我们布局.(B) </li>
+</ol>
 </blockquote>
 </li>
 <li><p>Controller层:</p>
@@ -189,14 +192,20 @@
 </li>
 <li><p>Model层:两个模型</p>
 <blockquote>
-<p>歌曲信息模型, 存放每首歌曲的名称, 时长, url, 缩略图, 封面, 歌词等信息.(E)<br>歌词模型, 歌词的基本格式, 这里是 <code>[00:01]我大声说我爱的就是我</code> 字符串格式.(F)</p>
+<ol>
+<li>歌曲信息模型, 存放每首歌曲的名称, 时长, url, 缩略图, 封面, 歌词等信息.(E)</li>
+<li>歌词模型, 歌词的基本格式, 这里是 <code>[00:01]我大声说我爱的就是我</code> 字符串格式.(F)</li>
+</ol>
 </blockquote>
 </li>
 </ul>
 <p>很多时候, 我们将一些功能模块单独独立起来, 做一次<strong>封装</strong>, 封装的好处, 找个机会开篇blog.</p>
 <ul>
 <li>Tools 工具封装:<blockquote>
-<p>一个从<strong><em>网络</em></strong>中获取歌曲信息的方法.(G)<br>能将MP3文件播放出声音的类(对AVPlayer的的封装).(H)</p>
+<ol>
+<li>一个从<strong><em>网络</em></strong>中获取歌曲信息的方法.(G)</li>
+<li>能将MP3文件播放出声音的类(对AVPlayer的的封装).(H)</li>
+</ol>
 </blockquote>
 </li>
 </ul>
@@ -227,15 +236,19 @@
 </blockquote>
 <p>以上是我们的数据请求类(GetDataTools).</p>
 <hr>
-<h4 id="3-2_播放器工具类(H)">3.2 播放器工具类(H)</h4><p>在封装AVPlayer之前, 我们先了解一下AVPlayer有什么特点.<br>AVPlayer存在于AVFoundation中, 它更加接近于底层, 所以灵活性也更强,AVPlayer本身并不能显示视频，而且它也不像MPMoviePlayerController有一个view属性。如果AVPlayer要显示必须创建一个播放器层AVPlayerLayer用于展示，播放器层继承于CALayer，有了AVPlayerLayer之添加到控制器视图的layer中即可。要使用AVPlayer首先了解一下几个常用的类(本段源自网络)：</p>
+<h4 id="3-2_播放器工具类(H)">3.2 播放器工具类(H)</h4><p>在封装AVPlayer之前, 我们先了解一下AVPlayer有什么特点.<br>AVPlayer存在于AVFoundation中, 它更加接近于底层, 所以灵活性也更强,AVPlayer本身并不能显示视频，而且它也不像MPMoviePlayerController有一个view属性。如果AVPlayer要显示必须创建一个播放器层AVPlayerLayer用于展示，播放器层继承于CALayer，有了AVPlayerLayer之添加到控制器视图的layer中即可。要使用AVPlayer首先了解一下几个常用的类和它的属性/方法(本段源自网络)：</p>
 <blockquote>
 <ul>
-<li>AVAsset：主要用于获取多媒体信息，是一个抽象类，不能直接使用。</li>
-<li>AVURLAsset：AVAsset的子类，可以根据一个URL路径创建一个包含媒体信息的AVURLAsset对象。</li>
-<li>AVPlayerItem：一个媒体资源管理对象，管理者视音频的一些基本信息和状态，一个AVPlayerItem对应着一个视音频资源。</li>
+<li>AVAsset: 属性, 主要用于获取多媒体信息，是一个抽象类，不能直接使用。</li>
+<li>AVURLAsset: 属性, AVAsset的子类，可以根据一个URL路径创建一个包含媒体信息的AVURLAsset对象。</li>
+<li>AVPlayerItem: 属性,一个媒体资源管理对象，管理者视音频的一些基本信息和状态，一个AVPlayerItem对应着一个视音频资源.</li>
+<li>replaceCurrentItemWithPlayerItem: 替换AVPlayer的当前Item.</li>
+<li>play: 方法, 播放媒体.</li>
+<li>pause: 方法, 暂停.</li>
+<li>seekToTime:completionHandler: 方法, 播放跳转, 调整播放进度.</li>
 </ul>
 </blockquote>
-<p>下面我们逐释一下AVPlayerItem:</p>
+<p>下面我们解释一下AVPlayerItem:</p>
 <ul>
 <li>AVPlayerItem<br>我们不妨做一次角色扮演游戏, 我是老板, 你是一位员工小张, 主要负责向客户推销一款产品.<br>今天早上我对你下达了这样命令:<br><strong><em>小张, 隔壁的桌子上有一款新开发的产品, 你现在拿着它去给展厅的客户们介绍一下.</em></strong><br>上面的命令透露出两个信息: </li>
 </ul>
@@ -243,9 +256,15 @@
 <li>这个款产品是新产品, 你从来没有听说过, 你不知道它的任何参数. </li>
 <li>你需要立刻完成这件事.<br>你不傻掉才怪. 这样的命令式不合逻辑, 不合设计思路的.<br>对比下面的命令:<br><strong><em>小张, 这里有份资料, 里面记录着隔壁桌子上新产品的详细信息, 你拿去研究一下, 等到你完全掌握并且准备好时, 你告诉我, 我给你安排一个展厅向客户介绍它.</em></strong><br>下面的命令对透露出的信息:</li>
 <li>这个产品有说明书</li>
-<li>你别着急, 慢慢研究, 研究好了你告诉我, 这个时间我(老板)先干点别的.<br>很明显下面的方式要好于上面.<br>同样, 你对AVPlayer下达命令也不能采用第一种方式, 你要告诉它, 你要播放的歌曲是什么名字, 有多长时间, 文件在什么位置, 歌曲的图片是什么, 这些东西你要给它写一份详细的说明书.<br>这个说明书就是<strong>AVPlayerItem</strong>.</li>
+<li>你别着急, 慢慢研究, 研究好了你告诉我, 这个时间我(老板)先干点别的.<br>很明显下面的方式要好于上面.<br>同样, 你对AVPlayer下达命令也不能采用第一种方式, 你要告诉它, 你要播放的歌曲是什么名字, 有多长时间, 文件在什么位置, 歌曲的图片是什么, 这些东西你要给它写一份详细的说明书.<br>这个说明书就是<strong>AVPlayerItem</strong>.<br>每一个AVPlayer对象, 都有一个自己的AVPlayerItem属性, 名字叫做:currentItem, 我们可以通过<br><code>replaceCurrentItemWithPlayerItem:</code> 方法来替换当前的Item, 将准备好的Item, 交给Player.<br>这个过程我们使用<strong>观察者模式</strong>模式来监视Item的准备情况. 一旦Item准备完毕, 会修改自身的statu<br>s属性为<code>AVPlayerItemStatusReadyToPlay</code>枚举值, 一旦观察到这种状态, 我们就开始真正的播放.</li>
 </ol>
-<p>每一个AVPlayer对象, 都有一个自己的AVPlayerItem属性, 名字叫做:currentItem, 我们可以通过<br>`replaceCurrentItemWithPlayerItem: 方法来替换当前的Item, 将准备好的Item, 交给Player.</p>
+<ul>
+<li><p>方法: play 和 pause<br>这个两个是AVPlayer的播放控制方法, 我们在控制界面有个按钮, 点一下就播放, 再点一下就暂停, 反复重复. 貌似没有什么, 但是这里有个棘手的问题, AVPlayer的对象成员变量中, 居然没有来标识当前播放状态的! 也就是说, 你永远也不可能直接的获得当前AVPlayer正在播放中或者暂停了.<br>通常情况下, 我们通过AVPlayer的一个rate(播放速率)来简介的得到播放状态, rate==0则暂停, 不为0则正在播放中.</p>
+</li>
+<li><p>切换歌曲<br>AVPlayer并没有直接提供下一曲和上一曲的的功能, 但是我们可以通过上面的<code>replaceCurrentItemWithPlayerItem:</code>方法, 将AVPlayer对象的Item替换掉, 之后让它播放, 就可以达到这个效果.</p>
+</li>
+</ul>
+<h5 id="新建一个类,_继承NSObject,_名称为:_MusicPlayTools">新建一个类, 继承NSObject, 名称为: MusicPlayTools</h5><p>MusicPlayTools.h<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#import <span class="title">&lt;AVFoundation/AVFoundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// !!!!</span></span><br><span class="line"><span class="comment">// 定义协议.</span></span><br><span class="line"><span class="comment">// 如果外界想使用本播放器,必须遵循和实现协议中的两个方法.</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MusicPlayToolsDelegate</span> &lt;<span class="title">NSObject</span>&gt;</span></span><br><span class="line"><span class="comment">// 外界实现这个方法的同时, 也将参数的值拿走了, 这样我们起到了"通过代理方法向外界传递值"的功能.</span></span><br><span class="line">-(<span class="keyword">void</span>)getCurTiem:(<span class="built_in">NSString</span> *)curTime Totle:(<span class="built_in">NSString</span> *)totleTime Progress:(<span class="built_in">CGFloat</span>)progress;</span><br><span class="line"><span class="comment">// 播放结束之后, 如何操作由外部决定.</span></span><br><span class="line">-(<span class="keyword">void</span>)endOfPlayAction;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MusicPlayTools</span> : <span class="title">NSObject</span></span></span><br><span class="line"><span class="comment">// 本类中的播放器指针.</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)<span class="built_in">AVPlayer</span> * player;</span><br><span class="line"><span class="comment">// 本类中的,播放中的"歌曲信息模型"</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">strong</span>)MusicInfoModel * model;</span><br><span class="line"><span class="comment">// 代理</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">weak</span>)<span class="keyword">id</span>&lt;MusicPlayToolsDelegate&gt; delegate;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 单例方法</span></span><br><span class="line">+(instancetype)shareMusicPlay;</span><br><span class="line"><span class="comment">// 播放音乐</span></span><br><span class="line">-(<span class="keyword">void</span>)musicPlay;</span><br><span class="line"><span class="comment">// 暂停音乐</span></span><br><span class="line">-(<span class="keyword">void</span>)musicPause;</span><br><span class="line"><span class="comment">// 准备播放</span></span><br><span class="line">-(<span class="keyword">void</span>)musicPrePlay;</span><br><span class="line"><span class="comment">// 跳转</span></span><br><span class="line">-(<span class="keyword">void</span>)seekToTimeWithValue:(<span class="built_in">CGFloat</span>)value;</span><br><span class="line"><span class="comment">// 返回一个歌词数组</span></span><br><span class="line">-(<span class="built_in">NSMutableArray</span> *)getMusicLyricArray;</span><br><span class="line"><span class="comment">// 根据当前播放时间,返回 对应歌词 在 数组 中的位置.</span></span><br><span class="line">-(<span class="built_in">NSInteger</span>)getIndexWithCurTime;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
 
     
   </div>
