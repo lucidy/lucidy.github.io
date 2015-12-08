@@ -33,7 +33,7 @@ CoreData是如何将数据直接插">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/4618a9526642bd34.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/b80fc0ec9aa732e6.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/2cedadfb34056dc0.png">
-<meta property="og:updated_time" content="2015-12-08T11:25:12.000Z">
+<meta property="og:updated_time" content="2015-12-08T11:46:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发-CoreData的简单使用">
 <meta name="twitter:description" content="什么是CoreData?CoreData是iOS5之后才出现的一个框架, 它提供了对象-关系映射(ORM)的功能, 即能够将OC对象转换成数据, 保存在SQLite数据库文件中, 也能够将保存在数据库中的数据还原成OC对象.这个过程中, 我们不需要编写任何的sql语句, 这个有点类似于著名的Hibernate持久框架, 不过功能肯定没有Hibernate强大.
@@ -127,6 +127,40 @@ CoreData是如何将数据直接插">
 <p>这里, 实际上Department做为Employee的外键, 在Employee中有一个字段为depart. 如此设置之后,这两张表已经完成前面我们描述的<code>表间关联</code>, 不用出现join关键字, 我们已经将两张表牢牢的绑在一起了.</p>
 <p>在上代码之前, 我们还需要重新生成以下 Employee和Department的 实例类文件.<br>CoreData -&gt; NSManagedObject subclass<br><img src="http://ac-4fcdbq4a.clouddn.com/8888c26b2d50173a.png" alt="file-list"><br>没得选, 只有这一个.<br><img src="http://ac-4fcdbq4a.clouddn.com/4618a9526642bd34.png" alt="file-list"><br>全部勾选上, 为这两个实例产生两组实例类.<br><img src="http://ac-4fcdbq4a.clouddn.com/b80fc0ec9aa732e6.png" alt="file-list"><br>生成之后, 他们从boundle中看起来是这样子的.<br><img src="http://ac-4fcdbq4a.clouddn.com/2cedadfb34056dc0.png" alt="file-list"></p>
 <p>下面, 我们向这两个实例中, 分别插入两条数据, <strong>注意:如果你使用的是刚才的工程, 请先删除Doucment中数据库文件, 然后运行demo重新生成一个.</strong><br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">IBAction</span>)addDepartEmp:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 创建两个部门, ios 和 安卓</span></span><br><span class="line">    Department * depiOS = [<span class="built_in">NSEntityDescription</span> insertNewObjectForEntityForName:<span class="string">@"Department"</span> inManagedObjectContext:_context];</span><br><span class="line">    depiOS<span class="variable">.departmentName</span> = <span class="string">@"iOS部门"</span>;</span><br><span class="line">    depiOS<span class="variable">.departmentID</span> = @<span class="number">1</span>;</span><br><span class="line">    depiOS<span class="variable">.createDate</span> = [<span class="built_in">NSDate</span> date];</span><br><span class="line">    </span><br><span class="line">    Department * depAndroid = [<span class="built_in">NSEntityDescription</span> insertNewObjectForEntityForName:<span class="string">@"Department"</span> inManagedObjectContext:_context];</span><br><span class="line">    depAndroid<span class="variable">.departmentName</span> = <span class="string">@"安卓部门"</span>;</span><br><span class="line">    depAndroid<span class="variable">.departmentID</span> = @<span class="number">2</span>;</span><br><span class="line">    depAndroid<span class="variable">.createDate</span> = [<span class="built_in">NSDate</span> date];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 创建两个员工, 强哥-&gt;iOS部门, 丰哥-&gt;安卓部门</span></span><br><span class="line">    Employee * emp1 =[<span class="built_in">NSEntityDescription</span> insertNewObjectForEntityForName:<span class="string">@"Employee"</span> inManagedObjectContext:_context];</span><br><span class="line">    emp1<span class="variable">.name</span> = <span class="string">@"强哥"</span>;</span><br><span class="line">    emp1<span class="variable">.height</span> = @<span class="number">1.75</span>;</span><br><span class="line">    emp1<span class="variable">.birthday</span> = [<span class="built_in">NSDate</span> date];</span><br><span class="line">    emp1<span class="variable">.depart</span> = depiOS;</span><br><span class="line">    </span><br><span class="line">    Employee * emp2 =[<span class="built_in">NSEntityDescription</span> insertNewObjectForEntityForName:<span class="string">@"Employee"</span> inManagedObjectContext:_context];</span><br><span class="line">    emp2<span class="variable">.name</span> = <span class="string">@"丰哥"</span>;</span><br><span class="line">    emp2<span class="variable">.height</span> = @<span class="number">2.75</span>;</span><br><span class="line">    emp1<span class="variable">.depart</span> = depAndroid;</span><br><span class="line">    emp2<span class="variable">.birthday</span> = [<span class="built_in">NSDate</span> date];</span><br><span class="line">    </span><br><span class="line">    [_context save:<span class="literal">nil</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入数据之后, 我们再写一个新的查询方法, 这次我只查询 Employee, 那么看看 这个Employee对象中, 是否包含部门的信息?</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">IBAction</span>)selectAllEmpDepart:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 找到强哥, 获取请求对象, 创建时, 你需要指定要查询那张表.</span></span><br><span class="line">    <span class="built_in">NSFetchRequest</span> * request = [<span class="built_in">NSFetchRequest</span> fetchRequestWithEntityName:<span class="string">@"Employee"</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置请求条件, 谓词匹配</span></span><br><span class="line">    <span class="built_in">NSPredicate</span> * pre = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"name = %@"</span>, <span class="string">@"强哥"</span>];</span><br><span class="line">    request<span class="variable">.predicate</span> = pre;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 执行, 返回结果</span></span><br><span class="line">    <span class="built_in">NSError</span> * error = <span class="literal">nil</span>;</span><br><span class="line">    <span class="built_in">NSArray</span> * array = [_context executeFetchRequest:request error:&amp;error];</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,error);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意, 这里我只查询了员工(Employee), 但是部门信息也顺带查出来了. </span></span><br><span class="line">    <span class="keyword">for</span> (Employee * emp <span class="keyword">in</span> array) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@-&gt;%@"</span>, emp<span class="variable">.name</span>, emp<span class="variable">.depart</span><span class="variable">.departmentName</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">强哥-&gt;iOS部门</span><br></pre></td></tr></table></figure></p>
+<p>所以! CoreData可以通过创建表外键的方式, 将表关联起来. 但是作为Sql开发多年的老人来说, 这种方非常笨重.</p>
+<hr>
+<p>最后, 我们来比对一下Sqlite和CoreData的优劣和不同的使用场景.</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:right">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sqlite</td>
+<td style="text-align:right">灵活, 非常灵活</td>
+<td style="text-align:center">当项目中, 模型Model多起来后, 非常不方便, 需要大量代码重写Model的访问和改写等</td>
+</tr>
+<tr>
+<td>CoreData</td>
+<td style="text-align:right">面对大量模型时, 非常方便的创建了所有实例类</td>
+<td style="text-align:center">但是一旦这些模型之间的关系较为复杂时, 它的优雅便成了臃肿</td>
+</tr>
+</tbody>
+</table>
+<p>最后总结一下, 这两种数据持久化方案都有各自的使用场景:</p>
+<ul>
+<li><p>sqlite 适合哪种, 数据模型(Model类)稀少, 不需要大量的Model类入库, 但是这些模型之间, 有这复杂的联系, 表间满足各种范式规范, 比如金融类APP, 其中数据需要在手机端完成运算和展示时, 使用sqlite 会非常的方便.</p>
+</li>
+<li><p>CoreData 适合使用大量Model 的APP, 这些Model之间联系不是那么紧密. 每个模型都是单独拿出来用的, 那么CoreData为你生成的模型访问方法会让你信心百倍!</p>
+</li>
+</ul>
 
     
   </div>
