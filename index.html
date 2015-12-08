@@ -149,7 +149,15 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="keyword">IBAction</span>)selectAllEmpDepart:(<span class="keyword">id</span>)sender</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 找到强哥, 获取请求对象, 创建时, 你需要指定要查询那张表.</span></span><br><span class="line">    <span class="built_in">NSFetchRequest</span> * request = [<span class="built_in">NSFetchRequest</span> fetchRequestWithEntityName:<span class="string">@"Employee"</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 设置请求条件, 谓词匹配</span></span><br><span class="line">    <span class="built_in">NSPredicate</span> * pre = [<span class="built_in">NSPredicate</span> predicateWithFormat:<span class="string">@"name = %@"</span>, <span class="string">@"强哥"</span>];</span><br><span class="line">    request<span class="variable">.predicate</span> = pre;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 执行, 返回结果</span></span><br><span class="line">    <span class="built_in">NSError</span> * error = <span class="literal">nil</span>;</span><br><span class="line">    <span class="built_in">NSArray</span> * array = [_context executeFetchRequest:request error:&amp;error];</span><br><span class="line">    <span class="keyword">if</span> (error) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,error);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意, 这里我只查询了员工(Employee), 但是部门信息也顺带查出来了. </span></span><br><span class="line">    <span class="keyword">for</span> (Employee * emp <span class="keyword">in</span> array) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@-&gt;%@"</span>, emp<span class="variable">.name</span>, emp<span class="variable">.depart</span><span class="variable">.departmentName</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>结果:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">强哥-&gt;iOS部门</span><br></pre></td></tr></table></figure></p>
 <p>所以! CoreData可以通过创建表外键的方式, 将表关联起来. 但是作为Sql开发多年的老人来说, 这种方非常笨重.</p>
-<hr>
+<h5 id="二-新建带有CoreData的工程">二.新建带有CoreData的工程</h5><ol>
+<li>创建工程时, 我们勾选下面的 <code>Use Core Data</code>.<br><img src="http://ac-4fcdbq4a.clouddn.com/44fad2c661aad595.png" alt="file-list"></li>
+<li>在主Boundel中, 最明显的就是我们创建了数据库模板(.xcdatamodeld文件)<br><img src="http://ac-4fcdbq4a.clouddn.com/377db19a1c8dc252.png" alt="file-list"></li>
+<li>打开Appdelegate.h文件, 多了如下属性和方法:<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSManagedObjectContext</span> *managedObjectContext;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSManagedObjectModel</span> *managedObjectModel;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">readonly</span>, <span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSPersistentStoreCoordinator</span> *persistentStoreCoordinator;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)saveContext;</span><br><span class="line">- (<span class="built_in">NSURL</span> *)applicationDocumentsDirectory;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在appdelegate.m中, 多了如下的代码 — 我的天啊!</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/090ebf9db0bdc1ed.png" alt="file-list"></p>
+<h5 id="千万别害怕,_静下心来好好看看,_这些方法和属性,_对比我们最开始ViewDidLoad里面的过程,_仔细读一遍,_看看它们再干什么呢?_提示:_懒加载-">千万别害怕, 静下心来好好看看, 这些方法和属性, 对比我们最开始ViewDidLoad里面的过程, 仔细读一遍, 看看它们再干什么呢? 提示: 懒加载.</h5><hr>
 <p>最后, 我们来比对一下Sqlite和CoreData的优劣和不同的使用场景.</p>
 <table>
 <thead>
@@ -174,11 +182,13 @@
 </table>
 <p>最后总结一下, 这两种数据持久化方案都有各自的使用场景:</p>
 <ul>
-<li><p>sqlite 适合哪种, 数据模型(Model类)稀少, 不需要大量的Model类入库, 但是这些模型之间, 有这复杂的联系, 表间满足各种范式规范, 比如金融类APP, 其中数据需要在手机端完成运算和展示时, 使用sqlite 会非常的方便.</p>
+<li><p>sqlite 适合数据模型(Model类)稀少, 不需要大量的Model类入库, 但是这些模型之间, 有这复杂的联系, 表间满足各种范式规范, 比如金融类APP, 其中数据需要在手机端完成运算和展示时, 使用sqlite 会非常的方便.</p>
 </li>
 <li><p>CoreData 适合使用大量Model 的APP, 这些Model之间联系不是那么紧密. 每个模型都是单独拿出来用的, 那么CoreData为你生成的模型访问方法会让你信心百倍!</p>
 </li>
 </ul>
+<hr>
+<p>补充: MR 和 FMDB</p>
 
     
   </div>
