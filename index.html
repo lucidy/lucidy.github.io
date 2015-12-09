@@ -57,6 +57,38 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2015/12/09/各种推送/">
+  <time datetime="2015-12-09T06:40:43.000Z">
+    2015-12-09
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/09/各种推送/">各种推送</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2015/12/09/科大讯飞-让你的APP学会说学逗唱/">
   <time datetime="2015-12-09T00:56:15.000Z">
     2015-12-09
@@ -279,44 +311,36 @@
   <div class="entry">
     
       <p>数据结构—栈</p>
-<ol>
-<li><p>基本概念</p>
-<p>   “栈“者,存储货物或供旅客住宿的地方,可引申为仓库、中转站，所以引入到计算机领域里，就是指数据暂时存储的地方，所以才有进栈、出栈的说法。</p>
-<pre><code> 平时大家都会说到栈，那到底什么是栈呢？
-
- <span class="number">1.1</span>、在C语言内存分配中的栈： 栈有一个很重要的特殊性，就是存在栈中的数据可以共享。
-假设我们同时定义：   <span class="keyword">int</span> a=<span class="number">3</span>;      <span class="keyword">int</span> b=<span class="number">3</span>;
-</code></pre><p>编译器先处理int a= 3；首先它会在栈中创建一个变量为a的内存空间，然后查找有没有字面值为3的地址，没找到，就开辟一个存放3这个字面值的地址，然后将a指向3的地址。接着处理int b= 3；在创建完b的引用变量后，由于在栈中已经有3这个字面值，便将b直接指向3的地址。这样，就出现了a与b同时均指向3的情况。</p>
-<pre><code>特别注意的是，这种字面值的引用与类对象的引用不同。假定两个类对象的引用同时指向一个对象，如果一个对象引用变量修改了这个对象的内部状态，那么另一个对象引用变量也即刻反映出这个变化。相反，通过字面值的引用来修改其值，不会导致另一个指向此字面值的引用的值也跟着改变的情况。如上例，我们定义完a与b的值后，再令a=<span class="number">4</span>；那么，b不会等于<span class="number">4</span>，还是等于<span class="number">3</span>。在编译器内部，遇到a=<span class="number">4</span>；时，它就会重新搜索栈中是否有<span class="number">4</span>的字面值，如果没有，重新开辟地址存放<span class="number">4</span>的值；如果已经有了，则直接将a指向这个地址。因此a值的改变不会影响到b的值。
-
- <span class="number">1.2</span>、 数据结构中的 栈（<span class="built_in">stack</span>）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为栈顶，相对地，把另一端称为栈底。向一个栈插入新元素又称作进栈、入栈或压栈，它是把新元素放到栈顶元素的上面，使之成为新的栈顶元素；从一个栈删除元素又称作出栈或退栈，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。
-栈作为一种数据结构，是一种只能在一端进行插入和删除操作的特殊线性表。它按照先进后出的原则存储数据，先进入的数据被压入栈底，最后的数据在栈顶，需要读数据的时候从栈顶开始弹出数据（最后一个数据被第一个读出来）。栈具有记忆作用，对栈的插入与删除操作中，不需要改变栈底指针。
-栈是允许在同一端进行插入和删除操作的特殊线性表。允许进行插入和删除操作的一端称为栈顶(top)，另一端为栈底(bottom)；栈底固定，而栈顶浮动；栈中元素个数为零时称为空栈。插入一般称为进栈（PUSH），删除则称为退栈（POP）。栈也称为后进先出表。
-</code></pre></li>
-</ol>
-<pre><code>在计算机系统中，栈则是一个具有以上属性的动态内存区域。程序可以将数据压入栈中，也可以将数据从栈顶弹出。 压栈的操作使得栈顶的地址减小，弹出的操作使得栈顶的地址增大。
-
-  栈 (Stack)是一种后进先出(<span class="keyword">last</span> <span class="keyword">in</span> <span class="keyword">first</span> off，LIFO)的数据结构，而队列(Queue)则是一种先进先出 (fisrt <span class="keyword">in</span> <span class="keyword">first</span> out，FIFO)的结构，如下图：
-</code></pre><ol>
-<li>实现<br>   2.1 Stack的实现<br>栈是一种后进先出的数据结构，对于Stack 我们希望至少要对外提供以下几个方法：</li>
-</ol>
-<p>Stack<t>()<br>创建一个空的栈<br>void Push(T s)<br>往栈中添加一个新的元素<br>T Pop()<br>移除并返回最近添加的元素<br>boolean IsEmpty()<br>栈是否为空<br>int Size()<br>栈中元素的个数</t></p>
-<pre><code><span class="number">2.1</span><span class="number">.1</span>、实现这些功能，有两中方法，数组和链表，先看链表实现：
-</code></pre><p>栈的链表实现：<br>       我们首先定义一个内部类来保存每个链表的节点，该节点包括当前的值以及指向下一个的值，然后建立一个节点保存位于栈顶的值以及记录栈的元素个数;</p>
-<p>class Node<br>{<br>    public T Item{get;set;}<br>    public Node Next { get; set; }<br>}</p>
-<p>private Node first = null;<br>private int number = 0;<br>       现在来实现Push方法，即向栈顶压入一个元素，首先保存原先的位于栈顶的元素，然后新建一个新的栈顶元素，然后将该元素的下一个指向原先的栈顶元素。整个Pop过程如下:</p>
-<p>实现代码如下：<br>void Push(T node)<br>{<br>    Node oldFirst = first;<br>    first = new Node();<br>    first.Item= node;<br>    first.Next = oldFirst;<br>    number++;<br>}<br>        Pop方法也很简单，首先保存栈顶元素的值，然后将栈顶元素设置为下一个元素：</p>
-<p>T Pop()<br>{<br>    T item = first.Item;<br>    first = first.Next;<br>    number–;<br>    return item;<br>}<br>基于链表的Stack实现，在最坏的情况下只需要常量的时间来进行Push和Pop操作。</p>
-<pre><code>2<span class="class">.1</span><span class="class">.2</span>栈的数组实现：
-我们可以使用数组来存储栈中的元素<span class="tag">Push</span>的时候，直接添加一个元素<span class="tag">S</span><span class="attr_selector">[N]</span>到数组中，<span class="tag">Pop</span>的时候直接返回<span class="tag">S</span><span class="attr_selector">[N-1]</span>.
-</code></pre><p>首先，我们定义一个数组，然后在构造函数中给定初始化大小，<br>Push方法实现如下，就是集合里添加一个元素：</p>
-<p>T[] item;<br>int number = 0;</p>
-<p>public StackImplementByArray(int capacity)<br>{<br>    item = new T[capacity];<br>}</p>
-<p>public void Push(T _item)<br>{<br>    if (number == item.Length) Resize(2 * item.Length);<br>    item[number++] = _item;<br>}<br>Pop方法：</p>
-<p>public T Pop()<br>{<br>    T temp = item[–number];<br>    item[number] = default(T);<br>    if (number &gt; 0 &amp;&amp; number == item.Length / 4) Resize(item.Length / 2);<br>    return temp;<br>}<br>          在Push和Pop方法中，为了节省内存空间，我们会对数组进行整理。Push的时候，当元素的个数达到数组的Capacity的时候，我们开辟2倍于当前元素的新数组，然后将原数组中的元素拷贝到新数组中。Pop的时候，当元素的个数小于当前容量的1/4的时候，我们将原数组的大小容量减少1/2。</p>
-<p> 更改大小的方法基本就是数组复制：</p>
-<p>private void Resize(int capacity)<br>{<br>    T[] temp = new T[capacity];<br>    for (int i = 0; i &lt; item.Length; i++)<br>    {<br>        temp[i] = item[i];<br>    }<br>    item = temp;<br>}<br>       当我们缩小数组的时候，采用的是判断1/4的情况，这样效率要比1/2要高，因为可以有效避免在1/2附件插入，删除，插入，删除，从而频繁的扩大和缩小数组的情况。下图展示了在插入和删除的情况下数组中的元素以及数组大小的变化情况：</p>
-<p>分析：【这一块我也不是很懂】</p>
+<h4 id="1-基本概念">1.基本概念</h4><p>“栈“者,存储货物或供旅客住宿的地方,可引申为仓库、中转站，所以引入到计算机领域里，就是指数据暂时存储的地方，所以才有进栈、出栈的说法。</p>
+<p>平时大家都会说到栈，那到底什么是栈呢？</p>
+<h6 id="1-1C语言的面量赋值机制">1.1C语言的面量赋值机制</h6><p>栈有一个很重要的特殊性，就是存在栈中的数据可以共享。</p>
+<blockquote>
+<p>假设我们同时定义：   int a=3;      int b=3;<br>编译器先处理int a= 3；首先它会在栈中创建一个变量为a的内存空间，然后查找有没有字面值为3的地址，没找到，就开辟一个存放3这个字面值的地址，然后将a指向3的地址。接着处理int b= 3；在创建完b的引用变量后，由于在栈中已经有3这个字面值，便将b直接指向3的地址。这样，就出现了a与b同时均指向3的情况。<br>特别注意的是，这种字面值的引用与类对象的引用不同。假定两个类对象的引用同时指向一个对象，如果一个对象引用变量修改了这个对象的内部状态，那么另一个对象引用变量也即刻反映出这个变化。相反，通过字面值的引用来修改其值，不会导致另一个指向此字面值的引用的值也跟着改变的情况。如上例，我们定义完a与b的值后，再令a=4；那么，b不会等于4，还是等于3。在编译器内部，遇到a=4；时，它就会重新搜索栈中是否有4的字面值，如果没有，重新开辟地址存放4的值；如果已经有了，则直接将a指向这个地址。因此a值的改变不会影响到b的值。</p>
+</blockquote>
+<h6 id="1-2堆栈">1.2堆栈</h6><p>数据结构中的 栈（stack）又名堆栈，它是一种运算受限的线性表。其限制是仅允许在表的一端进行插入和删除运算。这一端被称为<strong>栈顶</strong>，相对地，把另一端称为<strong>栈底</strong>。向一个栈插入新元素又称作<strong>进栈、入栈或压栈</strong>，它是把新元素放到栈顶元素的上面，使之成为新的<strong>栈顶元素</strong>；从一个栈删除元素又称作<strong>出栈</strong>或<strong>退栈</strong>，它是把栈顶元素删除掉，使其相邻的元素成为新的栈顶元素。<br>栈作为一种数据结构，是一种只能在一端进行插入和删除操作的特殊线性表。它按照先进后出的原则存储数据，先进入的数据被压入栈底，最后的数据在栈顶，需要读数据的时候从栈顶开始弹出数据（最后一个数据被第一个读出来）。</p>
+<blockquote>
+<p>栈具有记忆作用，对栈的插入与删除操作中，不需要改变栈底指针。</p>
+</blockquote>
+<p>栈是允许在同一端进行插入和删除操作的特殊线性表。允许进行插入和删除操作的一端称为栈顶(top)，另一端为栈底(bottom)；栈底固定，而栈顶浮动；栈中元素个数为零时称为空栈。插入一般称为进栈（PUSH），删除则称为退栈（POP）。栈也称为后进先出表。</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/5c4340cb9559f934.png" alt="file-list"></p>
+<h6 id="1-3计算机中栈的表示">1.3计算机中栈的表示</h6><p>在计算机系统中，栈则是一个具有以上属性的动态内存区域。程序可以将数据压入栈中，也可以将数据从栈顶弹出。 压栈的操作使得栈顶的地址减小，弹出的操作使得栈顶的地址增大。</p>
+<p>栈 (Stack)是一种后进先出(last in first off，LIFO)的数据结构，而队列(Queue)则是一种先进先出 (fisrt in first out，FIFO)的结构，如下图：</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/bf0d9e35a6380331.png" alt="file-list"></p>
+<h4 id="二-实现">二.实现</h4><h5 id="2-1_Stack的实现">2.1 Stack的实现</h5><p>栈是一种后进先出的数据结构，对于Stack 我们希望至少要对外提供以下几个方法：<br><img src="http://ac-4fcdbq4a.clouddn.com/4bd4014aaab16fbd.png" alt="file-list"><br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;T&gt;()</span><br><span class="line">创建一个空的栈</span><br><span class="line">void <span class="function"><span class="title">Push</span><span class="params">(T s)</span></span></span><br><span class="line">往栈中添加一个新的元素</span><br><span class="line">T <span class="function"><span class="title">Pop</span><span class="params">()</span></span></span><br><span class="line">移除并返回最近添加的元素</span><br><span class="line">boolean <span class="function"><span class="title">IsEmpty</span><span class="params">()</span></span></span><br><span class="line">栈是否为空</span><br><span class="line">int <span class="function"><span class="title">Size</span><span class="params">()</span></span></span><br><span class="line">栈中元素的个数</span><br></pre></td></tr></table></figure></p>
+<h5 id="2-1-1、栈的链表实现：">2.1.1、栈的链表实现：</h5><p>这些功能，有两中方法，数组和链表，先看链表实现：<br>我们首先定义一个内部类来保存每个链表的节点，该节点包括当前的值以及指向下一个的值，然后建立一个节点保存位于栈顶的值以及记录栈的元素个数;<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class <span class="keyword">Node</span><span class="identifier"></span><br><span class="line"></span><span class="title">&#123;</span><br><span class="line">    public</span> T Item&#123;get;set;&#125;</span><br><span class="line">    public <span class="keyword">Node</span><span class="identifier"> </span><span class="title">Next</span> &#123; get; set; &#125;</span><br><span class="line">&#125;</span><br><span class="line">private <span class="keyword">Node</span><span class="identifier"> </span><span class="title">first</span> = null;</span><br><span class="line">private int <span class="type">number</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>现在来实现Push方法，即向栈顶压入一个元素，首先保存原先的位于栈顶的元素，然后新建一个新的栈顶元素，然后将该元素的下一个指向原先的栈顶元素。整个Pop过程如下:</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/f55ac9cb3c90b6d9.png" alt="file-list"></p>
+<p>实现代码如下：<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void Push(T <span class="keyword">node</span><span class="identifier"></span><span class="title">)</span><br><span class="line">&#123;</span><br><span class="line">    Node</span> oldFirst = first;</span><br><span class="line">    first = new <span class="keyword">Node</span><span class="identifier"></span><span class="title">();</span><br><span class="line">    first</span>.<span class="variable">Item=</span> <span class="keyword">node</span><span class="identifier"></span><span class="title">;</span><br><span class="line">    first</span>.Next = oldFirst;</span><br><span class="line">    <span class="type">number</span>++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Pop方法也很简单，首先保存栈顶元素的值，然后将栈顶元素设置为下一个元素：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">T Pop()</span><br><span class="line">&#123;</span><br><span class="line">    T <span class="property">item</span> = <span class="keyword">first</span>.Item;</span><br><span class="line">    <span class="keyword">first</span> = <span class="keyword">first</span>.Next;</span><br><span class="line">    <span class="type">number</span><span class="comment">--;</span></span><br><span class="line"><span class="command">    return</span> <span class="property">item</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>基于链表的Stack实现，在最坏的情况下只需要常量的时间来进行Push和Pop操作。</p>
+<h5 id="2-1-2栈的数组实现：">2.1.2栈的数组实现：</h5><p>我们可以使用数组来存储栈中的元素Push的时候，直接添加一个元素S[N]到数组中，Pop的时候直接返回S[N-1].</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/bf0d9e35a6380331.png" alt="file-list"></p>
+<p>首先，我们定义一个数组，然后在构造函数中给定初始化大小，<br>Push方法实现如下，就是集合里添加一个元素：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">T[] <span class="property">item</span>;</span><br><span class="line">int <span class="type">number</span> = <span class="number">0</span>;</span><br><span class="line"> </span><br><span class="line">public StackImplementByArray(int capacity)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="property">item</span> = new T[capacity];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void Push(T _item)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">number</span> == <span class="property">item</span>.Length) Resize(<span class="number">2</span> * <span class="property">item</span>.Length);</span><br><span class="line">    <span class="property">item</span>[<span class="type">number</span>++] = _item;</span><br><span class="line">&#125;</span><br><span class="line">Pop方法：</span><br><span class="line"></span><br><span class="line">public T Pop()</span><br><span class="line">&#123;</span><br><span class="line">    T temp = <span class="property">item</span>[<span class="comment">--number];</span></span><br><span class="line">    <span class="property">item</span>[<span class="type">number</span>] = default(T);</span><br><span class="line">    <span class="keyword">if</span> (<span class="type">number</span> &gt; <span class="number">0</span> &amp;&amp; <span class="type">number</span> == <span class="property">item</span>.Length / <span class="number">4</span>) Resize(<span class="property">item</span>.Length / <span class="number">2</span>);</span><br><span class="line"><span class="command">    return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在Push和Pop方法中，为了节省内存空间，我们会对数组进行整理。Push的时候，当元素的个数达到数组的Capacity的时候，我们开辟2倍于当前元素的新数组，然后将原数组中的元素拷贝到新数组中。Pop的时候，当元素的个数小于当前容量的1/4的时候，我们将原数组的大小容量减少1/2。</p>
+<p>更改大小的方法基本就是数组复制:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Resize</span><span class="params">(<span class="keyword">int</span> capacity)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    T[] temp = <span class="keyword">new</span> T[capacity];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; item.Length; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        temp[i] = item[i];</span><br><span class="line">    &#125;</span><br><span class="line">    item = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当我们缩小数组的时候，采用的是判断1/4的情况，这样效率要比1/2要高，因为可以有效避免在1/2附件插入，删除，插入，删除，从而频繁的扩大和缩小数组的情况。下图展示了在插入和删除的情况下数组中的元素以及数组大小的变化情况：</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/4887b383fb73ce48.png" alt="file-list"></p>
+<p>分析:</p>
 <ol>
 <li>Pop和Push操作在最坏的情况下与元素个数成比例的N的时间，时间主要花费在扩大或者缩小数组的个数时，数组拷贝上。</li>
 <li>元素在内存中分布紧凑，密度高，便于利用内存的时间和空间局部性，便于CPU进行缓存，较LinkList内存占用小，效率高。</li>
