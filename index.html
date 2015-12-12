@@ -122,6 +122,14 @@
 <p>VidwController.m<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)cancelLocalNotificationWithKey:(<span class="built_in">NSString</span> *)key</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 从当前的app中找出所有的本地通知.</span></span><br><span class="line">    <span class="built_in">NSArray</span> * notificationArrray = [<span class="built_in">UIApplication</span> sharedApplication]<span class="variable">.scheduledLocalNotifications</span>;</span><br><span class="line">    <span class="comment">// 如果按照key寻找userInfo, 不为空则说明找到了.</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">UILocalNotification</span> * not <span class="keyword">in</span> notificationArrray) &#123;</span><br><span class="line">        <span class="keyword">if</span> ([not<span class="variable">.userInfo</span> valueForKey:key]) &#123;</span><br><span class="line">            [[<span class="built_in">UIApplication</span> sharedApplication] cancelAllLocalNotifications];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>以上就是我们比较完整的需求.</p>
 <hr>
+<h2 id="二-苹果自家推送–APNS服务">二.苹果自家推送–APNS服务</h2><p>下面来讲一下远程推送, 上面的推送不联网也能执行, 但是远程推送则不行.</p>
+<h5 id="等一下,_这个远程推送是什么意思?_为什么会有远程推送?">等一下, 这个远程推送是什么意思? 为什么会有远程推送?</h5><p>苹果的推送功能是ios3.0之后推出的, 也就是说, 一开始的苹果操作系统是没有这个功能. 那么为什么后来要加上这个推送呢? 没有推送行不行呢?</p>
+<p>这个还真不行.</p>
+<p>原因很简单, 苹果ios操作系统不支持真正意义上的多任务, 或者说这货不支持多任务.<br>假设一种应用场景, 如果不支持多任务的话, 你正在聊qq, 忽然想去微信摇一摇, 切换到微信后, qq程序进入后台, 但是再也收不到消息了.</p>
+<p>早期(2007年)的iphone就是这个样子. 除了几个系统工具, 如打电话, 发短信, 看地图, 发邮件外, 你不能保证用户自己的app同时运行. 等等, 说错了! 妈蛋那个时候iphone还没有app store呢, 你想装app都不行.</p>
+<p>于是乎, 苹果推出了自己家的推送服务, 由<code>苹果服务器</code>向<code>手机</code>推送一条qq消息, <code>手机</code>根据推送过来的消息, 判断属于发给谁(发给哪个app), 然后向该app发送通知, 调用相应的代理方法, 最终的结果是, 你桌面上的qq图标上冒起了气泡, 桌面通知栏弹出一个条消息.</p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/598999830da04e9e.png" alt="file-list"></p>
+<p>这就是远程推送, 看似不经意的一个动作, 包含了一整套的设计方案. 凝结了无数人的心血.</p>
 
     
   </div>
