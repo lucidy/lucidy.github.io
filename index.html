@@ -86,6 +86,7 @@
   </footer>
 </article>
 
+
   
     <article class="post">
   <header>
@@ -127,9 +128,15 @@
 <p>这个还真不行.</p>
 <p>原因很简单, 苹果ios操作系统不支持真正意义上的多任务, 或者说这货不支持多任务.<br>假设一种应用场景, 如果不支持多任务的话, 你正在聊qq, 忽然想去微信摇一摇, 切换到微信后, qq程序进入后台, 但是再也收不到消息了.</p>
 <p>早期(2007年)的iphone就是这个样子. 除了几个系统工具, 如打电话, 发短信, 看地图, 发邮件外, 你不能保证用户自己的app同时运行. 等等, 说错了! 妈蛋那个时候iphone还没有app store呢, 你想装app都不行.</p>
-<p>于是乎, 苹果推出了自己家的推送服务, 由<code>苹果服务器</code>向<code>手机</code>推送一条qq消息, <code>手机</code>根据推送过来的消息, 判断属于发给谁(发给哪个app), 然后向该app发送通知, 调用相应的代理方法, 最终的结果是, 你桌面上的qq图标上冒起了气泡, 桌面通知栏弹出一个条消息.</p>
+<p>于是乎, 苹果推出了自己家的推送服务, 由<code>苹果服务器</code>向<code>手机</code>推送一条通知, <code>手机</code>根据推送过来的消息, 判断属于发给谁(发给哪个app), 然后向该app发送通知, 调用相应的代理方法, 最终的结果是, 你桌面上的app图标冒起了气泡, 桌面通知栏弹出一个条消息.</p>
 <p><img src="http://ac-4fcdbq4a.clouddn.com/598999830da04e9e.png" alt="file-list"></p>
-<p>这就是远程推送, 看似不经意的一个动作, 包含了一整套的设计方案. 凝结了无数人的心血.</p>
+<p>这就是远程推送, 看似不经意的一个动作, 包含了一整套的设计方案–APNS, 凝结了无数人的心血.</p>
+<blockquote>
+<p>APNS(英文全称：Apple Push Notification Service），中文翻译为：苹果推送通知服务。顾名思义, 该服务由苹果提供并且维护.</p>
+</blockquote>
+<p><strong>在这里要特别的注意, 如果服务器使用推送的方式与APP发生交互, 那么你必须走APNS, 换而言之, 三方服务不能直接向你的手机推送消息, 必须通过APNS.</strong></p>
+<p>那么我们该如何理解APNS服务呢?</p>
+<p>APNS服务 = APNS服务器, APNS Server</p>
 
     
   </div>
@@ -141,6 +148,7 @@
     <div class="clearfix"></div>
   </footer>
 </article>
+
 
   
     <article class="post">
@@ -230,6 +238,7 @@
     <div class="clearfix"></div>
   </footer>
 </article>
+
 
   
     <article class="post">
@@ -348,6 +357,7 @@
   </footer>
 </article>
 
+
   
     <article class="post">
   <header>
@@ -413,6 +423,7 @@
     <div class="clearfix"></div>
   </footer>
 </article>
+
 
   
     <article class="post">
@@ -591,6 +602,7 @@
   </footer>
 </article>
 
+
   
     <article class="post">
   <header>
@@ -670,6 +682,7 @@
     <div class="clearfix"></div>
   </footer>
 </article>
+
 
   
     <article class="post">
@@ -894,6 +907,7 @@
   </footer>
 </article>
 
+
   
     <article class="post">
   <header>
@@ -977,6 +991,7 @@ OC程序有三种途径和运行时系统交互:
   </footer>
 </article>
 
+
   
     <article class="post">
   <header>
@@ -1017,6 +1032,7 @@ OC程序有三种途径和运行时系统交互:
     <div class="clearfix"></div>
   </footer>
 </article>
+
 
   
 

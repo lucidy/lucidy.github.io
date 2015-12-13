@@ -26,7 +26,7 @@
 下面我们模拟一个情景, 在ViewController中创建一个通知(闹钟)并且激活它, 然后在Appdelegate中收到这个通知, 并且弹窗Ale">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/b810d5e6e11bfa50.png">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/598999830da04e9e.png">
-<meta property="og:updated_time" content="2015-12-12T16:02:20.000Z">
+<meta property="og:updated_time" content="2015-12-12T16:13:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各种推送">
 <meta name="twitter:description" content="一.本地推送本地通知推送也叫闹钟通知, 这是通知中比较简单的一部分.如果将app比喻成一个人, 某个controller比喻成身体的某一部分(手臂), 那么由手臂注册通知并且发送通知, 最后被大脑(AppDelegate)收到这个通知并作出处理.
@@ -102,9 +102,15 @@
 <p>这个还真不行.</p>
 <p>原因很简单, 苹果ios操作系统不支持真正意义上的多任务, 或者说这货不支持多任务.<br>假设一种应用场景, 如果不支持多任务的话, 你正在聊qq, 忽然想去微信摇一摇, 切换到微信后, qq程序进入后台, 但是再也收不到消息了.</p>
 <p>早期(2007年)的iphone就是这个样子. 除了几个系统工具, 如打电话, 发短信, 看地图, 发邮件外, 你不能保证用户自己的app同时运行. 等等, 说错了! 妈蛋那个时候iphone还没有app store呢, 你想装app都不行.</p>
-<p>于是乎, 苹果推出了自己家的推送服务, 由<code>苹果服务器</code>向<code>手机</code>推送一条qq消息, <code>手机</code>根据推送过来的消息, 判断属于发给谁(发给哪个app), 然后向该app发送通知, 调用相应的代理方法, 最终的结果是, 你桌面上的qq图标上冒起了气泡, 桌面通知栏弹出一个条消息.</p>
+<p>于是乎, 苹果推出了自己家的推送服务, 由<code>苹果服务器</code>向<code>手机</code>推送一条通知, <code>手机</code>根据推送过来的消息, 判断属于发给谁(发给哪个app), 然后向该app发送通知, 调用相应的代理方法, 最终的结果是, 你桌面上的app图标冒起了气泡, 桌面通知栏弹出一个条消息.</p>
 <p><img src="http://ac-4fcdbq4a.clouddn.com/598999830da04e9e.png" alt="file-list"></p>
-<p>这就是远程推送, 看似不经意的一个动作, 包含了一整套的设计方案. 凝结了无数人的心血.</p>
+<p>这就是远程推送, 看似不经意的一个动作, 包含了一整套的设计方案–APNS, 凝结了无数人的心血.</p>
+<blockquote>
+<p>APNS(英文全称：Apple Push Notification Service），中文翻译为：苹果推送通知服务。顾名思义, 该服务由苹果提供并且维护.</p>
+</blockquote>
+<p><strong>在这里要特别的注意, 如果服务器使用推送的方式与APP发生交互, 那么你必须走APNS, 换而言之, 三方服务不能直接向你的手机推送消息, 必须通过APNS.</strong></p>
+<p>那么我们该如何理解APNS服务呢?</p>
+<p>APNS服务 = APNS服务器, APNS Server</p>
 
     
   </div>
@@ -116,6 +122,26 @@
     <div class="clearfix"></div>
   </footer>
 </article>
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-各种推送" data-title="各种推送" data-url="http://iosli.com/2015/12/09/各种推送/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'lucidy'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
 </div>
   </div>
   <footer id="footer"><div class="copyright">
