@@ -136,7 +136,14 @@
 </blockquote>
 <p><strong>在这里要特别的注意, 如果服务器使用推送的方式与APP发生交互, 那么你必须走APNS, 换而言之, 三方服务不能直接向你的手机推送消息, 必须通过APNS.</strong></p>
 <p>那么我们该如何理解APNS服务呢?</p>
-<p>APNS服务 = APNS服务器, APNS Server</p>
+<p>我们通过三张图来简单说明一下APNs的推送过程, 此图来自APNS百度百科.</p>
+<ul>
+<li>手机如何申请DeviceToken:<br><img src="http://ac-4fcdbq4a.clouddn.com/74b6365617428d4e.jpg" alt="file-list"><blockquote>
+<p>  1.手机向APNs服务器发出初连接请求. 手机与服务器开始握手.<br>  2.服务器向设备返回服务器证书(Server Cerficate). 此证书的目的是为了表明服务器的身份.<br>  3.手机验证刚刚收到的证书合法性(Validate Server Cerficate), 如果验证成功, 则表明手机连接到了正确的服务器.(Validate: 证实，验证；确认；使生效, 它还有隐藏含义, 使证书生效).<br>  4.下面轮到手机向服务器发送证书(Device Cerficate), 此证书表明了手机的身份–有没有越狱? 是不是苹果机器?<br>  5.服务器验证手机是否合法.<br>  6.</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/bed8cd88d15379e6.jpg" alt=""><br><img src="http://ac-4fcdbq4a.clouddn.com/82680471ec67ba3e.jpg" alt=""></p>
 
     
   </div>
