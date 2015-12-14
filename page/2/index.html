@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>男孩无衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="Lucidy">
+  
+  
+  <meta name="description" content="One By One, Don&apos;t Hurry">
+<meta property="og:type" content="website">
+<meta property="og:title" content="男孩无衣">
+<meta property="og:url" content="http://iosli.com/page/2/index.html">
+<meta property="og:site_name" content="男孩无衣">
+<meta property="og:description" content="One By One, Don&apos;t Hurry">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="男孩无衣">
+<meta name="twitter:description" content="One By One, Don&apos;t Hurry">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">男孩无衣</a></h1>
+    <p><a href="/">You R Missing Me, But I Want To Fuck U</a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+
+    <div class="content">
+
+
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/04/数据结构-队列-泛型OC-C-混编-泛型编程/">
+  <time datetime="2015-12-04T02:24:24.000Z">
+    2015-12-04
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/04/数据结构-队列-泛型OC-C-混编-泛型编程/">数据结构--队列-泛型OC&amp;C++混编-泛型编程</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <h6 id="关键字:_数据结构_Objective-C与C++混编_泛型编程_Xcode">关键字: 数据结构 Objective-C与C++混编 泛型编程 Xcode</h6><blockquote>
+<p>在这篇文章里, 您可以学习到:</p>
+<ol>
+<li>数据结构简介</li>
+<li>数据结构的逻辑结构和物理结构</li>
+<li>队列</li>
+<li>OC和C++在Xcode中的混编</li>
+<li>泛型编程思想</li>
+<li>泛型编程实现循环队列和链表队列</li>
+<li>博客中使用的图片均来自网络</li>
+</ol>
+</blockquote>
+<h3 id="一-数据结构简介">一.数据结构简介</h3><p>数据结构是计算机存储、组织数据的方式。数据结构是指相互之间存在一种或多种特定关系的数据元素的集合。通常情况下，精心选择的数据结构可以带来更高的运行或者存储效率。数据结构往往同高效的检索算法和索引技术有关。</p>
+<blockquote>
+<p>帮你理解</p>
+<ol>
+<li>数据结构的实现与语言无关, 它可以被任何语言实现.</li>
+<li>一个好的抽象, 可以适用普遍数据类型. 除了特定场合和教学示例外, 你不能只支持某种特定的数据类型.</li>
+</ol>
+</blockquote>
+<p>谈到数据结构, 一定会涉及到的两个概念: 数据 和 数据之间的关系.</p>
+<blockquote>
+<ul>
+<li><p>数据: 我们前面提到, 数据结构不分数据类型, 这个数据可以是任何数据, 你可以把它想象成是一个收纳盒, 盒子内可以放任何东西.</p>
+</li>
+<li><p>关系: 按照相面的比喻, 关系就是指这些收纳盒之间的映射关系. 比如我规定一种关系: 把这些盒子排成一列, 对于中间的某个盒子来讲, 它的前面和后面都有一个和它紧挨的盒子. 我们可以说, 这个盒子和它前面和后面的盒子有关系, 和它不相邻的盒子没有关系. 那么我们可以把这样的模型剥离出来, 得到一种数据结构 – 线性结构, 又叫<strong>线性表</strong>.</p>
+</li>
+</ul>
+<p>推理<br>按照这种抽象模型的过程, 我们可以把下面的关系抽离出另一种数据结构<strong>树</strong>.<br><img src="http://images.cnitblog.com/blog/559453/201408/261043406578121.png" alt="file-list"><br>还可以继续抽象, 元素之间的关系式任意的, 就得到了网状结构, 也就是我们所说的<strong>图</strong>.<br><img src="http://www.51cto.com/files/uploadimg/20070618/091507822.gif" alt="file-list"></p>
+</blockquote>
+<p>抽象出状结构之后, 我们基本已经无法再从对应关系上来细分了, 不信您就想想, 你所成想到的关系, 全部包含在这几种抽象中了</p>
+<p>吗?</p>
+<p>当然不是, 空间还能抽象到11维呢!</p>
+<p>事实上, 上述数据结构的共性–每个元素至少与其他元素建立了联系. 这种规则是人为规定的, 没人要求我们一定这样抽象数据, 所以, 我们可以假设所有的盒子之间两两都没有关系, 所有盒子都是独立的, 就像一堆硬币, 我们把这种数据结构成为<strong>集合</strong>:</p>
+<p><img src="http://static10.photo.sina.com.cn/bmiddle/574cb4b118551165d6249" alt="file-list"></p>
+<p>至此, 我们得到了四种结构</p>
+<blockquote>
+<p>线性表: 数据结构中的元素存在一对一的相互关系<br>树: 数据结构中的元素存在一对多的相互关系<br>图: 数据结构中的元素存在多对多的相互关系<br>散列(集合): 数据结构中的元素之间除了“同属一个集合” 的相互关系外，别无其他关系</p>
+</blockquote>
+<ul>
+<li>注意: 数据结构只有这四种吗?<br>现实世界中的结构千变万化，没有通用结构可以解决所有问题。甚至一个小问题，某个适应此类问题很优秀的结构却未必就适合它。<br>我们提炼的4种结构, 相对来讲是最具普遍性的, 能适应现实世界的大多数场景.<br>你可以提炼你自己的数据结构.</li>
+</ul>
+<h3 id="二-_数据结构的逻辑结构和物理结构">二. 数据结构的逻辑结构和物理结构</h3><p>书承上文<br>数据结构指同一数据元素类中各数据元素之间存在的关系。数据结构分别为<strong>逻辑结构</strong>、<strong>存储结构（物理结构）</strong>和数据的运算. 数据的逻辑结构是从具体问题抽象出来的数学模型,是描述数据元素及其关系的数学特性的，有时就把逻辑结构简称为数据结构.</p>
+<blockquote>
+<p><strong>逻辑结构</strong>: 我们上面赘述了那么多, 都是描述的逻辑结构(不涉及实现问题, 只是描述它们的关系).<br><strong>存储结构（物理结构）</strong>: 真正有关数据在计算机中是如何存储方式.  </p>
+</blockquote>
+<p>这个’存储’是指在内存中的存在形式(并非外设, 如硬盘/U盘/光盘).</p>
+<p>假设我们有10个盒子, 它们是线性结构, 这10个盒子应该如何摆放呢?</p>
+<p>既然是线性结构, 难道不是依次摆放吗? 一个挨着一个的样子.</p>
+<p>您要是这么想得话, 说明您没有明白物理结构和逻辑结构的区别.<br>假如我们把盒子分别放到不同的地方, 然后在每个盒子上写明: 它上一个盒子是放在哪里, 下一个盒子放在哪里.<br>那么您是不是可以根据盒子上的位置找到下一个盒子呢? 当然可以了. </p>
+<p>这就是逻辑结构(线性关系)和物理结构(摆放位置)的区别. </p>
+<p>事实上, 我们在内存中存放数据的格式确实有两种: <strong>顺序存储</strong> 和 <strong>链式存储</strong></p>
+<blockquote>
+<p><strong>顺序存储</strong>: 顾名思义, 数据放在一块儿连续的内存空间, 工作指针的移动可以很方便的找到其他元素(我说的是其他元素, 而不是下一个元素, 因为这样的存储方式也不一定完全为线性表存储)<br><strong>链式存储</strong>: 所有元素均任意存放在内存中, 元素之间是通过元素内的指针互相寻找对方的.</p>
+</blockquote>
+<h3 id="三-队列">三.队列</h3><p>队列是一种特殊的线性表，特殊之处在于它只允许在表的 <strong>前端(head)</strong> 进行删除操作，而在表的 <strong>后端(tail)</strong> 进行插入操作，队列是一种操作受限制的线性表。进行插入操作的端称为 <strong>队尾</strong> ，进行删除操作的端称为 <strong>队头</strong> 。</p>
+<p>队列特点是<strong>先进先出</strong>,<strong>后进后出</strong>.</p>
+<p><img src="http://images.cnitblog.com/blog/408927/201302/28215943-9e8a1e87b4484dad8b0df1869587a7e5.png" alt="file-list"></p>
+<p>队列的定义, 除了点名了它元素之间的逻辑关系, 也定义了它的部分<strong>算法</strong>.</p>
+<blockquote>
+<p><strong>算法</strong>与数据结构密不可分, 它依附于数据结构而存在, 对于任何算法的编写，必须依赖一个已经存在的数据结构来对它进行操作，数据结构成为算法的操作对象，这也是为什么算法和数据结构两门分类不分家的概念，算法在没有数据结构的情况下，没有任何存在的意义. 而数据结构没有算法就等于是一个尸体而没有灵魂</p>
+</blockquote>
+<p>对于一个线性表来说, 必须实现下面5种基本方法才能被称为是队列:</p>
+<blockquote>
+<ul>
+<li>初始化队列：Init_Queue(q) ，初始条件：队q 不存在。操作结果：<strong><em>构造了一个空队</em></strong></li>
+<li>入队操作： In_Queue(q,x),初始条件： 队q 存在。操作结果：<strong><em>对已存在的队列q，插入一个元素x 到队尾，队发生变化</em></strong></li>
+<li>出队操作： Out_Queue(q,x)，初始条件: 队q 存在且非空，操作结果： <strong><em>删除队首元素，并返回其值，队发生变化</em></strong></li>
+<li>读队头元素：Front_Queue(q,x)，初始条件: 队q 存在且非空，操作结果： <strong><em>读队头元素，并返回其值，队不变</em></strong></li>
+<li>读队头元素：Front_Queue(q,x)，初始条件: 队q 存在且非空，操作结果： <strong><em>读队头元素，并返回其值，队不变</em></strong></li>
+</ul>
+</blockquote>
+<p>以上只是要求实现的基本方法, 你可以为队列添加其他的方法,我们规定上面的方法是普世大多数应用场景, 如果你的需求特殊, 完全可以进行扩展.</p>
+<ul>
+<li><h5 id="队列的实现方式">队列的实现方式</h5><p>队列是一种受限制的线性表, 所以它的实现和线性表的实现一样, 可以分为 <strong>顺序存储</strong> 和 <strong>链式存储</strong> </p>
+<blockquote>
+<p><strong>队列的顺序存储</strong>分为两种: 顺序队列和循环队列, 具体我们在下面详解.<br><strong>队列的链式存储</strong>是一种链表实现.</p>
+</blockquote>
+</li>
+<li><h5 id="顺序队列">顺序队列</h5><p>建立顺序队列结构必须为其静态分配或动态申请 <strong>一片连续的存储空间</strong> ，并设置两个指针(下标)进行管理。一个是队头指针head，它指向队头元素；另一个是队尾指针tail，它指向下一个入队元素的存储位置.</p>
+</li>
+</ul>
+<p><img src="http://images.cnitblog.com/blog/408927/201302/28221754-9cfd9c79186b4bd1ab8e515547e896fd.png" alt="file-list"></p>
+<blockquote>
+<ul>
+<li>每次在队尾插入一个元素是，tail增1</li>
+<li>每次队头删除一个元素时，head增1。</li>
+<li>随着插入和删除操作的进行，队列元素的个数不断变化，队列所占的存储空间也在为队列结构所分配的连续空间中移动。</li>
+<li>当head==tail时，队列中没有任何元素，称为 <strong>空队</strong>。</li>
+<li>当tail增加到指向分配的连续空间之外时，队列无法再插入新元素.成为 <strong>满队</strong> </li>
+<li>这时往往还有大量可用空间未被占用，这些空间是已经出队的队列元素曾经占用过得存储单元。这种现象叫做 <strong>“溢出”</strong></li>
+</ul>
+</blockquote>
+<p>事实上, 顺序队列有三种溢出:</p>
+<blockquote>
+<ul>
+<li>“下溢”现象：当队列为空时，做出队运算产生的溢出现象。“下溢”是正常现象，常用作程序控制转移的条件.</li>
+<li>“真上溢”现象：当队列满时，做进栈运算产生空间溢出的现象。“真上溢”是一种出错状态，应设法避免.</li>
+<li>“假上溢”现象：由于入队和出队操作中，头尾指针只增加不减小，致使被删元素的空间永远无法重新利用。当队列中实际的元素个数远远小于向量空间的规模时，也可能由于尾指针已超越向量空间的上界而不能做入队操作。该现象称为”假上溢”现象.</li>
+</ul>
+</blockquote>
+<p>“下溢”和”真上溢”是我们无法避免的, 他们本身也不属于异常现象. 但是”假上溢”会使我们程序发生异常,我们要避免它.<br>如何利用使用过的空间呢?</p>
+<ul>
+<li><h5 id="循环队列">循环队列</h5></li>
+</ul>
+<p>为充分利用空间，克服”假溢出”现象的方法是：将空间想象为一个首尾相接的圆环，并称这种空间为循环队列。循环队列可以有效的使用空间.</p>
+<p><img src="http://images.cnitblog.com/blog/408927/201302/28222314-a219792e43804871a46d53a2ff2c1e24.png" alt="file-list"></p>
+<p><img src="http://images.cnitblog.com/blog/408927/201302/28222835-c03eea4c028c47098d02a1655610d689.png" alt="file-list"></p>
+<p>从图中我们可以看到</p>
+<blockquote>
+<ul>
+<li>当有元素入队时, tail(此时head和tail不是指针, 而是下标), 向后移动一位. tail <strong><em>永远在队尾元素的下一个位置</em></strong>.</li>
+<li>如果tail的值超过我们的空间总大小, 则对tail对数组长度取模. 使得tail永远不会越界.</li>
+<li>出队时, 返回head下标所在的值, 之后head向后移动一位, 与tail一样, 一旦超出数组长度, 则对其取模.</li>
+<li>开始时, head和tail指向同一位置, 此时队列为空.</li>
+<li>当满队时, tail移动到head位置, 此时 <strong>满队</strong>.</li>
+</ul>
+</blockquote>
+<p>如果按照上述逻辑, 在判断满队时, 因为tail和head均指向同一位置, 所以我们不能作出区分. 在这里, 判断满队的逻辑发生了问题.</p>
+<ul>
+<li>判断满队我们有两种方案:</li>
+</ul>
+<p>1.通过一个计数器,记录元素个数, 当元素个数与数组最大值相等,则为满列;<br>2.少用一个存储空间，也就是数组的最后一个存数空间不用，当(tail+1)%maxsiz = head时，队列满； </p>
+<p>我们会在后面的示例中演示循环队列的Demo, 这个Demo采用的是第一种方案.</p>
+<ul>
+<li><h5 id="队列的链表">队列的链表</h5></li>
+</ul>
+<p>在队列的形成过程中，可以利用线性链表的原理，来生成一个队列.<br>新元素（等待进入队列的元素）总是被插入到链表的尾部，而读取的时候总是从链表的头部开始读取。每次读取一个元素，释放一个元素。所谓的动态创建，动态释放。因而也不存在溢出等问题。由于链表由结构体间接而成，遍历也方便。</p>
+<p>队列的链表实现原理图:</p>
+<p><img src="http://g.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=6b11ed5049540923be646b2cf331ba6c/b21bb051f8198618d0dafcf74aed2e738bd4e620.jpg" alt="file-list"></p>
+<p>插入数据时:</p>
+<p><img src="http://e.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=4eaa9bce728da9775a228e79d138937c/b3b7d0a20cf431adcfd51bc44a36acaf2fdd98c3.jpg" alt="file-list"></p>
+<p>因为链表的存储方式数据动态申请空间, 插入元素的时候才会申请空间, 所以不存在满队的情况</p>
+<blockquote>
+<ul>
+<li>你可以人为的为链表队列设置一个上限. 一旦达到这个上限, 则满队.</li>
+</ul>
+</blockquote>
+<p>后面的demo回详细的为您解释基本算法的实现.</p>
+<h3 id="四-OC与C++的混编">四.OC与C++的混编</h3><p>苹果的Objective-C编译器允许用户在同一个源文件里自由地混合使用C++和Objective-C，混编后的语言叫Objective-C++。有了它，你就可以在Objective-C应用程序中使用已有的C++类库。</p>
+<h3 id="五-泛型编程">五.泛型编程</h3><p>您肯定遇到过如下情况, 编写好的函数因为类型原因, 往往要重写好多次, 造成代码重复, 如下面的例子:</p>
+<p>// 一个返回两个整型数的和 addInt函数<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">addInt</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>// 一个返回两个浮点数的和 addFloat函数</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">addFloat</span><span class="params">(<span class="keyword">float</span> a, <span class="keyword">float</span> b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码, 除了返回值和参数的类型不同, 逻辑完全一样, 对于这种情况, C++率先提出了<strong>泛型编程</strong>的概念.</p>
+<p>泛型即是指具有在多种数据类型上皆可操作的含意，与<strong>模板</strong>有些相似。</p>
+<blockquote>
+<p>泛型编程让你编写完全一般化并可重复使用的算法，其效率与针对某特定数据类型而设计的算法相同。<br>关于泛型的理解, 您可以理解为”将数类型做为参数传递进来”<br>泛型编程（Generic Programming）最初提出时的动机很简单直接：发明一种语言机制，能够帮助实现一个通用的标准容器库。</p>
+</blockquote>
+<p>我们看一个例子, 下面的代码使用C++语法:<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">template <span class="tag">&lt;typename T&gt;</span> struct <span class="keyword">Node</span><span class="identifier"></span><span class="title">&#123;</span><br><span class="line">    T</span> data;      //数据域</span><br><span class="line">    <span class="keyword">Node</span><span class="identifier"> </span><span class="title">* next</span>; //指针域</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码中, 我们定义了一个结构体, 结构体中有两个成员变量 data 和 next</p>
+<blockquote>
+<p>next:指向自身结构体类型的指针.<br>data:的类型是T, 这个T是什么呢?</p>
+</blockquote>
+<p>template &lt; typename T &gt;:  这条语句表示T的类型定义还没有给出，需要在使用Node类型时, 通过”&lt;&gt;” 符号来指明 typename T 的类型.<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Node</span><span class="identifier"></span><span class="title">&lt;int</span>&gt; <span class="keyword">node</span><span class="identifier"></span><span class="title">;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>注意, 上述代码可以写成<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template <span class="tag">&lt;typename T&gt;</span> </span><br><span class="line">struct <span class="keyword">Node</span><span class="identifier"></span><span class="title">&#123;</span><br><span class="line">    T</span> data;      //数据域</span><br><span class="line">    <span class="keyword">Node</span><span class="identifier"> </span><span class="title">* next</span>; //指针域</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>template <typename t=""> 是来修饰 struct Node 的, 您不能在他们中间插入任何代码, 比如:</typename></p>
+<ul>
+<li>错误的示例:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; </span><br><span class="line"><span class="keyword">int</span> a = <span class="number">0</span>;  <span class="comment">// 这里是错误的</span></span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>前面说到, 数据结构是不分语言和类型的, 我们能不能写一个队列, 适配所有的数据类型呢? 向队列插入int, float, double, char都可以处理, 甚至对象也能放进去.<br>我们引入泛型的概念就是为此目的.</p>
+<blockquote>
+<h5 id="STL模板">STL模板</h5><ul>
+<li>我们能想到这种思路, 前辈们早就想到了, 事实上, STL即为用泛型编程思想实现的一系列数据结构和算法的封装, 我们下面要写的例子, 实际上在C++的模板库中早已为我们写好. STL模板库有17个头文件,6个大部分.</li>
+<li>STL可分为容器(containers)、迭代器(iterators)、空间配置器(allocator)、配接器(adapters)、算法(algorithms)、仿函数(functors)六个部分。</li>
+</ul>
+</blockquote>
+<h3 id="六-_泛型编程实现循环队列和链表队列">六. 泛型编程实现循环队列和链表队列</h3><ul>
+<li><p>1.新建工程<br><img src="http://ac-4fcdbq4a.clouddn.com/97c22b74bce376bf.png" alt="file-list"><br><img src="http://ac-4fcdbq4a.clouddn.com/a778c5bfb1fed026.png" alt="file-list"></p>
+</li>
+<li><p>2.新建C++文件, 我们没有创建头文件<br><img src="http://ac-4fcdbq4a.clouddn.com/4ffd29d9fcc9d83a.png" alt="file-list"><br><img src="http://ac-4fcdbq4a.clouddn.com/2381cfd4b5cf63a6.png" alt="file-list"></p>
+</li>
+<li><p>3.创建完成后, <strong><em>手动修改文件类型为.mm类型</em></strong>.<br><img src="http://ac-4fcdbq4a.clouddn.com/6c96d25432d186c5.png" alt="file-list"></p>
+</li>
+<li><p>4.<strong><em>循环队列的实现</em></strong><br>我们在LinkListByArray.mm中写下面代码, 注意, 这个是C++语法</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  LinkListByArray.cpp</span></span><br><span class="line"><span class="comment">//  QueueByLinkList</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by LO3G on 15/11/29.</span></span><br><span class="line"><span class="comment">//  Copyright © 2015年 LO3G. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#include <span class="title">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">class LinkListByArray &#123;</span><br><span class="line">private:</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指向队列首地址, 该地址永远指向连续内存空间的首地址而不会发生变化</span></span><br><span class="line">    T * arrayPtr; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 队头下标, 注意类型是个整型</span></span><br><span class="line">    <span class="keyword">int</span> head;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 队尾下标</span></span><br><span class="line">    <span class="keyword">int</span> tail;     </span><br><span class="line">    <span class="keyword">int</span> maxCnt;</span><br><span class="line"></span><br><span class="line">public:</span><br><span class="line">    <span class="comment">// 队列当前元素个数, 将这个属性设为共有, 是为了外界能直接访问队列个数.</span></span><br><span class="line">    <span class="comment">// c++没有oc中"属性"概念, 所有成员变量的语义需要用方法来控制.</span></span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    LinkListByArray(<span class="keyword">int</span> cnt);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 入队</span></span><br><span class="line">    <span class="keyword">void</span> pushItem(T item);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 出队</span></span><br><span class="line">    T popItem();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 空队</span></span><br><span class="line">    <span class="keyword">bool</span> isEmpty();</span><br><span class="line">    <span class="comment">// 满队</span></span><br><span class="line">    <span class="keyword">bool</span> isFull();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// peek队头元素</span></span><br><span class="line">    T peekHead();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 打印队列</span></span><br><span class="line">    <span class="keyword">void</span> display();</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">LinkListByArray&lt;T&gt;::LinkListByArray(<span class="keyword">int</span> cnt)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 参数cnt表示想要创建队列的最大长度. </span></span><br><span class="line">    maxCnt = cnt; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 按照类型T*个数的方式, 在堆区内为队列开辟空间.</span></span><br><span class="line">    arrayPtr = (T *)malloc(cnt*<span class="keyword">sizeof</span>(T)); </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 头和尾下标均指向数组的第一个位置.</span></span><br><span class="line">    head = <span class="number">0</span>; </span><br><span class="line">    tail = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 队列内元素个数在初始化时为0.</span></span><br><span class="line">    count = <span class="number">0</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 空队</span></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> LinkListByArray&lt;T&gt;::isEmpty()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 这里使用一个计数器记录队列元素个数</span></span><br><span class="line">    <span class="keyword">if</span> (count == <span class="number">0</span>) &#123;  </span><br><span class="line">        cout &lt;&lt; <span class="string">"空队"</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 满队</span></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> LinkListByArray&lt;T&gt;::isFull()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (count == maxCnt) &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">"满队"</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入队</span></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> LinkListByArray&lt;T&gt;::pushItem(T item)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 如果满队的情况, 不能入队了, 直接返回.</span></span><br><span class="line">    <span class="keyword">if</span> (isFull()) &#123; </span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 入队操作只在队列尾部</span></span><br><span class="line">    arrayPtr[tail] = item;  </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注意, 这里为tail增加时, 要对其取模, 保证它永远不会大过数组总长度.</span></span><br><span class="line">    tail = (tail + <span class="number">1</span>) % maxCnt; </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 入队成功, 将元素个数记录+1.</span></span><br><span class="line">    count++; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 出队</span></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T LinkListByArray&lt;T&gt;::popItem()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 如果空队, 则不能返回任何元素, 返回NULL作为标记, 外部需判断</span></span><br><span class="line">    <span class="keyword">if</span> (isEmpty()) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 出队时, 声明一个临时变量做一次值拷贝</span></span><br><span class="line">    T tmp = arrayPtr[head];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 之后将head向后移动一位, 注意, 这里也要对head取模, 保证其值不会大于数组总长度.</span></span><br><span class="line">    head = (head + <span class="number">1</span>) % maxCnt;  </span><br><span class="line">    count--;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印队列</span></span><br><span class="line">template &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> LinkListByArray&lt;T&gt;::display()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= count - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        cout &lt;&lt; arrayPtr[(head + i) % maxCnt] &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>main.mm中调用<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  main.mm</span></span><br><span class="line"><span class="comment">//  QueueByLinkList</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by LO3G on 15/11/27.</span></span><br><span class="line"><span class="comment">//  Copyright © 2015年 LO3G. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="preprocessor">#import &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#import <span class="string">"LinkListByArray.mm"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化一个4个元素个数的队列</span></span><br><span class="line">    <span class="comment">// 注意&lt;char&gt;指明队列内元素类型为char型, 这里你可以写任何类型, 但是需入队时类型一致.</span></span><br><span class="line">    LinkListByArray&lt;<span class="keyword">char</span>&gt; queueArray(<span class="number">4</span>);  </span><br><span class="line">    </span><br><span class="line">    queueArray.pushItem(<span class="string">'a'</span>);  <span class="comment">// 入队一个元素'a'</span></span><br><span class="line">    queueArray.pushItem(<span class="string">'b'</span>);</span><br><span class="line">    queueArray.pushItem(<span class="string">'c'</span>);</span><br><span class="line">    queueArray.pushItem(<span class="string">'d'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 出队, 我们没有用变量接受, 出队的元素被我们弄丢了.</span></span><br><span class="line">    queueArray.popItem();     </span><br><span class="line">    </span><br><span class="line">    queueArray.pushItem(<span class="string">'a'</span>);</span><br><span class="line">    queueArray.pushItem(<span class="string">'b'</span>);</span><br><span class="line">    queueArray.pushItem(<span class="string">'c'</span>);</span><br><span class="line">    queueArray.pushItem(<span class="string">'d'</span>);</span><br><span class="line">    </span><br><span class="line">    queueArray.popItem();</span><br><span class="line">    queueArray.pushItem(<span class="string">'a'</span>);</span><br><span class="line">    queueArray.popItem();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印队列内所有元素, 看看结果与我们预期的是否一致.</span></span><br><span class="line">    queueArray.display(); </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li>5.<strong><em>队列的链表实现</em></strong><br>新建C++文件, 注意仍然没有创建头文件</li>
+</ul>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/10caccc4f71051b1.png" alt="file-list"><br><img src="http://ac-4fcdbq4a.clouddn.com/fcceac88fab5388a.png" alt="file-list"></p>
+<p>在LinkList.mm中写下面代码, 注意, 这个是C++语法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  LinkedQueue.cpp</span></span><br><span class="line"><span class="comment">//  QueueByLinkList</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by LO3G on 15/11/26.</span></span><br><span class="line"><span class="comment">//  Copyright © 2015年 LO3G. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="comment">// 这个demo的队列与上图中略有不同, 该队列没有链表结构中的head节点.</span></span><br><span class="line"><span class="comment">// 所有的节点均为数据节点, head和tail作为两根成员指针, 一旦指向相同位置, 则将其置空, 表示当前空队.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义数据节点.</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">struct</span> Node&#123;</span><br><span class="line">    T data;      <span class="comment">//数据域</span></span><br><span class="line">    Node * next; <span class="comment">//指针域</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 队列管理类</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> LinkList&#123;</span><br><span class="line">    Node&lt;T&gt; * head; <span class="comment">// 队列的头</span></span><br><span class="line">    Node&lt;T&gt; * tail; <span class="comment">// 队列的尾巴</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 重写了默认初始化方法</span></span><br><span class="line">    LinkList()&#123;head=<span class="literal">NULL</span>;tail=<span class="literal">NULL</span>;count=<span class="number">0</span>;&#125;  </span><br><span class="line">    <span class="comment">// 队列中元素的个数, 这个成员是可以被外界访问的, 但是不能被外界修改. c++中没有这个语义.</span></span><br><span class="line">    <span class="keyword">int</span> count;</span><br><span class="line">    <span class="comment">// 入队</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushItem</span><span class="params">(T item)</span></span>;</span><br><span class="line">    <span class="comment">// 出队</span></span><br><span class="line">    <span class="function">T <span class="title">popItem</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 判断队列是否为空</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 打印队列元素</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">display</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 根据一个数组填装队列. 这个方法并不是队列的基本算法, 是我随意加上的.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">packingByCAarray</span><span class="params">(T * start,T * end)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入队</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> LinkList&lt;T&gt;::pushItem(T item)&#123;</span><br><span class="line">    <span class="comment">// 如果空列, 此时入队一个元素的话, head和tail均需要指向这个元素.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;isEmpty()) &#123;</span><br><span class="line">        <span class="comment">// 让head指向一个新的节点</span></span><br><span class="line">        head = (Node&lt;T&gt; *)<span class="keyword">new</span>(Node&lt;T&gt;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// head指向的节点的数据域为需要入队的值.</span></span><br><span class="line">        head-&gt;data = item;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// head指向节点的next指针域指向空</span></span><br><span class="line">        head-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// tail和head指向同一片天空.</span></span><br><span class="line">        tail = head;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">// 如果不为空的话, head和tail必将指向了不同的元素, 此时应该单独移动tail, 而不移动head.</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 新建一个节点</span></span><br><span class="line">        Node&lt;T&gt; * newNode = (Node&lt;T&gt; *)<span class="keyword">new</span>(Node&lt;T&gt;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 让当前tail的next域 指向这个新的节点</span></span><br><span class="line">        tail-&gt;next = newNode;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 新节点的数据域为入队的值</span></span><br><span class="line">        newNode-&gt;data = item;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将tail移动(指向)新的节点.</span></span><br><span class="line">        tail = tail-&gt;next;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 将tail(newNode)的next域指向空.</span></span><br><span class="line">        tail-&gt;next = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 入队之后, 队列元素个数+1.</span></span><br><span class="line">    count++; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 出队</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T LinkList&lt;T&gt;::popItem()&#123;</span><br><span class="line">    <span class="comment">// 如果空队, 没有元素能出队了, 直接返回空.</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 用临时变量对head的数据区做一次值拷贝.</span></span><br><span class="line">    T nodeData = head-&gt;data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 定义一根和head相同的指针, 这个指针的作用是: 当head移动到下一个位置时, 仍能找到上一个返回的元素, 将其释放掉.</span></span><br><span class="line">    Node&lt;T&gt; * nodep = head;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// head移动到下一个元素位置</span></span><br><span class="line">    head = head-&gt;next;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 刚才定义的指针有作用了, 释放掉出队的元素空间.</span></span><br><span class="line">    <span class="keyword">delete</span> nodep;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 出队了, 元素个数应该减一.</span></span><br><span class="line">    count--;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回值.</span></span><br><span class="line">    <span class="keyword">return</span> nodeData;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断队列是否为空</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> LinkList&lt;T&gt;::isEmpty()&#123;</span><br><span class="line">    <span class="comment">// 根据记录的元素个数来判断是否为空对.</span></span><br><span class="line">    <span class="keyword">return</span> count == <span class="number">0</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印队列元素</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> LinkList&lt;T&gt;::display()&#123;</span><br><span class="line">    <span class="comment">// 定义一根可以移动的指针, 这个指针根据节点的next一直向下找, 一直找到next为NULL为止.</span></span><br><span class="line">    Node&lt;T&gt; *iter = head;</span><br><span class="line">    <span class="keyword">while</span>(iter != <span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="comment">// 打印iter指针指向元素的数据域</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; iter-&gt;data &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">        <span class="comment">// iter移动到下一个位置.</span></span><br><span class="line">        iter = iter-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用另外一个数组来初始化队列</span></span><br><span class="line"><span class="comment">// 来来来, 请您自己来分析一下这个方法的原理~!~</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> LinkList&lt;T&gt;::packingByCAarray(T *start,T *end)&#123;</span><br><span class="line">    <span class="keyword">if</span>(start==end)<span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span>(start!=end)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;pushItem(*start++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在main.mm中调用<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  main.mm</span></span><br><span class="line"><span class="comment">//  QueueByLinkList</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//  Created by LO3G on 15/11/27.</span></span><br><span class="line"><span class="comment">//  Copyright © 2015年 LO3G. All rights reserved.</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="preprocessor">#import &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#import <span class="string">"LinkList.mm"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[])</span> </span>&#123;</span><br><span class="line">    LinkList&lt;<span class="keyword">int</span>&gt; <span class="built_in">queue</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'a'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'b'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'d'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'e'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'f'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'g'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'h'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'i'</span>);</span><br><span class="line">    <span class="built_in">queue</span>.pushItem(<span class="string">'j'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">queue</span>.display();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">queue</span>.popItem() &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">queue</span>.popItem() &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">queue</span>.popItem() &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">queue</span>.popItem() &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">queue</span>.popItem() &lt;&lt; endl;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">queue</span>.popItem() &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">queue</span>.display();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/12/03/runtime/">
+  <time datetime="2015-12-03T11:11:57.000Z">
+    2015-12-03
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/12/03/runtime/">Runtime浅析</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <h4 id="我们先看看这些这些问题,_您能回答吗?">我们先看看这些这些问题, 您能回答吗?</h4><ol>
+<li>method Ivar结构体中包含那些成员变量, 这些变量的作用是什么</li>
+<li>如何与运行时系统进行交互</li>
+<li>消息转发和动态方法解析分别指什么</li>
+<li>runtime有啥作用</li>
+</ol>
+<hr>
+<h4 id="今天我们来看看runtime:">今天我们来看看runtime:</h4><h6 id="1,消息驱动机制">1,消息驱动机制</h6><h6 id="2-Runtime实现面向对象">2.Runtime实现面向对象</h6><h6 id="3-消息转发">3.消息转发</h6><h6 id="4-Runtime项目的应用">4.Runtime项目的应用</h6><h6 id="5-面试题">5.面试题</h6><h6 id="6-附录">6.附录</h6><hr>
+<h4 id="一-关于Runtime的一些特征">一.关于Runtime的一些特征</h4><h5 id="1-消息驱动机制">1.消息驱动机制</h5><pre><code>运行的时候的一些机制, 主要是消息机制.
+对于<span class="variable">C</span>语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.
+<span class="variable">OC</span>的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.
+</code></pre><h5 id="2-Clang编译器">2.Clang编译器</h5><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统的角色扮演oc语言的操作系统oc基于该系统来工作.
+</code></pre><h5 id="3-方法的调用:">3.方法的调用:</h5><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
+--&gt; objc_mesgSend<span class="list">(<span class="keyword">id</span> object, @selector<span class="list">(<span class="keyword">doSomeMEthod</span>)</span>)</span><span class="comment">;</span></span>
+</code></pre><h5 id="4-发送消息_:">4.发送消息 :</h5><pre><code><span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector)</span></span>
+如果消息含有参数则为:
+<span class="function"><span class="title">objc_msgSend</span><span class="params">(reciver, selector, arg1, arg2, agr3 ...)</span></span>
+</code></pre><h5 id="5-实现类,_属性,_方法,集成,扩展-">5.实现类, 属性, 方法,集成,扩展.</h5><pre><code>实现这些才能说, 这个语言是面向对象的.
+</code></pre><h5 id="6-那么用c封装的面向对象应该是什么样子的呢?">6.那么用c封装的面向对象应该是什么样子的呢?</h5><pre><code><span class="keyword">struct</span> objc_object <span class="comment">// 这个结构体是NSObject的父类.</span>
+{
+    <span class="keyword">private</span>;
+    <span class="keyword">isa_t</span> isa;
+}
+实例变量:
+ivar_name
+ivaf_type
+ivar_offset 
+实例变量所占的字节数. 可以通过偏移量取到下一个偏移量.
+
+SEL 是一个方法名称, 它可以绑定上任何的实现. 这也是我们 swizzle 的基本原理.
+
+<span class="comment">// 会给代价一个runtime的所有方法的接口文档.</span>
+</code></pre><h4 id="二:与Runtime系统的交互">二:与Runtime系统的交互</h4><pre><code>和运行时系统的交互
+OC程序有三种途径和运行时系统交互:
+</code></pre><h5 id="1-通过oc源代码">1.通过oc源代码</h5><h5 id="2-通过_Foundation_框架中类NSObject的方法-">2.通过 Foundation 框架中类NSObject的方法.</h5><h5 id="3-通过直接调用运行时系统的函数-_就是上面的接口文档-">3.通过直接调用运行时系统的函数. 就是上面的接口文档.</h5><h4 id="三-动态绑定">三.动态绑定</h4><pre><code>如何将消息发给应该执行的对象呢?
+本章描述了代码的消息表达式如何转换为<span class="atom">objc_msgSend</span>函数的调用 如何通过名字来指定一个方法, 以及如何使用<span class="atom">objc_msgSend</span>函数.
+----就是方法链表的遍历! 如果遍历不到, 把这个消息传给父类, 一直向上.
+
+该消息函数做了动态绑定所以需要的一切;
+<span class="number">1.</span>它首先找到对应的方法实现, 因为不同类对同一方法可能会有不同的实现, 
+<span class="number">2.</span>如果在当前类没有找到, 会根据指向父类的指针, 跳到父类中去寻找.
+<span class="number">3.</span>如果<span class="atom">nsObject</span>也没有, 那么就会抛异常
+那么这个过程就叫做动态绑定.
+
+那么你能在这个过程中干什么呢?
+
+<span class="atom">resolveinstanceMethod</span>: 和 <span class="atom">resolveClassMethod</span>: 来动态的实现给选定的对象方法或者类方法.
+</code></pre><p>没有参数就有两个参数 self  和 SEL<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-(BOOL)resolveInstanceMethod:(SEL)sel&#10;&#123;&#10;    void (^resolveMethod)() =^(id objc_self, SEL cmd_p)&#123;&#10;        NSLog(@&#34;&#25152;&#26377;&#19981;&#33021;&#35299;&#26512;(&#25214;&#19981;&#21040;)&#30340;&#31867;&#26041;&#27861;&#22238;&#25191;&#34892;&#36825;&#37324;&#34;);&#10;    &#125;;&#10;    // &#28155;&#21152;&#26041;&#27861;&#10;    class_addMethod(objc_getClass(&#34;LanouClass&#34;), sel, &#10;                imp_implementationWithBlock(resolveMethod), &#34;v@:&#34;);&#10;    &#10;    return YES;&#10;&#125;&#10;&#10;// &#31867;&#26041;&#27861;&#30340;&#21160;&#24577;&#35299;&#26512;&#10;+(BOOL)resolveClassMethod:(SEL)sel&#10;&#123;&#10;    void (^resolveMethod)() =^(id objc_self, SEL cmd_p)&#123;&#10;        NSLog(@&#34;&#25152;&#26377;&#19981;&#33021;&#35299;&#26512;(&#25214;&#19981;&#21040;)&#30340;&#31867;&#26041;&#27861;&#22238;&#25191;&#34892;&#36825;&#37324;&#34;);&#10;    &#125;;&#10;    // &#28155;&#21152;&#26041;&#27861;&#10;    class_addMethod(object_getClass(objc_getClass(&#34;LanouClass&#34;)), sel, &#10;                    imp_implementationWithBlock(resolveMethod), &#34;v@:&#34;);&#10;    &#10;    return YES;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>调用:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LanouClass  * lc = [[LanouClass alloc] init];</span><br><span class="line"></span><br><span class="line">objc_msgSend([LanouClass class], sel_registerName(<span class="string">"doSome"</span>));</span><br></pre></td></tr></table></figure></p>
+<h3 id="四:消息转发">四:消息转发</h3><p>消息转发很像多继承, 本来由自己实现的方法, 让别人去执行.<br>消息转发是将问题分解到更小的对象中, 但是又以一种对消息发送对象来说完全透明的方式将这些对象联系起来.</p>
+<p>我们在一个类的.m文件中, 重写下面两个方法:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">-(NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector</span><br><span class="line">&#123;</span><br><span class="line">    self.lc = [[LanouClass alloc] init];</span><br><span class="line">    </span><br><span class="line">    // 向self.lc中注册aSelector的相关消息, 如果self.lc中没有aSelector的相关信息(没有这个方法), 在self.lc中注册一个这样的方法. 至于self.lc中有没有这个方法, 我们这里没管, 但实际上我们在上面的代码中已经做了动态绑定.</span><br><span class="line">    NSMethodSignature * signature = [self.lc methodSignatureForSelector:aSelector];</span><br><span class="line">    </span><br><span class="line">    // 向 self.lc 注册 aSelector , 名称存在signature中</span><br><span class="line">    </span><br><span class="line">    // 返回这个标识就好了</span><br><span class="line">    <span class="built_in">return</span> signature;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 转发消息</span><br><span class="line">-(void)forwardInvocation:(NSInvocation *)anInvocation</span><br><span class="line">&#123;</span><br><span class="line">    [anInvocation invokeWithTarget:self.lc];</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/11/13/hello-world/">
+  <time datetime="2015-11-13T15:14:33.000Z">
+    2015-11-13
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2015/11/13/hello-world/">Hello World</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+
+  <nav id="pagination">
+  
+    <a href="/" class="prev">上一页</a>
+  
+  
+  <div class="clearfix"></div>
+</nav>
+
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2015 <a href="/">Lucidy</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lucidy' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>
