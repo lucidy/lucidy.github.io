@@ -10,26 +10,26 @@
     <meta name="author" content="Lucidy">
   
   
-    <meta name="description" content="这篇博文思路大部分源自网络, 包括部分MacOS自带Apache服务什么是Apache? 
+    <meta name="description" content="这篇博文思路大部分源自网络, 包括部分文字MacOS自带Apache服务什么是Apache? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如何访问?打开浏览器, 输入:http:/">
+2. 如何访问?打开浏览器, 输入:http">
   
-  <meta name="description" content="这篇博文思路大部分源自网络, 包括部分MacOS自带Apache服务什么是Apache? 
+  <meta name="description" content="这篇博文思路大部分源自网络, 包括部分文字MacOS自带Apache服务什么是Apache? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如何访问?打开浏览器, 输入:http:/">
+2. 如何访问?打开浏览器, 输入:http">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacOS中配置Apache及虚拟机">
 <meta property="og:url" content="http://iosli.com/2015/12/14/MacOS中配置Apache及虚拟机/index.html">
 <meta property="og:site_name" content="男孩无衣">
-<meta property="og:description" content="这篇博文思路大部分源自网络, 包括部分MacOS自带Apache服务什么是Apache? 
+<meta property="og:description" content="这篇博文思路大部分源自网络, 包括部分文字MacOS自带Apache服务什么是Apache? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如何访问?打开浏览器, 输入:http:/">
-<meta property="og:updated_time" content="2015-12-14T15:15:50.000Z">
+2. 如何访问?打开浏览器, 输入:http">
+<meta property="og:updated_time" content="2015-12-14T15:17:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacOS中配置Apache及虚拟机">
-<meta name="twitter:description" content="这篇博文思路大部分源自网络, 包括部分MacOS自带Apache服务什么是Apache? 
+<meta name="twitter:description" content="这篇博文思路大部分源自网络, 包括部分文字MacOS自带Apache服务什么是Apache? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如何访问?打开浏览器, 输入:http:/">
+2. 如何访问?打开浏览器, 输入:http">
   
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -79,7 +79,7 @@
   
   <div class="entry">
     
-      <h2 id="这篇博文思路大部分源自网络,_包括部分">这篇博文思路大部分源自网络, 包括部分</h2><h3 id="MacOS自带Apache服务">MacOS自带Apache服务</h3><p><a href="http://baidu.com" target="_blank" rel="external">什么是Apache?</a> </p>
+      <h2 id="这篇博文思路大部分源自网络,_包括部分文字">这篇博文思路大部分源自网络, 包括部分文字</h2><h3 id="MacOS自带Apache服务">MacOS自带Apache服务</h3><p><a href="http://baidu.com" target="_blank" rel="external">什么是Apache?</a> </p>
 <h4 id="1-_如何启动mac上的Apache?">1. 如何启动mac上的Apache?</h4><p><code>sudo apachectl start</code>   # 启动<br><code>sudo apachectl restart</code>  # 重启<br><code>sudo apachectl stop</code>  # 停止<br><code>sudo apachectl -v</code> # 查看Apache版本</p>
 <h4 id="2-_如何访问?">2. 如何访问?</h4><p>打开浏览器, 输入:<code>http://localhost</code>, 如果成功, 屏幕显示 It Works!</p>
 <h4 id="3-_Apache的根路径在哪里?">3. Apache的根路径在哪里?</h4><p>/Library/WebServer/Documents/</p>
@@ -89,27 +89,17 @@
 <blockquote>
 <p>有三种方式查看：<br>终端下输入: <code>cd /etc ; open .</code><br>dock下右键Finder，选择”前往文件夹”，输入”/etc”<br>可以在terminal 输入 “open /etc”</p>
 </blockquote>
-<h3 id="设置虚拟主机">设置虚拟主机</h3><ol>
-<li>在终端运行“sudo vi /etc/apache2/httpd.conf”，打开Apche的配置文件,<br>在httpd.conf中找到“#Include /private/etc/apache2/extra/httpd-vhosts.conf”，去掉前面的“＃”, 保存并退出.</li>
-<li>运行“sudo apachectl restart”，<strong>重启Apache</strong>后就开启了虚拟主机配置功能.</li>
-<li>运行“sudo vi /etc/apache2/extra/httpd-vhosts.conf”, 就打开了配置虚拟主机文件httpd-vhost.conf ,配置虚拟主机了. 需要注意的是该文件默认开启了两个作为例子的虚拟主机：</li>
-</ol>
+<h3 id="设置虚拟主机">设置虚拟主机</h3><p>1.在终端运行“sudo vi /etc/apache2/httpd.conf”，打开Apche的配置文件,<br>在httpd.conf中找到“#Include /private/etc/apache2/extra/httpd-vhosts.conf”，去掉前面的“＃”, 保存并退出.<br>2.运行“sudo apachectl restart”，<strong>重启Apache</strong>后就开启了虚拟主机配置功能.<br>3.运行“sudo vi /etc/apache2/extra/httpd-vhosts.conf”, 就打开了配置虚拟主机文件httpd-vhost.conf ,配置虚拟主机了. 需要注意的是该文件默认开启了两个作为例子的虚拟主机：</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;VirtualHost *:<span class="number">80</span>&gt;</span><br><span class="line">    ServerAdmin webmaster@dummy-host<span class="class">.example</span><span class="class">.com</span></span><br><span class="line">    DocumentRoot <span class="string">"/usr/docs/dummy-host.example.com"</span></span><br><span class="line">    ServerName dummy-host<span class="class">.example</span><span class="class">.com</span></span><br><span class="line">    ErrorLog <span class="string">"/private/var/log/apache2/dummy-host.example.com-error_log"</span></span><br><span class="line">    CustomLog <span class="string">"/private/var/log/apache2/dummy-host.example.com-access_log"</span> common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br><span class="line"> </span><br><span class="line">&lt;VirtualHost *:<span class="number">80</span>&gt;</span><br><span class="line">    ServerAdmin webmaster@dummy-host2<span class="class">.example</span><span class="class">.com</span></span><br><span class="line">    DocumentRoot <span class="string">"/usr/docs/dummy-host2.example.com"</span></span><br><span class="line">    ServerName dummy-host2<span class="class">.example</span><span class="class">.com</span></span><br><span class="line">    ErrorLog <span class="string">"/private/var/log/apache2/dummy-host2.example.com-error_log"</span></span><br><span class="line">    CustomLog <span class="string">"/private/var/log/apache2/dummy-host2.example.com-access_log"</span> common</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 <p>上面代码是httpd-vhosts.conf中生成的伪代码, 其中都是示例example. 我们可以将他们删除, 也可以将他们注释掉(每一行前面都加#, 可以使用例模式).<br>之后添加如下两个虚拟机:<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;VirtualHost *:80&gt;</span></span><br><span class="line">    <span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/Library/WebServer/Documents"</span></span><br><span class="line">    <span class="keyword"><span class="common">ServerName</span></span> localhost</span><br><span class="line">    <span class="keyword">ErrorLog</span> <span class="string">"/private/var/log/apache2/localhost-error_log"</span></span><br><span class="line">    <span class="keyword">CustomLog</span> <span class="string">"/private/var/log/apache2/localhost-access_log"</span> common</span><br><span class="line"><span class="tag">&lt;/VirtualHost&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;VirtualHost *:80&gt;</span></span><br><span class="line">    <span class="keyword"><span class="common">DocumentRoot</span></span> <span class="string">"/Users/你的用户名/某个路径"</span></span><br><span class="line">    <span class="comment"># mysites这个名字可以修改.</span></span><br><span class="line">    <span class="keyword"><span class="common">ServerName</span></span> mysites</span><br><span class="line">    <span class="keyword">ErrorLog</span> <span class="string">"/private/var/log/apache2/sites-error_log"</span></span><br><span class="line">    <span class="keyword">CustomLog</span> <span class="string">"/private/var/log/apache2/sites-access_log"</span> common</span><br><span class="line">    <span class="tag">&lt;Directory /&gt;</span></span><br><span class="line">                <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks MultiViews</span><br><span class="line">                <span class="keyword">AllowOverride</span> None</span><br><span class="line">                <span class="keyword"><span class="common">Order</span></span> deny,allow</span><br><span class="line">                <span class="keyword"><span class="common">Allow</span></span> from <span class="literal">all</span></span><br><span class="line">    <span class="tag">&lt;/Directory&gt;</span></span><br><span class="line"><span class="tag">&lt;/VirtualHost&gt;</span></span><br></pre></td></tr></table></figure></p>
 <ol>
 <li>修改hosts文件:<br> 编辑<code>sudo vi /etc/hosts</code>文件, 向其中添加: <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>    mysites</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>保存退出.</p>
-<ol>
-<li>查看文件/etc/apache2/httpd.conf (MacOS10.11.2 大约第220行), 看看这个文件是不是含有这样一句话:<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;Directory /&gt;</span></span><br><span class="line">    AllowOverride <span class="keyword">none</span></span><br><span class="line">    Require <span class="literal">all</span> denied</span><br><span class="line"><span class="variable">&lt;/Directory&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
+<p>保存退出.<br>5.查看文件/etc/apache2/httpd.conf (MacOS10.11.2 大约第220行), 看看这个文件是不是含有这样一句话:<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">&lt;Directory /&gt;</span></span><br><span class="line">    AllowOverride <span class="keyword">none</span></span><br><span class="line">    Require <span class="literal">all</span> denied</span><br><span class="line"><span class="variable">&lt;/Directory&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>如果有, 请改成:<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;Directory /&gt;</span></span><br><span class="line"><span class="comment">#   AllowOverride none</span></span><br><span class="line"><span class="comment">#   Require all denied</span></span><br><span class="line">    <span class="keyword"><span class="common">Options</span></span> Indexes FollowSymLinks</span><br><span class="line">    <span class="keyword">AllowOverride</span> None</span><br><span class="line"><span class="tag">&lt;/Directory&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>保存退出，并重启Apache</strong>。</p>
-<ol>
-<li>打开浏览器, 输入<code>http://mysites</code>, 回车即可显示.</li>
-</ol>
+<p>6.打开浏览器, 输入<code>http://mysites</code>, 回车即可显示.</p>
 
     
   </div>
