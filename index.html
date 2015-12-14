@@ -138,12 +138,21 @@
 <p>那么我们该如何理解APNS服务呢?</p>
 <p>我们通过三张图来简单说明一下APNs的推送过程, 此图来自APNS百度百科.</p>
 <ul>
-<li>手机如何申请DeviceToken:<br><img src="http://ac-4fcdbq4a.clouddn.com/74b6365617428d4e.jpg" alt="file-list"><blockquote>
-<p>  1.手机向APNs服务器发出初连接请求. 手机与服务器开始握手.<br>  2.服务器向设备返回服务器证书(Server Cerficate). 此证书的目的是为了表明服务器的身份.<br>  3.手机验证刚刚收到的证书合法性(Validate Server Cerficate), 如果验证成功, 则表明手机连接到了正确的服务器.(Validate: 证实，验证；确认；使生效, 它还有隐藏含义, 使证书生效).<br>  4.下面轮到手机向服务器发送证书(Device Cerficate), 此证书表明了手机的身份–有没有越狱? 是不是苹果机器?<br>  5.服务器验证手机是否合法.<br>  6.</p>
+<li><p><strong>手机与服务器建立连接:</strong><br><img src="http://ac-4fcdbq4a.clouddn.com/74b6365617428d4e.jpg" alt="file-list"></p>
+<blockquote>
+<p>  1.手机向APNs服务器发出初连接请求. 建立长连接, 手机与服务器开始握手.<br>  2.服务器向设备返回服务器证书(Server Cerficate). 此证书的目的是为了表明服务器的身份.<br>  3.手机验证刚刚收到的证书合法性(Validate Server Cerficate), 如果验证成功, 则表明手机连接到了正确的服务器.(Validate: 证实，验证；确认；使生效, 它还有隐藏含义, 使证书生效).<br>  4.下面轮到手机向服务器发送证书(Device Cerficate), 此证书表明了手机的身份–有没有越狱? 是不是苹果机器?<br>  5.服务器验证手机是否合法.<br>  6.身份验证完毕.</p>
+</blockquote>
+</li>
+<li><p><strong>推送过程:</strong><br><img src="http://ac-4fcdbq4a.clouddn.com/82680471ec67ba3e.jpg" alt=""></p>
+<blockquote>
+<p>1.你开发的APP, 从当前的手机系统iOS中读取手机的<strong>推送证书</strong>, 之后, iOS操作系统向APNs Server申请Device token.<br>2.APNs Server返回Device token到你的APP.<br>3.你的APP将获得的Device token, 发送到你的服务器, 可以是极光服务器, 可以是你们公司自己的服务器, 不管怎样, 你的服务器中要维护一张Device token的表. 这个表中, 记录了所有使用你APP的Device token.<br>4.当你需要向某个用户发送推送时, 根据3维护的表, 找到该用户的Device token, 然后将Device token和需要推送的消息, 一起发送给 APNs Server</p>
+<ol>
+<li>最终, APNs将这条推送消息推送到用户APP中, 完成推送过程.</li>
+</ol>
 </blockquote>
 </li>
 </ul>
-<p><img src="http://ac-4fcdbq4a.clouddn.com/bed8cd88d15379e6.jpg" alt=""><br><img src="http://ac-4fcdbq4a.clouddn.com/82680471ec67ba3e.jpg" alt=""></p>
+<p><img src="http://ac-4fcdbq4a.clouddn.com/bed8cd88d15379e6.jpg" alt=""></p>
 
     
   </div>
