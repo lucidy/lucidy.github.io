@@ -29,7 +29,7 @@
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/74b6365617428d4e.jpg">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/82680471ec67ba3e.jpg">
 <meta property="og:image" content="http://ac-4fcdbq4a.clouddn.com/bed8cd88d15379e6.jpg">
-<meta property="og:updated_time" content="2015-12-14T02:28:18.000Z">
+<meta property="og:updated_time" content="2015-12-14T02:30:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="各种推送">
 <meta name="twitter:description" content="一.本地推送本地通知推送也叫闹钟通知, 这是通知中比较简单的一部分.如果将app比喻成一个人, 某个controller比喻成身体的某一部分(手臂), 那么由手臂注册通知并且发送通知, 最后被大脑(AppDelegate)收到这个通知并作出处理.
@@ -117,18 +117,16 @@
 <ul>
 <li><p><strong>手机与服务器建立连接:</strong><br><img src="http://ac-4fcdbq4a.clouddn.com/74b6365617428d4e.jpg" alt="file-list"></p>
 <blockquote>
-<p>  1.手机向APNs服务器发出初连接请求. 建立长连接, 手机与服务器开始握手.<br>  2.服务器向设备返回服务器证书(Server Cerficate). 此证书的目的是为了表明服务器的身份.<br>  3.手机验证刚刚收到的证书合法性(Validate Server Cerficate), 如果验证成功, 则表明手机连接到了正确的服务器.(Validate: 证实，验证；确认；使生效, 它还有隐藏含义, 使证书生效).<br>  4.下面轮到手机向服务器发送证书(Device Cerficate), 此证书表明了手机的身份–有没有越狱? 是不是苹果机器?<br>  5.服务器验证手机是否合法.<br>  6.身份验证完毕.</p>
+<p>  1.手机向APNs服务器发出初连接请求. 手机与服务器开始握手.<br>  2.服务器向设备返回服务器证书(Server Cerficate). 此证书的目的是为了表明服务器的身份.<br>  3.手机验证刚刚收到的证书合法性(Validate Server Cerficate), 如果验证成功, 则表明手机连接到了正确的服务器.(Validate: 证实，验证；确认；使生效, 它还有隐藏含义, 使证书生效).<br>  4.下面轮到手机向服务器发送证书(Device Cerficate), 此证书表明了手机的身份–有没有越狱? 是不是苹果机器?<br>  5.服务器验证手机是否合法.<br>  6.身份验证完毕.</p>
 </blockquote>
 </li>
 <li><p><strong>推送过程:</strong><br><img src="http://ac-4fcdbq4a.clouddn.com/82680471ec67ba3e.jpg" alt=""></p>
 <blockquote>
-<p>1.你开发的APP, 从当前的手机系统iOS中读取手机的<strong>推送证书</strong>, 之后, iOS操作系统向APNs Server申请Device token.<br>2.APNs Server返回Device token到你的APP.<br>3.你的APP将获得的Device token, 发送到你的服务器, 可以是极光服务器, 可以是你们公司自己的服务器, 不管怎样, 你的服务器中要维护一张Device token的表. 这个表中, 记录了所有使用你APP的Device token.<br>4.当你需要向某个用户发送推送时, 根据3维护的表, 找到该用户的Device token, 然后将Device token和需要推送的消息, 一起发送给 APNs Server</p>
-<ol>
-<li>最终, APNs将这条推送消息推送到用户APP中, 完成推送过程.</li>
-</ol>
+<p>1.你开发的APP, 从当前的手机系统iOS中读取手机的<strong>推送证书</strong>, 之后, iOS操作系统向APNs Server申请Device token.<br>2.APNs Server返回Device token到你的APP.<br>3.你的APP将获得的Device token, 发送到你的服务器, 可以是极光服务器, 可以是你们公司自己的服务器, 不管怎样, 你的服务器中要维护一张Device token的表. 这个表中, 记录了所有使用你APP的Device token.<br>4.当你需要向某个用户发送推送时, 根据3维护的表, 找到该用户的Device token, 然后将Device token和需要推送的消息, 一起发送给 APNs Server<br>5.最终, APNs将这条推送消息推送到用户APP中, 完成推送过程.</p>
 </blockquote>
 </li>
 </ul>
+<p>注意以上的两个过程<strong>建立连接</strong>和<strong>推送过程</strong>, </p>
 <p><img src="http://ac-4fcdbq4a.clouddn.com/bed8cd88d15379e6.jpg" alt=""></p>
 
     
