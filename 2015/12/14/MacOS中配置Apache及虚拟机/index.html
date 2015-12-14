@@ -10,26 +10,26 @@
     <meta name="author" content="Lucidy">
   
   
-    <meta name="description" content="这篇博文思路大部分源自网络, 包括部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
+    <meta name="description" content="这篇博文思路大部分源自网络, 包括小部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如">
+2.">
   
-  <meta name="description" content="这篇博文思路大部分源自网络, 包括部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
+  <meta name="description" content="这篇博文思路大部分源自网络, 包括小部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如">
+2.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MacOS中配置Apache及虚拟机">
 <meta property="og:url" content="http://iosli.com/2015/12/14/MacOS中配置Apache及虚拟机/index.html">
 <meta property="og:site_name" content="男孩无衣">
-<meta property="og:description" content="这篇博文思路大部分源自网络, 包括部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
+<meta property="og:description" content="这篇博文思路大部分源自网络, 包括小部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如">
-<meta property="og:updated_time" content="2015-12-14T15:58:31.000Z">
+2.">
+<meta property="og:updated_time" content="2015-12-14T16:01:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MacOS中配置Apache及虚拟机">
-<meta name="twitter:description" content="这篇博文思路大部分源自网络, 包括部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
+<meta name="twitter:description" content="这篇博文思路大部分源自网络, 包括小部分文字直接拷贝.MacOS自带Apache服务什么是Apache?什么是服务?什么是服务器? 
 1. 如何启动mac上的Apache?sudo apachectl start   # 启动sudo apachectl restart  # 重启sudo apachectl stop  # 停止sudo apachectl -v # 查看Apache版本
-2. 如">
+2.">
   
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -79,13 +79,13 @@
   
   <div class="entry">
     
-      <h2 id="这篇博文思路大部分源自网络,_包括部分文字直接拷贝-">这篇博文思路大部分源自网络, 包括部分文字直接拷贝.</h2><h3 id="MacOS自带Apache服务">MacOS自带Apache服务</h3><p><a href="http://baidu.com" target="_blank" rel="external">什么是Apache?什么是服务?什么是服务器?</a> </p>
+      <h2 id="这篇博文思路大部分源自网络,_包括小部分文字直接拷贝-">这篇博文思路大部分源自网络, 包括小部分文字直接拷贝.</h2><h3 id="MacOS自带Apache服务">MacOS自带Apache服务</h3><p><a href="http://baidu.com" target="_blank" rel="external">什么是Apache?什么是服务?什么是服务器?</a> </p>
 <h4 id="1-_如何启动mac上的Apache?">1. 如何启动mac上的Apache?</h4><p><code>sudo apachectl start</code>   # 启动<br><code>sudo apachectl restart</code>  # 重启<br><code>sudo apachectl stop</code>  # 停止<br><code>sudo apachectl -v</code> # 查看Apache版本</p>
 <h4 id="2-_如何访问?">2. 如何访问?</h4><p>打开浏览器, 输入:<code>http://localhost</code>, 如果成功, 屏幕显示 It Works!</p>
 <h4 id="3-_Apache的根路径在哪里?">3. Apache的根路径在哪里?</h4><p>/Library/WebServer/Documents/</p>
 <h4 id="4-在这里写自己的-php文件可以访问吗?">4.在这里写自己的.php文件可以访问吗?</h4><h3 id="洗洗睡吧,_虽然可以,_但是权限问题和安全问题不好处理-">洗洗睡吧, 虽然可以, 但是权限问题和安全问题不好处理.</h3><hr>
 <p>那么能不能配置一个自己的根目录, 然后外界访问的时候都来访问该目录呢?<br>虚拟机可以完成这个功能.<br>每个虚拟机都可以当做是一台独立的机器, 我们输入不同的域名就进入不同的目录.</p>
-<p>Apache的安装目录在：/etc/apache2/，etc默认是隐藏的。</p>
+<p>Apache的安装目录在：/etc/apache2/</p>
 <blockquote>
 <p>有三种方式查看：<br>终端下输入: <code>cd /etc ; open .</code><br>dock下右键Finder，选择”前往文件夹”，输入”/etc”<br>可以在terminal 输入 “open /etc”</p>
 </blockquote>
