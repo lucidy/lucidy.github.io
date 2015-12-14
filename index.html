@@ -185,7 +185,7 @@
 <li>若由其他应用程序通过openURL:启动，则UIApplicationLaunchOptionsURLKey对应的对象为启动URL（NSURL）,UIApplicationLaunchOptionsSourceApplicationKey对应启动的源应用程序的bundle ID (NSString)；</li>
 <li>若由本地通知启动，则UIApplicationLaunchOptionsLocalNotificationKey对应的是为启动应用程序的的本地通知对象(UILocalNotification)；</li>
 <li>若由远程通知启动，则UIApplicationLaunchOptionsRemoteNotificationKey对应的是启动应用程序的的远程通知信息userInfo（NSDictionary）；</li>
-<li>其他key还有UIApplicationLaunchOptionsAnnotationKey,UIApplicationLaunchOptionsLocationKey,<br>UIApplicationLaunchOptionsNewsstandDownloadsKey。 </li>
+<li>其他key还有UIApplicationLaunchOptionsAnnotationKey, UIApplicationLaunchOptionsLocationKey,<br>UIApplicationLaunchOptionsNewsstandDownloadsKey. </li>
 </ul>
 </blockquote>
 <p>如果要在启动时，做出一些区分，那就需要在下面的代码做处理。</p>
