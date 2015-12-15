@@ -130,7 +130,17 @@
   
   <div class="entry">
     
-      
+      <p>在这篇文章里, 你可以学习到:</p>
+<blockquote>
+<p>1.iOS系统地图<br>2.百度地图的简单了解<br>3.高德地图的简单了解<br>4.谷歌地图的简单了解</p>
+</blockquote>
+<h3 id="一-系统自带地图">一.系统自带地图</h3><p>首先需要明白, 地图和定位是两个功能.</p>
+<blockquote>
+<p>定位: 通过GPS或者Wifi或者蜂窝数据定位到手机的具体物理位置, 返回值通常是一个地理坐标.<br>地图: 和我们实际生活中的地图类似, 基本作用是展示, 至于其中的插大头针, 导航, 查询公交等功能, 并不是其基本功能.</p>
+</blockquote>
+<p>在iOS系统中, 二者分别依赖下面两个库:<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 定位</span></span><br><span class="line"><span class="preprocessor">#import &lt;CoreLocation/CoreLocation.h&gt;</span></span><br><span class="line"><span class="preprocessor"># 地图</span></span><br><span class="line"><span class="preprocessor">#import &lt;MapKit/MapKit.h&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>定位功能:<br><img src="http://ac-4fcdbq4a.clouddn.com/79bc64062a78c89f.png" alt="定位导图"><br>地图功能:<br><img src="http://ac-4fcdbq4a.clouddn.com/bc01f64ee96f5315.png" alt="地图导图"></p>
+
     
   </div>
   <footer class="end-sep"> 
