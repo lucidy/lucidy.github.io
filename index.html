@@ -59,6 +59,55 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2016/01/06/iOS实现XMPP简单通信-教学Demo/">
+  <time datetime="2016-01-06T15:41:25.000Z">
+    2016-01-06
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2016/01/06/iOS实现XMPP简单通信-教学Demo/">iOS实现XMPP简单通信(教学Demo)</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>准备工作<br>1.新建Xcode工程, 导入XMPP文件夹<br>2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2</p>
+<h3 id="代码前的准备工作-">代码前的准备工作.</h3><ol>
+<li>去掉原来mainSB的影响. 删除ViewController.h.m</li>
+<li>删除mainSB中的ViewController</li>
+<li>新建一个LoginAndRegister.storyboard, 向其中拖入一个navController, 并且删除navController自带的那个tableViewController, 之后拖入一个VIewController(rootViewController), 作为登陆界面(控件自己拖). 注册控件指向第二个VIewCOntroller控制器(show). 将navController设置成is initial view contorller.</li>
+<li>创建登陆界面和注册界面的实体类文件, 并且拖入控件的属性和处理事件.</li>
+<li>在appdelegate.m中添加代码, 在didfinishlanuching中, 指明起始的SB为我们刚刚创建的LoginAndRegister.storyboard.代码如下<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 先让window显示</span></span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.window</span> makeKeyAndVisible];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 应该使用哪个storyBoard呢?</span></span><br><span class="line">    <span class="built_in">UIStoryboard</span> * sb = [<span class="built_in">UIStoryboard</span> storyboardWithName:<span class="string">@"LoginAndRegister"</span> bundle:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 那么这个controller的入口是哪个控制器呢?</span></span><br><span class="line">    <span class="built_in">UIViewController</span> * inVC = [sb instantiateInitialViewController];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 拿到入口控制器之后, 我们让让当前的window指向这个控制器</span></span><br><span class="line">    [<span class="keyword">self</span><span class="variable">.window</span><span class="variable">.rootViewController</span> presentViewController:inVC animated:<span class="literal">YES</span> completion:<span class="literal">nil</span>];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="开始代码">开始代码</h3><ol>
+<li>创建类:XMPPManager. 首先介绍一下这个demo中使用类, 主要有三个类<br>XMPPStream XMPPRoster XMPPMessageArchiving<br>XMPPStream:流(电话和电话线类)<br>XMPPRoster:好友管理类<br>XMPPMessageArchiving: 消息管理类</li>
+<li>XMPPManager.h中声明这三个类, 之后声明如下四个方法:<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// !!!:外部公开方法:</span></span><br><span class="line"><span class="comment">// 单例方法</span></span><br><span class="line">+(instancetype)shareX<span class="built_in">MPPManager</span>;</span><br><span class="line"><span class="comment">// 登录</span></span><br><span class="line">-(<span class="keyword">void</span>)loginWithUserName:(<span class="built_in">NSString</span> *)userName Passwd:(<span class="built_in">NSString</span> *)passwd;</span><br><span class="line"><span class="comment">// 注册</span></span><br><span class="line">-(<span class="keyword">void</span>)registerWithName:(<span class="built_in">NSString</span> *)userName Passwd:(<span class="built_in">NSString</span> *)passwd;</span><br><span class="line"><span class="comment">// 添加好友</span></span><br><span class="line">-(<span class="keyword">void</span>)addFriend;</span><br><span class="line"><span class="comment">// 删除好友</span></span><br><span class="line">-(<span class="keyword">void</span>)removeFriendWithFriendName:(<span class="built_in">NSString</span> *)friendName;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.开始在.m中实现这些方法<br>首先实现单例方法, 没有特殊的地方, 实现之后, 立刻实现init方法.在init方法中 ,对XMPPStream进行初始化, 并且设置其host和port. 设置代理:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// XMPPStream的初始化</span></span><br><span class="line"><span class="comment">// 以下的初始化方法, 除了声明了对象外, 也指明了, 此XMPPStream是连接到哪个服务器的.</span></span><br><span class="line"><span class="comment">// 初始化一根电话线</span></span><br><span class="line"><span class="keyword">self</span><span class="variable">.xmppStream</span> = [[X<span class="built_in">MPPStream</span> alloc] init];</span><br><span class="line"><span class="comment">// 设置服务器, 你这根电话线连到哪儿了?</span></span><br><span class="line"><span class="keyword">self</span><span class="variable">.xmppStream</span><span class="variable">.hostName</span> = kHostName;</span><br><span class="line"><span class="comment">// 设置端口, 端口干什么用的呢?</span></span><br><span class="line"><span class="keyword">self</span><span class="variable">.xmppStream</span><span class="variable">.hostPort</span> = kHostPort;</span><br><span class="line">    <span class="comment">// 为这个类设置代理.</span></span><br><span class="line">[<span class="keyword">self</span><span class="variable">.xmppStream</span> addDelegate:<span class="keyword">self</span> delegateQueue:dispatch_get_main_queue()];</span><br></pre></td></tr></table></figure></p>
+<p>之后实现登录的方法, 要想登录, 需要先连接到服务器, 但是连接到服务器需要标明自己的身份.</p>
+
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2015/12/30/备用-占位/">
   <time datetime="2015-12-30T15:58:28.000Z">
     2015-12-30
@@ -1471,7 +1520,7 @@ OC程序有三种途径和运行时系统交互:
   </div>
   <footer id="footer"><div class="copyright">
   
-  &copy; 2015 <a href="/">Lucidy</a>
+  &copy; 2016 <a href="/">Lucidy</a>
   
 </div>
 <div class="theme-copyright">
