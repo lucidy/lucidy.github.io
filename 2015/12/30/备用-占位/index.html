@@ -14,15 +14,13 @@
 
 navigationItem的设置方法navigationBar的设置方法生产中如何自定义UINavigationController重写backbutton后, 找回手势
 
-###一、如何往导航栏和工具栏添加按钮
-####1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。12">
+一、如何往导航栏和工具栏添加按钮1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。123// Crea">
   
   <meta name="description" content="您可以在这篇博客中学习到:
 
 navigationItem的设置方法navigationBar的设置方法生产中如何自定义UINavigationController重写backbutton后, 找回手势
 
-###一、如何往导航栏和工具栏添加按钮
-####1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。12">
+一、如何往导航栏和工具栏添加按钮1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。123// Crea">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义的UINavigationController">
 <meta property="og:url" content="http://iosli.com/2015/12/30/备用-占位/index.html">
@@ -31,17 +29,15 @@ navigationItem的设置方法navigationBar的设置方法生产中如何自定�
 
 navigationItem的设置方法navigationBar的设置方法生产中如何自定义UINavigationController重写backbutton后, 找回手势
 
-###一、如何往导航栏和工具栏添加按钮
-####1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。12">
-<meta property="og:updated_time" content="2016-01-21T16:29:49.000Z">
+一、如何往导航栏和工具栏添加按钮1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。123// Crea">
+<meta property="og:updated_time" content="2016-01-21T16:31:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义的UINavigationController">
 <meta name="twitter:description" content="您可以在这篇博客中学习到:
 
 navigationItem的设置方法navigationBar的设置方法生产中如何自定义UINavigationController重写backbutton后, 找回手势
 
-###一、如何往导航栏和工具栏添加按钮
-####1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。12">
+一、如何往导航栏和工具栏添加按钮1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。123// Crea">
   
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -95,8 +91,7 @@ navigationItem的设置方法navigationBar的设置方法生产中如何自定�
 <blockquote>
 <p>navigationItem的设置方法<br>navigationBar的设置方法<br>生产中如何自定义UINavigationController<br>重写backbutton后, 找回手势</p>
 </blockquote>
-<p>###一、如何往导航栏和工具栏添加按钮</p>
-<p>####1、navigationItem属性<br>这个属性是<code>UIViewController</code>在<code>UINavigationControllerItem</code>类目下的。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Created on-demand so that a view controller may customize its navigation appearance.</span></span><br><span class="line"><span class="comment">// 文档并没有就我们最关心的问题--为什么是在类目中添加这个属性作出说明.</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,retain)<span class="built_in">UINavigationItem</span> * navigationItem;</span><br></pre></td></tr></table></figure></p>
+<h3 id="一、如何往导航栏和工具栏添加按钮">一、如何往导航栏和工具栏添加按钮</h3><h4 id="1、navigationItem属性">1、navigationItem属性</h4><p>这个属性是<code>UIViewController</code>在<code>UINavigationControllerItem</code>类目下的。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Created on-demand so that a view controller may customize its navigation appearance.</span></span><br><span class="line"><span class="comment">// 文档并没有就我们最关心的问题--为什么是在类目中添加这个属性作出说明.</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,retain)<span class="built_in">UINavigationItem</span> * navigationItem;</span><br></pre></td></tr></table></figure></p>
 <h1 id="注意:每个Controller页面都有一个UINavigationItem,_你不能指望修改一个Item达到修改所有的愿望-">注意:每个Controller页面都有一个UINavigationItem, 你不能指望修改一个Item达到修改所有的愿望.</h1><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 导航栏左边的按钮，位置与<span class="string">"返回"</span>按钮相同，<span class="keyword">*</span><span class="keyword">*</span>二者只显示其一<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line">// 默认显示[<span class="variable">&lt;back]样式, backBarButtonItem属性</span><br><span class="line">@property(nonatomic,retain)UIBarButtonItem * leftBarButtonItem;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导航栏右边的按钮, 默认隐藏</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain)<span class="built_in">UIBarButtonItem</span> * rightBarButtonItem;</span><br></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 与leftBarButtonItem位置冲突, 要想去掉这个返回键, 可以直接设为空</span></span><br><span class="line"><span class="comment">// 之后在navigationBar上自己添加并且添加点击事件.</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain)<span class="built_in">UIBarButtonItem</span> * backBarButtonItem;</span><br></pre></td></tr></table></figure>
