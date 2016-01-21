@@ -189,7 +189,11 @@
   
   <div class="entry">
     
-      <p>###一、如何往导航栏和工具栏添加按钮</p>
+      <p>您可以在这篇博客中学习到:</p>
+<blockquote>
+<p>navigationItem的设置方法<br>navigationBar的设置方法<br>生产中如何自定义UINavigationController<br>重写backbutton后, 找回手势</p>
+</blockquote>
+<p>###一、如何往导航栏和工具栏添加按钮</p>
 <p>####1、navigationItem属性<br>这个属性是<code>UIViewController</code>在<code>UINavigationControllerItem</code>类目下的。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Created on-demand so that a view controller may customize its navigation appearance.</span></span><br><span class="line"><span class="comment">// 文档并没有就我们最关心的问题--为什么是在类目中添加这个属性作出说明.</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,retain)<span class="built_in">UINavigationItem</span> * navigationItem;</span><br></pre></td></tr></table></figure></p>
 <h1 id="注意:每个Controller页面都有一个UINavigationItem,_你不能指望修改一个Item达到修改所有的愿望-">注意:每个Controller页面都有一个UINavigationItem, 你不能指望修改一个Item达到修改所有的愿望.</h1><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 导航栏左边的按钮，位置与“返回”按钮相同，<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>两者只显示其一<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"><span class="comment">@property(nonatomic,retain)UIBarButtonItem * leftBarButtonItem;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 导航栏右边的按钮</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,retain)<span class="built_in">UIBarButtonItem</span> * rightBarButtonItem;</span><br></pre></td></tr></table></figure>
