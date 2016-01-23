@@ -30,7 +30,7 @@ navigationItem的设置方法navigationBar的设置方法生产中如何自定�
 navigationItem的设置方法navigationBar的设置方法生产中如何自定义UINavigationController重写backbutton后, 找回手势
 
 一、如何往导航栏和工具栏添加按钮1、navigationItem属性这个属性是UIViewController在UINavigationControllerItem类目下的。123// Crea">
-<meta property="og:updated_time" content="2016-01-22T10:21:54.000Z">
+<meta property="og:updated_time" content="2016-01-23T03:24:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义的UINavigationController">
 <meta name="twitter:description" content="您可以在这篇博客中学习到:
@@ -109,10 +109,13 @@ navigationItem的设置方法navigationBar的设置方法生产中如何自定�
 <h3 id="二、如何定制导航栏和工具栏的样式">二、如何定制导航栏和工具栏的样式</h3><h1 id="navigationBar_只有一个(不算tabbar的那种情况),_修改一个tabbar就可修改全局-">navigationBar 只有一个(不算tabbar的那种情况), 修改一个tabbar就可修改全局.</h1><h4 id="1、导航栏的样式：">1、导航栏的样式：</h4><p><strong>navigationBar是UINavigationController的属性</strong><br>当然你也不用纠结, 为什么这个属性是在类目中声明的.</p>
 <h5 id="(1）导航栏左右两边的按钮">(1）导航栏左右两边的按钮</h5><p>从ios7开始，tintColor属性只能设置导航栏上按钮的字体颜色，无法影响到导航栏的背景色。</p>
 <h5 id="(2）导航栏中间的title">(2）导航栏中间的title</h5><p>从ios5开始，titleTextAttributes属性可以设置title的字体、颜色、大小等。<br>例如：<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NSForegroundColorAttributeName是关键字，表示文字的颜色</span></span><br><span class="line"><span class="comment">// NSFontAttributeName表示字体大小和样式。</span></span><br><span class="line"><span class="comment">// 这里的两个关键字是ios7开始才有的，ios7之前有另外的对应关键字</span></span><br><span class="line">[<span class="keyword">self</span><span class="variable">.navigationController</span><span class="variable">.navigationBar</span> setTitleTextAttributes:@&#123;<span class="built_in">NSForegroundColorAttributeName</span>:[<span class="built_in">UIColor</span> redColor],<span class="built_in">NSFontAttributeName</span>:[<span class="built_in">UIFont</span> boldSystemFontOfSize:<span class="number">20</span>]&#125;];</span><br></pre></td></tr></table></figure></p>
-<p>#####（3）导航栏的背景<br><strong>颜色</strong>：从ios7开始，导航栏的背景色由<code>barTintColor</code>来设置，它会把状态栏也变成一样的颜色。<br><strong>背景图</strong>：从ios5开始，</p>
+<p>#####（3）导航栏的背景, 包括图片和背景图.<br><strong>颜色</strong>：从ios7开始，导航栏的背景色由`barTintColor来设置，它会把状态栏也变成一样的颜色。略丑。</p>
+<p><strong>背景图</strong>：从ios5++开始，</p>
 <ul>
-<li>(void)setBackgroundImage:(UIImage*)backgroundImage forBarMetrics:(UIBarMetrics)barMetrics用于设置导航栏背景图片<br>2、工具栏的样式：</li>
+<li>(void)setBackgroundImage:(UIImage*)backgroundImage forBarMetrics:(UIBarMetrics)barMetrics用于设置导航栏背景图片<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[self.navigationBar setBackgroundImage:<span class="collection">[UIImage imageNamed:@<span class="string">"1.png"</span>]</span> forBarMetrics:<span class="list">(<span class="keyword">UIBarMetricsDefault</span>)</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>2、工具栏的样式：</p>
 
     
   </div>
