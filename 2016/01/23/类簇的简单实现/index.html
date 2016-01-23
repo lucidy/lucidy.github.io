@@ -10,16 +10,30 @@
     <meta name="author" content="Lucidy">
   
   
-  <meta name="description" content="One By One, Don&apos;t Hurry">
+    <meta name="description" content="简直太气人了! 网上将类簇的都是装逼, 关键地方不说清楚, 害的老子自己研究了3个小时!
+类簇其实是一种简单的工厂模式, 是工厂模式的一个变种, 它比工厂模式简洁. 有着自己的使用场景, 最典型的的就是NSNumber类.
+那么这种设计模式应该如何实现呢?
+类簇主要有两个方面的角色, 基类和扩展类, 基类如NSNumber, 扩展类如@(NSInteger),@(BOOL)等, 不管扩展类有多大差">
+  
+  <meta name="description" content="简直太气人了! 网上将类簇的都是装逼, 关键地方不说清楚, 害的老子自己研究了3个小时!
+类簇其实是一种简单的工厂模式, 是工厂模式的一个变种, 它比工厂模式简洁. 有着自己的使用场景, 最典型的的就是NSNumber类.
+那么这种设计模式应该如何实现呢?
+类簇主要有两个方面的角色, 基类和扩展类, 基类如NSNumber, 扩展类如@(NSInteger),@(BOOL)等, 不管扩展类有多大差">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类簇的简单实现">
 <meta property="og:url" content="http://iosli.com/2016/01/23/类簇的简单实现/index.html">
 <meta property="og:site_name" content="男孩无衣">
-<meta property="og:description" content="One By One, Don&apos;t Hurry">
-<meta property="og:updated_time" content="2016-01-23T08:37:22.000Z">
+<meta property="og:description" content="简直太气人了! 网上将类簇的都是装逼, 关键地方不说清楚, 害的老子自己研究了3个小时!
+类簇其实是一种简单的工厂模式, 是工厂模式的一个变种, 它比工厂模式简洁. 有着自己的使用场景, 最典型的的就是NSNumber类.
+那么这种设计模式应该如何实现呢?
+类簇主要有两个方面的角色, 基类和扩展类, 基类如NSNumber, 扩展类如@(NSInteger),@(BOOL)等, 不管扩展类有多大差">
+<meta property="og:updated_time" content="2016-01-23T08:48:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类簇的简单实现">
-<meta name="twitter:description" content="One By One, Don&apos;t Hurry">
+<meta name="twitter:description" content="简直太气人了! 网上将类簇的都是装逼, 关键地方不说清楚, 害的老子自己研究了3个小时!
+类簇其实是一种简单的工厂模式, 是工厂模式的一个变种, 它比工厂模式简洁. 有着自己的使用场景, 最典型的的就是NSNumber类.
+那么这种设计模式应该如何实现呢?
+类簇主要有两个方面的角色, 基类和扩展类, 基类如NSNumber, 扩展类如@(NSInteger),@(BOOL)等, 不管扩展类有多大差">
   
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -69,7 +83,12 @@
   
   <div class="entry">
     
-      
+      <p>简直太气人了! 网上将类簇的都是装逼, 关键地方不说清楚, 害的老子自己研究了3个小时!</p>
+<p>类簇其实是一种简单的工厂模式, 是工厂模式的一个变种, 它比工厂模式简洁. 有着自己的使用场景, 最典型的的就是NSNumber类.</p>
+<p>那么这种设计模式应该如何实现呢?</p>
+<p>类簇主要有两个方面的角色, 基类和扩展类, 基类如NSNumber, 扩展类如@(NSInteger),@(BOOL)等, 不管扩展类有多大差异, 都是基类的一个子类, 他们都能通过NSNumber的某个方法创建出来.</p>
+<p>所以, 拨开层层迷雾, 实现类簇的本质就是, <strong><em> 调用父类不同的方法, 得到不同的子类. </em></strong></p>
+
     
   </div>
   <footer> 
