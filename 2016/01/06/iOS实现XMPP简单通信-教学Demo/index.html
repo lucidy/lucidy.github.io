@@ -10,34 +10,18 @@
     <meta name="author" content="Lucidy">
   
   
-    <meta name="description" content="准备工作1.新建Xcode工程, 导入XMPP文件夹2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2
-代码前的准备工作.
-去掉原来mainSB的影响. 删除ViewController.h.m
-删除mainSB中的ViewController
-新建一个LoginAndRegister.story">
+    <meta name="description" content="XMPP简介XMPP(Extensible Messageing and Presence Protocol: 可扩展消息与存在协议)是目前主流的四中IM通信协议中的一种, 其他三种分别为: IMPP(即时信息与空间协议),PRIM(空间和即时信息协议),SIP协议(针对即时通信和空间平衡扩充的进程开始协议).XMPP是一种基于可扩展标记协语言XML为基础的开放实时通信协议, 是经由互联网工程小组">
   
-  <meta name="description" content="准备工作1.新建Xcode工程, 导入XMPP文件夹2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2
-代码前的准备工作.
-去掉原来mainSB的影响. 删除ViewController.h.m
-删除mainSB中的ViewController
-新建一个LoginAndRegister.story">
+  <meta name="description" content="XMPP简介XMPP(Extensible Messageing and Presence Protocol: 可扩展消息与存在协议)是目前主流的四中IM通信协议中的一种, 其他三种分别为: IMPP(即时信息与空间协议),PRIM(空间和即时信息协议),SIP协议(针对即时通信和空间平衡扩充的进程开始协议).XMPP是一种基于可扩展标记协语言XML为基础的开放实时通信协议, 是经由互联网工程小组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS实现XMPP简单通信(教学Demo)">
 <meta property="og:url" content="http://iosli.com/2016/01/06/iOS实现XMPP简单通信-教学Demo/index.html">
 <meta property="og:site_name" content="男孩无衣">
-<meta property="og:description" content="准备工作1.新建Xcode工程, 导入XMPP文件夹2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2
-代码前的准备工作.
-去掉原来mainSB的影响. 删除ViewController.h.m
-删除mainSB中的ViewController
-新建一个LoginAndRegister.story">
-<meta property="og:updated_time" content="2016-01-06T16:02:25.000Z">
+<meta property="og:description" content="XMPP简介XMPP(Extensible Messageing and Presence Protocol: 可扩展消息与存在协议)是目前主流的四中IM通信协议中的一种, 其他三种分别为: IMPP(即时信息与空间协议),PRIM(空间和即时信息协议),SIP协议(针对即时通信和空间平衡扩充的进程开始协议).XMPP是一种基于可扩展标记协语言XML为基础的开放实时通信协议, 是经由互联网工程小组">
+<meta property="og:updated_time" content="2016-01-28T08:33:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS实现XMPP简单通信(教学Demo)">
-<meta name="twitter:description" content="准备工作1.新建Xcode工程, 导入XMPP文件夹2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2
-代码前的准备工作.
-去掉原来mainSB的影响. 删除ViewController.h.m
-删除mainSB中的ViewController
-新建一个LoginAndRegister.story">
+<meta name="twitter:description" content="XMPP简介XMPP(Extensible Messageing and Presence Protocol: 可扩展消息与存在协议)是目前主流的四中IM通信协议中的一种, 其他三种分别为: IMPP(即时信息与空间协议),PRIM(空间和即时信息协议),SIP协议(针对即时通信和空间平衡扩充的进程开始协议).XMPP是一种基于可扩展标记协语言XML为基础的开放实时通信协议, 是经由互联网工程小组">
   
   
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -87,7 +71,57 @@
   
   <div class="entry">
     
-      <p>准备工作<br>1.新建Xcode工程, 导入XMPP文件夹<br>2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2</p>
+      <h2 id="XMPP简介">XMPP简介</h2><p>XMPP(Extensible Messageing and Presence Protocol: 可扩展消息与存在协议)是目前主流的四中IM通信协议中的一种, 其他三种分别为: IMPP(即时信息与空间协议),PRIM(空间和即时信息协议),SIP协议(针对即时通信和空间平衡扩充的<code>进程开始协议</code>).<br>XMPP是一种基于可扩展标记协语言XML为基础的<code>开放实时通信</code>协议, 是经由互联网工程小组<code>IETF</code>通过的互联网标准. 他将现场和上下文敏感信息嵌入到<code>XML结构的数据</code>中. 由于XML可扩展和描述特性, 使得通信的消息具有高度可定制和扩展特性. 经过扩展后的XMPP可以通过发送扩展信息来处理用户的需求.<br>反正这些不是人话的话也不是我说的, 是我抄的, 它的大概意思是, XMPP发送出去的消息都是XML结构的报文, XML很容易扩展, 也很容易被解释, 所以XMPP也很容易扩展和解释. 于是XMPP很强大. </p>
+<h2 id="XMPP系统的优点">XMPP系统的优点</h2><p>1.开放: XMPP协议是自由、开放、公开的, 并且<code>易于了解</code>, 在客户端、服务器、组件、源码库等方面， 都有了各种实现。<br>2.标准：互联工程小组已经将Jabber的核心XML流协议以XMPP命名， 正式列为认可的实时通信及Presence技术， 而XMPP的结束规格已被定义在RFC 3920及RFC3921. 任何IM供应商在遵循XMPP洗一下， 都可与GooleTale实现连接。<br>3.XMPP是被证实过确实可行的：第一个JAbber技术是在1998年开发的， 现在有数百万的人们正在使用并且运行稳定。<br>4.分布式布局：XMPP网络的架构和电子有间十分相似； XMPP核心洗衣通信方式是先创建一个Stream，Xmpp以<code>TCP</code>传递XML数据流，没有中央服务器（？？？），任何人都可以运行自己的XMPP服务器。用户及组织可以自行的维护自己的服务器。<br>5.安全：任何xmpp协议的服务器可以独立于公众XMPP网络， 而使用SASL及TLS等技术的可靠安全性， 已自带与核心XMPP技术规格中。<br>6.可扩展，XML命名空间的威力可是任何在核心协议的基础上建造自定义的功能；为了维持通透性， 常见的扩展有XMPP standard Foundation。<br>7.弹性好：XMPP除了可用在实时通信<br>的应用程序，还能用在网络管理, 内容供稿, 协同工具, 文件共享, 游戏,远程系统监控等方向.<br>8.多样性:XMPP整个框架及协议都是公开的, 用户可以搭建各种各样的软件架构, 这样很难被别人”绑架”.<br>多种多样的支持和来源让你免受绑架之苦.</p>
+<h2 id="XMPP系统的缺点">XMPP系统的缺点</h2><p>1.数据负载太重: 这是由XML解释性语言特性决定的.<br>2.没有二进制数据:XMPP协议的方式被编码成一个单一的长XML文件, 如果想要加密, 需要我们自己对其进行加密, 再由XMPP封装成XML传输.</p>
+<h2 id="XMPP工作原理">XMPP工作原理</h2><p>1.协议网络架构<br>XMPP中定义了三个角色, <code>客户端</code> <code>服务器</code> <code>网关</code>. <code>通信能在这三者任意两者之间双向发生</code>.</p>
+<blockquote>
+<p>服务器同时承担了客户端信息记录、连接管理、信息路由的功能。<br>网关承担着与异构即时通信系统的互联互通，包括（SMS短信，MSN,ICQ等)</p>
+</blockquote>
+<p>基本的网路形式是但客户端通过TCP/IP连接到单服务器, 之后在之上传输XML.<br>XMPP是一个典型的C/S架构, 并非当前常见的P2P模式, 也就是说, 两个客户端进行即时通信时, 他们的消息<code>都通过服务器进行传递</code>.</p>
+<p>XMPP的工作原理如下:</p>
+<blockquote>
+<p>1.节点连接到服务器(连接服务器)<br>2.服务器利用本地目录系统中的根证书对其认证(登录或者注册)<br>3.节点指定目标地址(XMPPJID格式的目标用户身份)<br>4.服务器查找, 连接并且互相认证<br>5.节点支架交互.</p>
+</blockquote>
+<h2 id="XMPP的地址格式:">XMPP的地址格式:</h2><p>每个客户端(实体)在XMPP网络结构中为称为一个节点, 每个人都有一个唯一的标示,它的基本格式为:<br><code>userName@domain/resource</code></p>
+<blockquote>
+<p>userName: 用户名<br>domain: 服务器名<br>resource: 设备源</p>
+</blockquote>
+<p>比如, 有一个服务器名叫”男孩无衣的服务器”, 一个用户名叫”Lucy”的用户, 使用iphone接入聊天系统, 那么她的Jid为:<br><code>Lucy@男孩无衣的服务器/iOS</code></p>
+<h2 id="XMPP的消息格式">XMPP的消息格式</h2><p>XMPP的XML包括3个元素:<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;stream&gt;</span></span><br><span class="line">    <span class="tag">&lt;presence&gt;</span></span><br><span class="line">        <span class="tag">&lt;status&gt;</span><span class="tag">&lt;/stauts&gt;</span></span><br><span class="line">    <span class="tag">&lt;/presence&gt;</span></span><br><span class="line">    <span class="tag">&lt;message&gt;</span></span><br><span class="line">        <span class="tag">&lt;body&gt;</span><span class="tag">&lt;/body&gt;</span></span><br><span class="line">    <span class="tag">&lt;/message&gt;</span></span><br><span class="line">    <span class="tag">&lt;iq&gt;</span></span><br><span class="line">        <span class="tag">&lt;bind&gt;</span><span class="tag">&lt;/bind&gt;</span></span><br><span class="line">    <span class="tag">&lt;/iq&gt;</span></span><br><span class="line"><span class="tag">&lt;/stream&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>首先说一下message元素属性:<br>message是一种基本推送消息方法, 它不要求响应, 主要用于IM,groupChat,alert和notification之类的应用中.<br>主要属性如下:</p>
+<blockquote>
+<p>1.type </p>
+<ul>
+<li>normal:类似于email, 主要特点是不要求响应</li>
+<li>chat: 类似于qq里的好友即时聊天, 主要特点是即时通讯;</li>
+<li>groupchat: 群聊消息</li>
+<li>headline:用于发送alert和notification;</li>
+<li>error: 如果发送message出错, 发现错误的实例会用这个类型来通知发送者出错了<br>2.to<br>消息的接收方, 明显是一个XMPPJID格式的类型<br>3.from<br>消息的发送方, 指发送方的名字或者表示, 为了防止信息外泄, 这个地址通常由发送者server填写, 而不是发送者.<br><a href="xmpp消息格式">!file-list</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p>presence属性<br>presence属性用来表明用户的状态, 如:online,away, dnd(请勿打扰)等, 当改变自己的状态时, 就会在stream的上下文中插入一个Presence的元素, 来表明自己的状态, 下药接受presence消息, 必须经过一个叫做presence subscription的授权过程.</p>
+<blockquote>
+<p>type属性, 非必须</p>
+<ul>
+<li>subscribe: 订阅其他用户的状态</li>
+<li>请求获取其他用户的状态</li>
+<li>unavailable: 不可用, 离线状态<br><a href="xmpp消息Presence属性">!file-list</a></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="XMPP通讯流程">XMPP通讯流程</h2><p>XMPP协议传输的是通过XML文件来传输的, 并且不是类似于qq的点对点通讯, 而是客户端到服务器再到客户端的方式来实现, 以上过程的一个简单的xmpp通讯流程可以如下表示:</p>
+<ol>
+<li>首先, 有客户端连接到服务器, 客户端通过io流发送一段XML文件, 在文件中包含了自身的用户名和密码.</li>
+<li>服务器端收到额护短的XML文件后, 从中获取用户名和密码进行认证(这里过程有误),如果验证成功也会返回XML以示确认.</li>
+<li>3.登录城工作, 客户端可以通过发送一个获取好友名单的XML文件, 服务器会将当前的用户好友以xml格式发送到客户端.</li>
+<li>客户端选择一个好友, 向其发送消息(发送到服务器, 由服务器再分发)</li>
+</ol>
+<p>(以上过程是我抄的, 这个流程有些问题.)</p>
+<p>准备工作<br>1.新建Xcode工程, 导入XMPP文件夹<br>2.导入库libxml2.tbd,libresolv.tbd,  header search path下添加: /usr/include/libxml2</p>
 <h3 id="代码前的准备工作-">代码前的准备工作.</h3><ol>
 <li>去掉原来mainSB的影响. 删除ViewController.h.m</li>
 <li>删除mainSB中的ViewController</li>
