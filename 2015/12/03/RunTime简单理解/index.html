@@ -31,7 +31,7 @@ runtime有啥作用
 一.关于Runtime的一些特征1.消息驱动机制运行的时候的一些">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runtime浅析">
-<meta property="og:url" content="http://iosli.com/2015/12/03/runtime/index.html">
+<meta property="og:url" content="http://iosli.com/2015/12/03/RunTime简单理解/index.html">
 <meta property="og:site_name" content="男孩无衣">
 <meta property="og:description" content="我们先看看这些这些问题, 您能回答吗?
 method Ivar结构体中包含那些成员变量, 这些变量的作用是什么
@@ -42,7 +42,7 @@ runtime有啥作用
 
 今天我们来看看runtime:1,消息驱动机制2.Runtime实现面向对象3.消息转发4.Runtime项目的应用5.面试题6.附录
 一.关于Runtime的一些特征1.消息驱动机制运行的时候的一些">
-<meta property="og:updated_time" content="2015-12-07T13:26:20.000Z">
+<meta property="og:updated_time" content="2016-03-01T12:03:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runtime浅析">
 <meta name="twitter:description" content="我们先看看这些这些问题, 您能回答吗?
@@ -88,7 +88,7 @@ runtime有啥作用
   <header>
     
       <div class="icon"></div>
-      <a href="/2015/12/03/runtime/">
+      <a href="/2015/12/03/RunTime简单理解/">
   <time datetime="2015-12-03T11:11:57.000Z">
     2015-12-03
   </time>
@@ -114,6 +114,20 @@ runtime有啥作用
 <h4 id="一-关于Runtime的一些特征">一.关于Runtime的一些特征</h4><h5 id="1-消息驱动机制">1.消息驱动机制</h5><pre><code>运行的时候的一些机制, 主要是消息机制.
 对于<span class="variable">C</span>语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.
 <span class="variable">OC</span>的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.
+
+消息驱动机制主要是为了实现<span class="variable">OC</span>语言的动态性.
+c语言是静态语言, 你创建的函数/变量都不能变了.
+面向对象语言的多态-- 同一个方法不同对象来调用, 会得到不同的结果.
+
+那么 <span class="variable">C</span>++也有继承的多态 , 它也是动态语言吗? java是吗?
+
+运行时是如何将对象的实例变量和属性对应起来?
+一个strong + readonly属性的实例变量, 那么转换为运行时时, 对该实例变量的标记为<span class="string">"&amp;"</span> 和<span class="string">"r"</span>.
+事实上: &amp; 代表strong和retain
+       w 代表weak strong和weak 相对于 retain和assgin, 当对象被dellloc时, 会将指针置为空.
+       r 代表readonly
+       c 代表copy
+仅有上面几个. 对应到objc_ivar中的变量类型.
 </code></pre><h5 id="2-Clang编译器">2.Clang编译器</h5><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统的角色扮演oc语言的操作系统oc基于该系统来工作.
 </code></pre><h5 id="3-方法的调用:">3.方法的调用:</h5><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
 --&gt; objc_mesgSend<span class="list">(<span class="keyword">id</span> object, @selector<span class="list">(<span class="keyword">doSomeMEthod</span>)</span>)</span><span class="comment">;</span></span>
@@ -123,7 +137,7 @@ runtime有啥作用
 </code></pre><h5 id="5-实现类,_属性,_方法,集成,扩展-">5.实现类, 属性, 方法,集成,扩展.</h5><pre><code>实现这些才能说, 这个语言是面向对象的.
 </code></pre><h5 id="6-那么用c封装的面向对象应该是什么样子的呢?">6.那么用c封装的面向对象应该是什么样子的呢?</h5><pre><code><span class="keyword">struct</span> objc_object <span class="comment">// 这个结构体是NSObject的父类.</span>
 {
-    <span class="keyword">private</span>;
+    <span class="keyword">private</span>:
     <span class="keyword">isa_t</span> isa;
 }
 实例变量:
@@ -168,7 +182,7 @@ OC程序有三种途径和运行时系统交互:
 
   <section id="comments">
     <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="post-runtime" data-title="Runtime浅析" data-url="http://iosli.com/2015/12/03/runtime/"></div>
+    <div class="ds-thread" data-thread-key="post-RunTime简单理解" data-title="Runtime浅析" data-url="http://iosli.com/2015/12/03/RunTime简单理解/"></div>
     <!-- 多说评论框 end -->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
     <script type="text/javascript">

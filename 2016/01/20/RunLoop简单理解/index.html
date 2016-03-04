@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>RunLoop简单理解 | 男孩无衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="Lucidy">
+  
+  
+    <meta name="description" content="本篇博客原创, 您可通过我的视角来理解下Runloop是个什么东西?
+
+在物理/数学界中, 好多概念并非十分难以理解, 而是根本没有被说清除.比如薛定谔的猫. 别装了, 你肯定不明白它最终想表达什么意思. 百度上说的都是逗逼.
+
+我们遇到过RunLoop么?在正常的iOS开发中, 您有没有疑虑过? 一旦App运行起来, 屏幕在哪里亮着, 我们不去点它, 这个程序为什么不会退出?很多人疑问过:”iP">
+  
+  <meta name="description" content="本篇博客原创, 您可通过我的视角来理解下Runloop是个什么东西?
+
+在物理/数学界中, 好多概念并非十分难以理解, 而是根本没有被说清除.比如薛定谔的猫. 别装了, 你肯定不明白它最终想表达什么意思. 百度上说的都是逗逼.
+
+我们遇到过RunLoop么?在正常的iOS开发中, 您有没有疑虑过? 一旦App运行起来, 屏幕在哪里亮着, 我们不去点它, 这个程序为什么不会退出?很多人疑问过:”iP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RunLoop简单理解">
+<meta property="og:url" content="http://iosli.com/2016/01/20/RunLoop简单理解/index.html">
+<meta property="og:site_name" content="男孩无衣">
+<meta property="og:description" content="本篇博客原创, 您可通过我的视角来理解下Runloop是个什么东西?
+
+在物理/数学界中, 好多概念并非十分难以理解, 而是根本没有被说清除.比如薛定谔的猫. 别装了, 你肯定不明白它最终想表达什么意思. 百度上说的都是逗逼.
+
+我们遇到过RunLoop么?在正常的iOS开发中, 您有没有疑虑过? 一旦App运行起来, 屏幕在哪里亮着, 我们不去点它, 这个程序为什么不会退出?很多人疑问过:”iP">
+<meta property="og:updated_time" content="2016-02-24T11:47:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RunLoop简单理解">
+<meta name="twitter:description" content="本篇博客原创, 您可通过我的视角来理解下Runloop是个什么东西?
+
+在物理/数学界中, 好多概念并非十分难以理解, 而是根本没有被说清除.比如薛定谔的猫. 别装了, 你肯定不明白它最终想表达什么意思. 百度上说的都是逗逼.
+
+我们遇到过RunLoop么?在正常的iOS开发中, 您有没有疑虑过? 一旦App运行起来, 屏幕在哪里亮着, 我们不去点它, 这个程序为什么不会退出?很多人疑问过:”iP">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">男孩无衣</a></h1>
+    <p><a href="/"></a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/01/20/RunLoop简单理解/">
+  <time datetime="2016-01-20T07:22:09.000Z">
+    2016-01-20
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">RunLoop简单理解</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>本篇博客原创, 您可通过我的视角来理解下Runloop是个什么东西?</p>
+<blockquote>
+<p>在物理/数学界中, 好多概念并非十分难以理解, 而是根本没有被说清除.<br>比如薛定谔的猫. 别装了, 你肯定不明白它最终想表达什么意思. 百度上说的都是逗逼.</p>
+</blockquote>
+<h3 id="我们遇到过RunLoop么?">我们遇到过RunLoop么?</h3><p>在正常的iOS开发中, 您有没有疑虑过? 一旦App运行起来, 屏幕在哪里亮着, 我们不去点它, 这个程序<code>为什么不会退出?</code><br>很多人疑问过:”iPhone上的程序什么时候运行完后自己退出啊?”.</p>
+<p>如果您不假思索的回答为什么程序不会退出–”因为RunLoop!”, 很抱歉, 您并不理解RunLoop.</p>
+<blockquote>
+<p>如果您明白UNIX-C的select异步轮询机制, 那么您已经理解了. RunLoop就是对select的再封装.</p>
+</blockquote>
+<p>事实上, 这个程序永远不会被退出. 我们下面从main函数开始, 一步一步追查, 到底为什么app不会退出.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们知道main函数是程序运行的入口, 这并不是一句空话, 程序一旦运行起来, 直接执行:<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="constant">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="constant">NSStringFromClass</span>([<span class="constant">AppDelegate</span> <span class="class"><span class="keyword">class</span>]));</span></span><br></pre></td></tr></table></figure></p>
+<p>由此可见, UIApplicationMain这个函数有4个参数, 分别是:</p>
+<blockquote>
+<p>argc: app被调起时传入参数的个数<br>argv: app被调起时传入的参数列表<br>nil: 这个参数如果为nil, 表示取默认值@”UIApplication”. 它表示程序本身, 它就是这个程序, 通过这个参数, 你可以拿到当前运行的app的所有信息, 它里面有个info.plist文件, 里面详细记录了当前app的所有信息. 也就是说, 调用UIApplicationMain函数时, 将自己的所有信息都传进去了.<br>NSStringFromClass([AppDelegate class]):执行任务的代理类. </p>
+</blockquote>
+<p>那么, 为什么UIApplicationMain()执行不会结束呢?</p>
+<p>main函数调用UIApplicationMain()函数后, UIApplicationMain()函数在主线程中执行, 之所以不会退出, 是因为该函数内有一个while循环, 该循环的循环条件永远为真, 导致app不会退出.</p>
+<p>看下面的例子:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">// 如果触摸了屏幕,就作出响应,否则继续循环判断.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们写一个这样的程序, while永远为真, main不会结束, 导致app不会退出.<br>但是这样不会退出的问题是, 这个程序太耗资源了, cpu几乎全部用来处理while循环了. 不信您试试, cpu使用率肯定在100%.</p>
+<p>而RunLoop的出现就是为了解决这个使用率的问题. 我们的app只要运行起来, 都会涉及到这个runloop, 躲都躲不掉.所以说, runloop我们时时刻刻在接触到.</p>
+<p>总结: app运行起来后, main主函数通过调用UIApplicationMain()函数将运行代码的权限交给了appDelegate代理(就是我们工程主boundle中的appdelegate类), 此后所有的代码默认在appDelegate所在的主线程中执行.<br>该主线程中有个while循环, 保证程序不会退出, 并且一直在检测屏幕触摸情况. 然后通过runLoop将while循环的资源消耗降到最小(实际上, while循环已经封装到了runloop中了, 所以我们看不到while关键字).</p>
+<blockquote>
+<p>用正规一些的话来讲: 如何管理事件/消息,如何让线程在没有处理消息时休眠以避免资源占, 在有<br>消息到来时,刻被唤醒(触摸屏幕)。</p>
+</blockquote>
+<p>下面我们就来看看RunLoop到底是个什么东东.</p>
+<h3 id="RunLoop和线程的关系">RunLoop和线程的关系</h3><p>一般来讲, runloop应该是一个线程的组成部分, 是线程的一个属性.<br>换而言之, 每个线程都有一个属于自己的runLoop对象. </p>
+<p>上面的例子中, 主线程对应的runLoop被创建设置了, 主线程就会直处于这”接受消息-&gt;等待-&gt;处理” 的循环中.<br>苹果不允许直接创建RunLoop, 只提供了获取当前线程Runloop的函数:CFRunLoopGetMain() 和CFRunLoopGetCurrent().</p>
+<blockquote>
+<p>主线程runLoop默认是创建并且设置的.<br>子线程刚创建时并没有 RunLoop,如果你不主动获取,那它一直都不会有。RunLoop 的创建是发 在第一次获取时,RunLoop 的销毁是发生在线程结束时。<br>线程和 RunLoop 之间是一一对应的,其关系是保存在一个全局的字典中.<br>你只能在一个线程的内部获取其 RunLoop(主线程除外)。</p>
+</blockquote>
+<h3 id="RunLoop所属框架和相关类">RunLoop所属框架和相关类</h3><p>NSRunLoop所属框架<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;CoreFoundation/CFRunLoop.h&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>如果我们Command+左键, 进入CoreFoundation/CFRunLoop.h框架下, 会看到有关RunLoop的类(结构体强制类型转成id类型类)有如下:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="keyword">id</span>) __<span class="built_in">CFRunLoop</span> * <span class="built_in">CFRunLoopRef</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="keyword">id</span>) __<span class="built_in">CFRunLoopSource</span> * <span class="built_in">CFRunLoopSourceRef</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="keyword">id</span>) __<span class="built_in">CFRunLoopObserver</span> * <span class="built_in">CFRunLoopObserverRef</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="built_in">NSTimer</span>) __<span class="built_in">CFRunLoopTimer</span> * <span class="built_in">CFRunLoopTimerRef</span>;</span><br></pre></td></tr></table></figure></p>
+<p>还有一个隐藏的类–CFRunLoopModeRef, 该类被封装到了CFRunLoopRef中, 这里先说一下这两个类的关系:</p>
+
+    
+  </div>
+  <footer> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-RunLoop简单理解" data-title="RunLoop简单理解" data-url="http://iosli.com/2016/01/20/RunLoop简单理解/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'lucidy'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">Lucidy</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lucidy' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>

@@ -59,6 +59,39 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2016/03/04/gitHub链接/">
+  <time datetime="2016-03-04T01:20:12.000Z">
+    2016-03-04
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2016/03/04/gitHub链接/">gitHub链接</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2016/01/29/随便一篇博客/">
   <time datetime="2016-01-29T10:58:36.000Z">
     2016-01-29
@@ -241,7 +274,7 @@
   <header>
     
       <div class="icon"></div>
-      <a href="/2016/01/20/占位/">
+      <a href="/2016/01/20/RunLoop简单理解/">
   <time datetime="2016-01-20T07:22:09.000Z">
     2016-01-20
   </time>
@@ -249,14 +282,48 @@
     
     
   
-    <h1 class="title"><a href="/2016/01/20/占位/">占位</a></h1>
+    <h1 class="title"><a href="/2016/01/20/RunLoop简单理解/">RunLoop简单理解</a></h1>
   
 
   </header>
   
   <div class="entry">
     
-      
+      <p>本篇博客原创, 您可通过我的视角来理解下Runloop是个什么东西?</p>
+<blockquote>
+<p>在物理/数学界中, 好多概念并非十分难以理解, 而是根本没有被说清除.<br>比如薛定谔的猫. 别装了, 你肯定不明白它最终想表达什么意思. 百度上说的都是逗逼.</p>
+</blockquote>
+<h3 id="我们遇到过RunLoop么?">我们遇到过RunLoop么?</h3><p>在正常的iOS开发中, 您有没有疑虑过? 一旦App运行起来, 屏幕在哪里亮着, 我们不去点它, 这个程序<code>为什么不会退出?</code><br>很多人疑问过:”iPhone上的程序什么时候运行完后自己退出啊?”.</p>
+<p>如果您不假思索的回答为什么程序不会退出–”因为RunLoop!”, 很抱歉, 您并不理解RunLoop.</p>
+<blockquote>
+<p>如果您明白UNIX-C的select异步轮询机制, 那么您已经理解了. RunLoop就是对select的再封装.</p>
+</blockquote>
+<p>事实上, 这个程序永远不会被退出. 我们下面从main函数开始, 一步一步追查, 到底为什么app不会退出.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们知道main函数是程序运行的入口, 这并不是一句空话, 程序一旦运行起来, 直接执行:<br><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="constant">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="constant">NSStringFromClass</span>([<span class="constant">AppDelegate</span> <span class="class"><span class="keyword">class</span>]));</span></span><br></pre></td></tr></table></figure></p>
+<p>由此可见, UIApplicationMain这个函数有4个参数, 分别是:</p>
+<blockquote>
+<p>argc: app被调起时传入参数的个数<br>argv: app被调起时传入的参数列表<br>nil: 这个参数如果为nil, 表示取默认值@”UIApplication”. 它表示程序本身, 它就是这个程序, 通过这个参数, 你可以拿到当前运行的app的所有信息, 它里面有个info.plist文件, 里面详细记录了当前app的所有信息. 也就是说, 调用UIApplicationMain函数时, 将自己的所有信息都传进去了.<br>NSStringFromClass([AppDelegate class]):执行任务的代理类. </p>
+</blockquote>
+<p>那么, 为什么UIApplicationMain()执行不会结束呢?</p>
+<p>main函数调用UIApplicationMain()函数后, UIApplicationMain()函数在主线程中执行, 之所以不会退出, 是因为该函数内有一个while循环, 该循环的循环条件永远为真, 导致app不会退出.</p>
+<p>看下面的例子:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="comment">// 如果触摸了屏幕,就作出响应,否则继续循环判断.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们写一个这样的程序, while永远为真, main不会结束, 导致app不会退出.<br>但是这样不会退出的问题是, 这个程序太耗资源了, cpu几乎全部用来处理while循环了. 不信您试试, cpu使用率肯定在100%.</p>
+<p>而RunLoop的出现就是为了解决这个使用率的问题. 我们的app只要运行起来, 都会涉及到这个runloop, 躲都躲不掉.所以说, runloop我们时时刻刻在接触到.</p>
+<p>总结: app运行起来后, main主函数通过调用UIApplicationMain()函数将运行代码的权限交给了appDelegate代理(就是我们工程主boundle中的appdelegate类), 此后所有的代码默认在appDelegate所在的主线程中执行.<br>该主线程中有个while循环, 保证程序不会退出, 并且一直在检测屏幕触摸情况. 然后通过runLoop将while循环的资源消耗降到最小(实际上, while循环已经封装到了runloop中了, 所以我们看不到while关键字).</p>
+<blockquote>
+<p>用正规一些的话来讲: 如何管理事件/消息,如何让线程在没有处理消息时休眠以避免资源占, 在有<br>消息到来时,刻被唤醒(触摸屏幕)。</p>
+</blockquote>
+<p>下面我们就来看看RunLoop到底是个什么东东.</p>
+<h3 id="RunLoop和线程的关系">RunLoop和线程的关系</h3><p>一般来讲, runloop应该是一个线程的组成部分, 是线程的一个属性.<br>换而言之, 每个线程都有一个属于自己的runLoop对象. </p>
+<p>上面的例子中, 主线程对应的runLoop被创建设置了, 主线程就会直处于这”接受消息-&gt;等待-&gt;处理” 的循环中.<br>苹果不允许直接创建RunLoop, 只提供了获取当前线程Runloop的函数:CFRunLoopGetMain() 和CFRunLoopGetCurrent().</p>
+<blockquote>
+<p>主线程runLoop默认是创建并且设置的.<br>子线程刚创建时并没有 RunLoop,如果你不主动获取,那它一直都不会有。RunLoop 的创建是发 在第一次获取时,RunLoop 的销毁是发生在线程结束时。<br>线程和 RunLoop 之间是一一对应的,其关系是保存在一个全局的字典中.<br>你只能在一个线程的内部获取其 RunLoop(主线程除外)。</p>
+</blockquote>
+<h3 id="RunLoop所属框架和相关类">RunLoop所属框架和相关类</h3><p>NSRunLoop所属框架<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#import <span class="title">&lt;CoreFoundation/CFRunLoop.h&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<p>如果我们Command+左键, 进入CoreFoundation/CFRunLoop.h框架下, 会看到有关RunLoop的类(结构体强制类型转成id类型类)有如下:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="keyword">id</span>) __<span class="built_in">CFRunLoop</span> * <span class="built_in">CFRunLoopRef</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="keyword">id</span>) __<span class="built_in">CFRunLoopSource</span> * <span class="built_in">CFRunLoopSourceRef</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="keyword">id</span>) __<span class="built_in">CFRunLoopObserver</span> * <span class="built_in">CFRunLoopObserverRef</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">CF_BRIDGED_MUTABLE_TYPE</span>(<span class="built_in">NSTimer</span>) __<span class="built_in">CFRunLoopTimer</span> * <span class="built_in">CFRunLoopTimerRef</span>;</span><br></pre></td></tr></table></figure></p>
+<p>还有一个隐藏的类–CFRunLoopModeRef, 该类被封装到了CFRunLoopRef中, 这里先说一下这两个类的关系:</p>
+
     
   </div>
   <footer class="end-sep"> 
@@ -1703,7 +1770,7 @@
   <header>
     
       <div class="icon"></div>
-      <a href="/2015/12/03/runtime/">
+      <a href="/2015/12/03/RunTime简单理解/">
   <time datetime="2015-12-03T11:11:57.000Z">
     2015-12-03
   </time>
@@ -1711,7 +1778,7 @@
     
     
   
-    <h1 class="title"><a href="/2015/12/03/runtime/">Runtime浅析</a></h1>
+    <h1 class="title"><a href="/2015/12/03/RunTime简单理解/">Runtime浅析</a></h1>
   
 
   </header>
@@ -1729,6 +1796,20 @@
 <h4 id="一-关于Runtime的一些特征">一.关于Runtime的一些特征</h4><h5 id="1-消息驱动机制">1.消息驱动机制</h5><pre><code>运行的时候的一些机制, 主要是消息机制.
 对于<span class="variable">C</span>语言, 函数的调用在编译的时候会决定调用哪个函数, 编译完成之后直接顺序执行, 并无二义性.
 <span class="variable">OC</span>的函数调用为消息发送, 属于动态调用过程, 在编译饿时候并不能真正的决定调用哪个函数, 之后在真正运行的时候猜回根据函数的名名称找到.
+
+消息驱动机制主要是为了实现<span class="variable">OC</span>语言的动态性.
+c语言是静态语言, 你创建的函数/变量都不能变了.
+面向对象语言的多态-- 同一个方法不同对象来调用, 会得到不同的结果.
+
+那么 <span class="variable">C</span>++也有继承的多态 , 它也是动态语言吗? java是吗?
+
+运行时是如何将对象的实例变量和属性对应起来?
+一个strong + readonly属性的实例变量, 那么转换为运行时时, 对该实例变量的标记为<span class="string">"&amp;"</span> 和<span class="string">"r"</span>.
+事实上: &amp; 代表strong和retain
+       w 代表weak strong和weak 相对于 retain和assgin, 当对象被dellloc时, 会将指针置为空.
+       r 代表readonly
+       c 代表copy
+仅有上面几个. 对应到objc_ivar中的变量类型.
 </code></pre><h5 id="2-Clang编译器">2.Clang编译器</h5><pre><code><span class="variable">OC</span>语言不仅需要一个编译器, 同时也有一个运行时系统来执行好的代码,  运行时系统的角色扮演oc语言的操作系统oc基于该系统来工作.
 </code></pre><h5 id="3-方法的调用:">3.方法的调用:</h5><pre><code>    <span class="list">[<span class="keyword">object</span> doSomeMethod]<span class="comment">;</span>
 --&gt; objc_mesgSend<span class="list">(<span class="keyword">id</span> object, @selector<span class="list">(<span class="keyword">doSomeMEthod</span>)</span>)</span><span class="comment">;</span></span>
@@ -1738,7 +1819,7 @@
 </code></pre><h5 id="5-实现类,_属性,_方法,集成,扩展-">5.实现类, 属性, 方法,集成,扩展.</h5><pre><code>实现这些才能说, 这个语言是面向对象的.
 </code></pre><h5 id="6-那么用c封装的面向对象应该是什么样子的呢?">6.那么用c封装的面向对象应该是什么样子的呢?</h5><pre><code><span class="keyword">struct</span> objc_object <span class="comment">// 这个结构体是NSObject的父类.</span>
 {
-    <span class="keyword">private</span>;
+    <span class="keyword">private</span>:
     <span class="keyword">isa_t</span> isa;
 }
 实例变量:
