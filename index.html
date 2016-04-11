@@ -59,6 +59,44 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2016/04/11/屏幕尺寸-机型-系统版本判定/">
+  <time datetime="2016-04-11T01:48:17.000Z">
+    2016-04-11
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2016/04/11/屏幕尺寸-机型-系统版本判定/">屏幕尺寸/机型/系统版本判定</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>为了开发方便, 做了如下代码块:</p>
+<h4 id="判断系统版本">判断系统版本</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断系统版本 eg:@"4.0"</span></span><br><span class="line"><span class="built_in">NSString</span> * systemVersion = [<span class="built_in">UIDevice</span> currentDevice]<span class="variable">.systemVersion</span>;</span><br><span class="line"><span class="keyword">if</span> ([systemVersion isEqualToString:&lt;<span class="preprocessor"># <span class="title">&lt;NSString *&gt;</span> Version#&gt;]) &#123;</span></span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ([systemVersion isEqualToString:&lt;<span class="preprocessor"># <span class="title">&lt;NSString *&gt;</span> Version#&gt;])</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断设备类型">判断设备类型</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断设备类型 e.g. @"@"iPhone", @"iPod touch""</span></span><br><span class="line"><span class="built_in">NSString</span> * model = [<span class="built_in">UIDevice</span> currentDevice]<span class="variable">.model</span>;</span><br><span class="line"><span class="keyword">if</span> ([model isEqualToString:&lt;<span class="preprocessor">#<span class="title">&lt;NSString *&gt;</span> model#&gt;]) &#123;</span></span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ([model isEqualToString:&lt;<span class="preprocessor">#<span class="title">&lt;NSString *&gt;</span> model#&gt;])</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断屏幕尺寸,_以便适配">判断屏幕尺寸, 以便适配</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断屏幕尺寸, 以便适配不同机型. 这里是根据屏幕的高度来适配的.</span></span><br><span class="line">CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;</span><br><span class="line"><span class="keyword">if</span>(screenHeight == <span class="number">480</span>)&#123;</span><br><span class="line">    <span class="comment">// 4s尺寸</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(screenHeight == <span class="number">568</span>)&#123;</span><br><span class="line">    <span class="comment">// 5 5s 5c SE 尺寸</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(screenHeight == <span class="number">667</span>)&#123;</span><br><span class="line">    <span class="comment">// 6 6s 尺寸</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(screenHeight == <span class="number">736</span>)&#123;</span><br><span class="line">    <span class="comment">// 6p 6sp 尺寸</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说明:<br>    实际开发中, 一个App定会适配不同的屏幕尺寸, 使用代码布局时, 有时需要根据不同的机型做不同的布局, 最典型的例子就是iphone和ipad的不同布局.<br>    有了以上代码块, 能够方便快捷的开发.</p>
+
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2016/03/31/内存管理面试题/">
   <time datetime="2016-03-31T10:51:59.000Z">
     2016-03-31

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>屏幕尺寸/机型/系统版本判定 | 男孩无衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="Lucidy">
+  
+  
+    <meta name="description" content="为了开发方便, 做了如下代码块:
+判断系统版本12345678910// 判断系统版本 eg:@&quot;4.0&quot;NSString * systemVersion = [UIDevice currentDevice].systemVersion;if ([systemVersion isEqualToString:&amp;lt;# &amp;lt;NSString *&amp;gt; Version#&amp;gt;]) &amp;#123;">
+  
+  <meta name="description" content="为了开发方便, 做了如下代码块:
+判断系统版本12345678910// 判断系统版本 eg:@&quot;4.0&quot;NSString * systemVersion = [UIDevice currentDevice].systemVersion;if ([systemVersion isEqualToString:&amp;lt;# &amp;lt;NSString *&amp;gt; Version#&amp;gt;]) &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="屏幕尺寸/机型/系统版本判定">
+<meta property="og:url" content="http://iosli.com/2016/04/11/屏幕尺寸-机型-系统版本判定/index.html">
+<meta property="og:site_name" content="男孩无衣">
+<meta property="og:description" content="为了开发方便, 做了如下代码块:
+判断系统版本12345678910// 判断系统版本 eg:@&quot;4.0&quot;NSString * systemVersion = [UIDevice currentDevice].systemVersion;if ([systemVersion isEqualToString:&amp;lt;# &amp;lt;NSString *&amp;gt; Version#&amp;gt;]) &amp;#123;">
+<meta property="og:updated_time" content="2016-04-11T01:54:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="屏幕尺寸/机型/系统版本判定">
+<meta name="twitter:description" content="为了开发方便, 做了如下代码块:
+判断系统版本12345678910// 判断系统版本 eg:@&quot;4.0&quot;NSString * systemVersion = [UIDevice currentDevice].systemVersion;if ([systemVersion isEqualToString:&amp;lt;# &amp;lt;NSString *&amp;gt; Version#&amp;gt;]) &amp;#123;">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">男孩无衣</a></h1>
+    <p><a href="/"></a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/04/11/屏幕尺寸-机型-系统版本判定/">
+  <time datetime="2016-04-11T01:48:17.000Z">
+    2016-04-11
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">屏幕尺寸/机型/系统版本判定</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>为了开发方便, 做了如下代码块:</p>
+<h4 id="判断系统版本">判断系统版本</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断系统版本 eg:@"4.0"</span></span><br><span class="line"><span class="built_in">NSString</span> * systemVersion = [<span class="built_in">UIDevice</span> currentDevice]<span class="variable">.systemVersion</span>;</span><br><span class="line"><span class="keyword">if</span> ([systemVersion isEqualToString:&lt;<span class="preprocessor"># <span class="title">&lt;NSString *&gt;</span> Version#&gt;]) &#123;</span></span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ([systemVersion isEqualToString:&lt;<span class="preprocessor"># <span class="title">&lt;NSString *&gt;</span> Version#&gt;])</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断设备类型">判断设备类型</h4><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断设备类型 e.g. @"@"iPhone", @"iPod touch""</span></span><br><span class="line"><span class="built_in">NSString</span> * model = [<span class="built_in">UIDevice</span> currentDevice]<span class="variable">.model</span>;</span><br><span class="line"><span class="keyword">if</span> ([model isEqualToString:&lt;<span class="preprocessor">#<span class="title">&lt;NSString *&gt;</span> model#&gt;]) &#123;</span></span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> ([model isEqualToString:&lt;<span class="preprocessor">#<span class="title">&lt;NSString *&gt;</span> model#&gt;])</span></span><br><span class="line">&#123;</span><br><span class="line">    </span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="判断屏幕尺寸,_以便适配">判断屏幕尺寸, 以便适配</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 判断屏幕尺寸, 以便适配不同机型. 这里是根据屏幕的高度来适配的.</span></span><br><span class="line">CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;</span><br><span class="line"><span class="keyword">if</span>(screenHeight == <span class="number">480</span>)&#123;</span><br><span class="line">    <span class="comment">// 4s尺寸</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(screenHeight == <span class="number">568</span>)&#123;</span><br><span class="line">    <span class="comment">// 5 5s 5c SE 尺寸</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(screenHeight == <span class="number">667</span>)&#123;</span><br><span class="line">    <span class="comment">// 6 6s 尺寸</span></span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(screenHeight == <span class="number">736</span>)&#123;</span><br><span class="line">    <span class="comment">// 6p 6sp 尺寸</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说明:<br>    实际开发中, 一个App定会适配不同的屏幕尺寸, 使用代码布局时, 有时需要根据不同的机型做不同的布局, 最典型的例子就是iphone和ipad的不同布局.<br>    有了以上代码块, 能够方便快捷的开发.</p>
+
+    
+  </div>
+  <footer> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-屏幕尺寸-机型-系统版本判定" data-title="屏幕尺寸/机型/系统版本判定" data-url="http://iosli.com/2016/04/11/屏幕尺寸-机型-系统版本判定/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'lucidy'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">Lucidy</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lucidy' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>
