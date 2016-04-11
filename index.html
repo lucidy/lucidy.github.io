@@ -59,6 +59,181 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2016/04/11/C语言进阶系列-01-数据类型-02-数据类型/">
+  <time datetime="2016-04-11T03:15:05.000Z">
+    2016-04-11
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2016/04/11/C语言进阶系列-01-数据类型-02-数据类型/">C语言进阶系列--01&lt;数据类型&gt;--02&lt;数据类型&gt;</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <h3 id="此篇博客进阶内容">此篇博客进阶内容</h3><p>我们都知道, 大多数语言都有”数据类型”的概念, 有些是显示的数据类型, 如C, C++, OC, JAVA等.<br>有些语言则将”数据类型”的概念弱化掉, 比如Swift.<br>那么这个数据类型到底为什么的东西呢?它的作用是什么呢?</p>
+<p>为了解释数据类型, 我们有必要抽象出两个模型, 一个是”编译器”, 另一个是”内存”.</p>
+<p>当我们申请一个变量时:<br>1.我们会在内存中开辟一块空间存储这个变量的值.<br>2.编译器会在某个其他位置(你不用担心这个)记录一下你这个变量的属性, 包括”值”,”数值?”,”字符?”,”数组?”,”对象?”等信息. 以便对这个变量进行更好的描述.</p>
+<p>那么变量的类型决定了如下几个因素:<br>1.你的这个变量放到内存中时, 要占多大的位置?<br>2.如果今后从内存中取得你这个变量时, 要取多大的空间?<br>3.你的这个变量将来要在什么位置上使用?</p>
+<p>负责以上职责的, 就是我们的编译器, 那么编译器是如何知道答案的呢? 就是我们的数据类型来标识的.<br>所以我们需要数据类型.</p>
+<h5 id="以后结合指针,_我们再详细的介绍数据类型的意义-">以后结合指针, 我们再详细的介绍数据类型的意义.</h5><table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:right">中文名</th>
+<th style="text-align:center">所占字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char</td>
+<td style="text-align:right">字符类型</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td>short</td>
+<td style="text-align:right">短整型类型</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td>int</td>
+<td style="text-align:right">整型类型</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>long</td>
+<td style="text-align:right">长整型类型</td>
+<td style="text-align:center">4或8</td>
+</tr>
+<tr>
+<td>float</td>
+<td style="text-align:right">单精度浮点类型</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td>double</td>
+<td style="text-align:right">双精度浮点类型</td>
+<td style="text-align:center">8</td>
+</tr>
+</tbody>
+</table>
+<p>在解释上述表格之前, 先为大家介绍一下有关C语言标准的知识.</p>
+<p>什么样的语言才能被称为是C语言? 如果我按照当前C语言的语法, 自己创造一个类似的语言, 能不能被称作C语言?<br>要想判断一个语言所属门类, 必须有一个标准, 用来衡量各种语言的标准. 人们为C语言做出了许多标准.  这些标准既规定了C语言应该满足的规则, 也区分着其他语言.<br>那么这些标准是由谁来制定的呢?</p>
+<ul>
+<li>ISO C标准: C程序设计语言ANSI标准,是美国国家标准协会(American National Standards Institute)的缩写, 它是国际标准化组织ISO的美国部分. IEC是国际电子技术委员会的缩写.<br>ISO C标准现在由ISO/IEC的C程序设计语言国际标准工作组维护和开发,该工作组简称WG14.<br>ISO C标准的意图是提供C程序的可移植性,使其能适用大量的不同的操作系统.<br>我们常说的C99和C89标准, 就是这个机构制定的.<br>此标准不仅定义了C程序的语法语义, 还定义了其标准库(ISO 1999第七章).<br>现在所有的UNIX系统都提供C语言的标准库, 所以该标准库非常重要.</li>
+</ul>
+<p>下面我们看看标准库中都有什么的东西:</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th style="text-align:right">中文名</th>
+<th></th>
+<th>类型</th>
+<th style="text-align:right">中文名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><assert.h\></assert.h\></td>
+<td style="text-align:right">验证程序断言</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><complex.h\></complex.h\></td>
+<td style="text-align:right">复数算术运算支持</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><ctype.h\></ctype.h\></td>
+<td style="text-align:right">字符分类和映射支持</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><errno.h\></errno.h\></td>
+<td style="text-align:right">出错码</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><fenv.h\></fenv.h\></td>
+<td style="text-align:right">浮点环境</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><float.h\></float.h\></td>
+<td style="text-align:right">浮点常量及特性</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><inttypes.h\></inttypes.h\></td>
+<td style="text-align:right">整型格式变换</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><iso64.h\></iso64.h\></td>
+<td style="text-align:right">赋值/关系及一元操作符宏</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><limits.h\></limits.h\></td>
+<td style="text-align:right">实现常量</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><locale.h\></locale.h\></td>
+<td style="text-align:right">本地化类别及相关定义</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+<tr>
+<td><math.h\></math.h\></td>
+<td style="text-align:right">数学函数/类型生命及常量</td>
+<td></td>
+<td>&lt;></td>
+<td style="text-align:right">字符类型</td>
+</tr>
+</tbody>
+</table>
+
+    
+  </div>
+  <footer class="end-sep"> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2016/04/11/C语言进阶系列-01-数据类型-01-进制转换/">
   <time datetime="2016-04-11T02:04:10.000Z">
     2016-04-11
