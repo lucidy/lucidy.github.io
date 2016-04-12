@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>Bundle是什么? | 男孩无衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="Lucidy">
+  
+  
+    <meta name="description" content="我的一个学生曾经想做一个有关翻译的App. 
+你输入一个单词, 然后给你翻译成中英文.
+这个过程需要数据库的支持, 毕竟自己所索引远不如使用数据库的索引来的方便.
+他想在沙盒路径中创建一个数据库, 并且写入数据.
+那么问题来了, 在沙盒路径的文件, 如果做到打包上传AppStore呢?
+我们知道, 打包上传appStore时, 是不能够将沙盒路径中的文件一同打包上传的.
+我们再举个例子, 假如你开">
+  
+  <meta name="description" content="我的一个学生曾经想做一个有关翻译的App. 
+你输入一个单词, 然后给你翻译成中英文.
+这个过程需要数据库的支持, 毕竟自己所索引远不如使用数据库的索引来的方便.
+他想在沙盒路径中创建一个数据库, 并且写入数据.
+那么问题来了, 在沙盒路径的文件, 如果做到打包上传AppStore呢?
+我们知道, 打包上传appStore时, 是不能够将沙盒路径中的文件一同打包上传的.
+我们再举个例子, 假如你开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bundle是什么?">
+<meta property="og:url" content="http://iosli.com/2016/04/12/Bundle是什么/index.html">
+<meta property="og:site_name" content="男孩无衣">
+<meta property="og:description" content="我的一个学生曾经想做一个有关翻译的App. 
+你输入一个单词, 然后给你翻译成中英文.
+这个过程需要数据库的支持, 毕竟自己所索引远不如使用数据库的索引来的方便.
+他想在沙盒路径中创建一个数据库, 并且写入数据.
+那么问题来了, 在沙盒路径的文件, 如果做到打包上传AppStore呢?
+我们知道, 打包上传appStore时, 是不能够将沙盒路径中的文件一同打包上传的.
+我们再举个例子, 假如你开">
+<meta property="og:updated_time" content="2016-04-12T02:25:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bundle是什么?">
+<meta name="twitter:description" content="我的一个学生曾经想做一个有关翻译的App. 
+你输入一个单词, 然后给你翻译成中英文.
+这个过程需要数据库的支持, 毕竟自己所索引远不如使用数据库的索引来的方便.
+他想在沙盒路径中创建一个数据库, 并且写入数据.
+那么问题来了, 在沙盒路径的文件, 如果做到打包上传AppStore呢?
+我们知道, 打包上传appStore时, 是不能够将沙盒路径中的文件一同打包上传的.
+我们再举个例子, 假如你开">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">男孩无衣</a></h1>
+    <p><a href="/"></a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/04/12/Bundle是什么/">
+  <time datetime="2016-04-12T01:25:50.000Z">
+    2016-04-12
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">Bundle是什么?</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>我的一个学生曾经想做一个有关翻译的App. </p>
+<p>你输入一个单词, 然后给你翻译成中英文.</p>
+<p>这个过程需要数据库的支持, 毕竟自己所索引远不如使用数据库的索引来的方便.</p>
+<p>他想在沙盒路径中创建一个数据库, 并且写入数据.</p>
+<p>那么问题来了, 在沙盒路径的文件, 如果做到打包上传AppStore呢?</p>
+<p>我们知道, 打包上传appStore时, 是不能够将沙盒路径中的文件一同打包上传的.</p>
+<p>我们再举个例子, 假如你开发了一款类似”大家来找茬”的应用, 你想在app内内置100组图片, 用户一旦下载app之后就能直接使用, 那么你这100组图片放到哪里呢?</p>
+<p>为了解决这个问题, 下面我们来看看Bundle. </p>
+<p>在Xcode开发过程中, 我们经常看到如下类似的代码:<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *file = [[<span class="built_in">NSBundle</span> mainBundle] pathForResource:name ofType:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure></p>
+<p>这个<code>NSBundle</code>是个什么的东西呢? 点进去我们会发现 NSBundle 是NSObject的子类.</p>
+<p>说白了, bundle是一个目录, 包含了程序使用的资源（代码，图形，音乐等数据）在文件系统里的位置，并可以动态的加载、or卸载掉可执行代码。</p>
+<p>我们最经常使用的该类的一个子类就是mainBundle, 可以说, 我们在iOS开发过程中<code>创建类文件</code>,<code>图片资源</code>,<code>plist文件</code>,<code>音视频文件</code>,<code>gif文件</code>都是存储在mainBundle中的, 它在Xocde工程中直接的体现就是<code>左侧边栏</code>.</p>
+<h5 id="通过使用下面的方法得到程序的main_bundle">通过使用下面的方法得到程序的main bundle</h5><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSBundle</span> *myBundle = [<span class="built_in">NSBundle</span> mainBundle];</span><br></pre></td></tr></table></figure>
+<h5 id="获取其他资源的bundle">获取其他资源的bundle</h5><p>一般我们通过这种方法来得到bundle.如果你需要其他目录的资源,可以指定路径来取得bundle<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSBundle * <span class="built_in">test</span>Bundle; </span><br><span class="line"><span class="built_in">test</span>Bundle = [NSBundle bundleWithPath:@<span class="string">"~/Desktop/test/"</span>];</span><br></pre></td></tr></table></figure></p>
+<p>之后, 我们可以使用一下方法获得该boundle下的资源.<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSString</span> *path = [testBundle pathForImageResource:<span class="string">@"tiger"</span>]; </span><br><span class="line"><span class="built_in">NSImage</span> * tigerPhoto = [[<span class="built_in">NSImage</span> alloc] initWithContentsOfFile:path];</span><br></pre></td></tr></table></figure></p>
+<p>如果该bundle下包含了一些类库, 我们也可以通过一下的方法来访问它:<br><figure class="highlight prolog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="name">Class</span> <span class="atom">newClass</span> = [<span class="atom">testBundle</span> <span class="atom">classNamed</span>:@<span class="string">"Lion"</span>]; </span><br><span class="line"><span class="atom">id</span> <span class="atom">newInstance</span> = [[<span class="atom">newClass</span> <span class="atom">alloc</span>] <span class="atom">init</span>];  // 有点像<span class="atom">runtime</span>.</span><br></pre></td></tr></table></figure></p>
+<p>回到我们开始的问题, 如果该学生需要一个数据库的话, 可以将数据库放到mainBundle中, 之后再根据方法找到数据库进行操作.</p>
+<p>也可以找到之后, 将该数据库拷贝到沙盒路径中.</p>
+<p>但是放到bundle中会增加app的大小, 现在app通常的做法是, 安装app后并没有任何数据文件, 需要用户在第一次运行app时, 去后台服务器重新下载.</p>
+
+    
+  </div>
+  <footer> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-Bundle是什么" data-title="Bundle是什么?" data-url="http://iosli.com/2016/04/12/Bundle是什么/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'lucidy'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">Lucidy</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lucidy' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>
