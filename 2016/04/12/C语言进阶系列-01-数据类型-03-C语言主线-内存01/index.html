@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>C语言进阶系列--01&lt;数据类型&gt;--03&lt;C语言主线--内存01&gt; | 男孩无衣</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="Lucidy">
+  
+  
+    <meta name="description" content="此条博客属于进阶内容(手打, 转载注明出处)如果说要一条主线将C语言和OC语言串联起来, 那么这根树干一定内存, 别无他选.C语言被公认强大的一个重要原因就是对内存的操作, 十分灵活.
+有人说弄不清指针就学不会C语言, 我个人意见是学不会内存, 你任何语言都难以精通.下面我们就详细介绍一下C语言中的内存, 看看它到底有什么神秘, 到底哪里灵活了.
+
+1.我们所说的内存指的是什么?这篇文章所述的内存">
+  
+  <meta name="description" content="此条博客属于进阶内容(手打, 转载注明出处)如果说要一条主线将C语言和OC语言串联起来, 那么这根树干一定内存, 别无他选.C语言被公认强大的一个重要原因就是对内存的操作, 十分灵活.
+有人说弄不清指针就学不会C语言, 我个人意见是学不会内存, 你任何语言都难以精通.下面我们就详细介绍一下C语言中的内存, 看看它到底有什么神秘, 到底哪里灵活了.
+
+1.我们所说的内存指的是什么?这篇文章所述的内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言进阶系列--01<数据类型>--03<C语言主线--内存01>">
+<meta property="og:url" content="http://iosli.com/2016/04/12/C语言进阶系列-01-数据类型-03-C语言主线-内存01/index.html">
+<meta property="og:site_name" content="男孩无衣">
+<meta property="og:description" content="此条博客属于进阶内容(手打, 转载注明出处)如果说要一条主线将C语言和OC语言串联起来, 那么这根树干一定内存, 别无他选.C语言被公认强大的一个重要原因就是对内存的操作, 十分灵活.
+有人说弄不清指针就学不会C语言, 我个人意见是学不会内存, 你任何语言都难以精通.下面我们就详细介绍一下C语言中的内存, 看看它到底有什么神秘, 到底哪里灵活了.
+
+1.我们所说的内存指的是什么?这篇文章所述的内存">
+<meta property="og:image" content="http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=5b8ec5628db1cb132a643441bc3d3d2b/a8773912b31bb051973f1da5367adab44aede020.jpg">
+<meta property="og:image" content="http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=e60a5667dd54564ef168ec6bd2b7f7e7/f9198618367adab4e5b371378bd4b31c8701e467.jpg">
+<meta property="og:updated_time" content="2016-04-12T08:52:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C语言进阶系列--01<数据类型>--03<C语言主线--内存01>">
+<meta name="twitter:description" content="此条博客属于进阶内容(手打, 转载注明出处)如果说要一条主线将C语言和OC语言串联起来, 那么这根树干一定内存, 别无他选.C语言被公认强大的一个重要原因就是对内存的操作, 十分灵活.
+有人说弄不清指针就学不会C语言, 我个人意见是学不会内存, 你任何语言都难以精通.下面我们就详细介绍一下C语言中的内存, 看看它到底有什么神秘, 到底哪里灵活了.
+
+1.我们所说的内存指的是什么?这篇文章所述的内存">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">男孩无衣</a></h1>
+    <p><a href="/"></a></p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/04/12/C语言进阶系列-01-数据类型-03-C语言主线-内存01/">
+  <time datetime="2016-04-12T02:29:47.000Z">
+    2016-04-12
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">C语言进阶系列--01&lt;数据类型&gt;--03&lt;C语言主线--内存01&gt;</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <h4 id="此条博客属于进阶内容(手打,_转载注明出处)">此条博客属于进阶内容(手打, 转载注明出处)</h4><p>如果说要一条主线将C语言和OC语言串联起来, 那么这根树干一定<em>内存</em>, 别无他选.<br>C语言被公认强大的一个重要原因就是对内存的操作, 十分灵活.</p>
+<p>有人说弄不清指针就学不会C语言, 我个人意见是学不会内存, 你任何语言都难以精通.<br>下面我们就详细介绍一下C语言中的内存, 看看它到底有什么神秘, 到底哪里灵活了.</p>
+<hr>
+<h4 id="1-我们所说的内存指的是什么?">1.我们所说的内存指的是什么?</h4><p>这篇文章所述的内存, 和我们日常生活中的内存并不是一回事.<br>要想搞清楚这点, 我们得从冯诺依曼的计算机组成原理说起.</p>
+<blockquote>
+<p>冯·诺依曼体系结构:<br>美籍匈牙利数学家冯·诺依曼于1946年提出存储程序原理，把程序本身当作数据来对待，程序和该程序处理的数据用同样的方式储存。冯·诺依曼体系结构冯·诺依曼理论的要点是：数字计算机的数制采用二进制；计算机应该按照程序顺序执行。人们把冯·诺依曼的这个理论称为冯·诺依曼体系结构。<br>从ENIAC到当前最先进的计算机都采用的是冯·诺依曼体系结构。所以冯·诺依曼是当之无愧的数字计算机之父。</p>
+<ul>
+<li>冯诺依曼体系结构(此图来自百度百科)<br><img src="http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=5b8ec5628db1cb132a643441bc3d3d2b/a8773912b31bb051973f1da5367adab44aede020.jpg" alt="冯诺依曼体系结构"></li>
+</ul>
+</blockquote>
+<p>70年前的体系架构依然被目前大多数计算机所遵循, <strong><em>上图中的五大部分只是理论中的部件, 并未要求其具体实现.</em></strong></p>
+<blockquote>
+<ul>
+<li>运算器: 运算器作为体系中负责运算的部分, 体现在时钟频率上, 直接决定了计算机的运算速度(运算能力是综合能力, 不单单取决于运算器).</li>
+<li>控制器: 控制器从内存中读取指令及数据的内存地址, 负责寻址和数据的存储控制, 它就像一个控制室一样, 依据写好的程序代码, 控制各个数据的流向及运算逻辑.<br>以上两部件被人们实现为:CPU, 我们市面上购买的CPU实际上就充当着冯诺依曼体系结构中运算器和控制器的功能. </li>
+<li>输入设备: 这个好理解, 但是绝不仅限于键盘和鼠标, 包括但不限于扫描仪, 摄像头, 麦克风, 指纹识别器, 各种senior感应器等等, 只要能向计算机输入数据的设备, 都可以算作输入设备.</li>
+<li>输出设备: 包括但不限于各种数据的输出, 音响, 显示器, VR设备,AR设备=====.</li>
+<li>内存: (终于说到内存了)冯诺依曼说了, 冯诺依曼说了, 得有一个设备, 用来存放各种指令(代码)以及程序运行时的中间数据, 这个设备要有一定的容量, 我们能向其中写入数据, 也能从中读取数据, 更重要的是, 它可以被重复使用, 并且具有无差异性.<br>这个部件被我们实现成了–内存.</li>
+</ul>
+</blockquote>
+<p>存储设备的实现–内存:<br><img src="http://h.hiphotos.baidu.com/baike/c0%3Dbaike80%2C5%2C5%2C80%2C26/sign=e60a5667dd54564ef168ec6bd2b7f7e7/f9198618367adab4e5b371378bd4b31c8701e467.jpg" alt="内存设备"></p>
+<p>还是要强调一下, 以上各个部分的具体实现是人为选择的结果, 只要提供了类似功能, 我们机箱内的零部件完全可能被替换掉.</p>
+<h3 id="那么,_我们所说的C语言的内存,_指的就是上图中的内存吗?">那么, 我们所说的C语言的内存, 指的就是上图中的内存吗?</h3><h2 id="非也!!">非也!!</h2><hr>
+<h4 id="2-物理内存和虚拟内存">2.物理内存和虚拟内存</h4><h3 id="我们每运行一个应用程序时(进程),_操作系统会为当前的进程分配大约4G的内存空间(视操作系统略有不同)-">我们每运行一个应用程序时(进程), 操作系统会为当前的进程分配大约4G的内存空间(视操作系统略有不同).</h3><p>比如, 我们运行一个”helloWord”的程序, 系统给我们分配4G内存.<br>同时我们再运行一个”helloApple”的程序, 系统再为它分配4G的内存.</p>
+<p>这里就会有疑问– 我的机器才4个G的内存, 怎么可能同时运行8G的空间呢?</p>
+<p>正确答案就是:<br>系统为我们分配的内存指的是”虚拟内存”, 学名叫”虚拟内存映射表”. 这张映射表的范围是0-4G, 但是并不是将这4G完全映射到物理内存(内存条)当中去, 而是根据使用情况具体映射.</p>
+<blockquote>
+<p>比如helloWorld程序, 运行时内存只需要8k内存, 那么实际上只会占用你物理内存的8k.</p>
+</blockquote>
+<h3 id="而我们所说的C语言的内存,_指的就是这4G的”虚拟内存映射表”">而我们所说的C语言的内存, 指的就是这4G的”虚拟内存映射表”</h3><h3 id="我们在用户层做开发时,_很难直接操作到物理内存,_因为中间隔着一层”操作系统”-">我们在用户层做开发时, 很难直接操作到物理内存, 因为中间隔着一层”操作系统”.</h3><p>所以, 在下节内容中, 我们将详细的介绍C语言的内存结构. 以及每个部分的具体特征, 我们要牢记这些特征, 并且善于使用这个特征.</p>
+
+    
+  </div>
+  <footer> 
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+  <section id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread" data-thread-key="post-C语言进阶系列-01-数据类型-03-C语言主线-内存01" data-title="C语言进阶系列--01&lt;数据类型&gt;--03&lt;C语言主线--内存01&gt;" data-url="http://iosli.com/2016/04/12/C语言进阶系列-01-数据类型-03-C语言主线-内存01/"></div>
+    <!-- 多说评论框 end -->
+    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'lucidy'};
+      (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0] 
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
+      </script>
+    <!-- 多说公共JS代码 end -->
+  </section>
+  
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">Lucidy</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme by <a href="https://github.com/orderedlist" target="_blank">orderedlist</a>
+   | 
+  Redesign by <a href="http://heroicyang.com/" target="_blank">Heroic Yang</a>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = { short_name: 'lucidy' };
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';
+    ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+
+</body>
+</html>
